@@ -9,48 +9,23 @@ const opcionesPlanesServicios = planesServicios.options;
 
 tipoAtencion.onchange = function() {
 
-    opcionesPlanesServicios.selectedIndex = 0
+    opcionesPlanesServicios.selectedIndex = 0;
+
+    if (tipoAtencion === "") {
+        planesServicios.disabled = true;
+        return;
+    }
+
+    planesServicios.disabled = false;
 
     const opcionSeleccionada = tipoAtencion.selectedOptions[0];
-
-    if (opcionSeleccionada.classList.contains("consulta-opt")) {
-        Array.from(opcionesPlanesServicios).forEach(element => {
-            if (element.classList.contains("consulta-serv")) {
-                element.classList.remove("d-none");
-            } else if(!element.classList.contains("d-none")) {
-                element.classList.add("d-none");
-            }
-        });
-    }
-
-    else if (opcionSeleccionada.classList.contains("tipo-ev-opt")) {
-        Array.from(opcionesPlanesServicios).forEach(element => {
-            if (element.classList.contains("eva-serv")) {
-                element.classList.remove("d-none");
-            } else if(!element.classList.contains("d-none")) {
-                element.classList.add("d-none");
-            }
-        });
-    }
-
-    else if (opcionSeleccionada.classList.contains("tipo-plan-opt")) {
-        Array.from(opcionesPlanesServicios).forEach(element => {
-            if (element.classList.contains("plan")) {
-                element.classList.remove("d-none");
-            } else if(!element.classList.contains("d-none")) {
-                element.classList.add("d-none");
-            }
-        });
-    }
-
-    else if (opcionSeleccionada.classList.contains("tipo-taller-opt")) {
-        Array.from(opcionesPlanesServicios).forEach(element => {
-            if (element.classList.contains("taller-serv")) {
-                element.classList.remove("d-none");
-            } else if(!element.classList.contains("d-none")) {
-                element.classList.add("d-none");
-            }
-        });
+    
+    for (const opc of opcionesPlanesServicios) {
+        if (opc.classList.contains(opcionSeleccionada.value)) {
+            opc.hidden = false;
+        } else {
+            opc.hidden = true;
+        }
     }
 }
 
@@ -89,14 +64,16 @@ submit.onclick = function(event) {
         //   1. Entregamos parámetros
         const parametros = new URLSearchParams();
         parametros.append("nombre", campoNombre.value.trim());
+        parametros.append("run", campoRun.value.trim())
         parametros.append("fecha", campoFecha.value);
         parametros.append("horario", campoHorario.value);
         parametros.append("atencion", tipoAtencion.selectedOptions[0].value);
         parametros.append("planServ", planesServicios.selectedOptions[0].value);
+        parametros.append("precio", Number(planesServicios.selectedOptions[0].dataset.precio));
 
         // 💡 2. Definimos la página de destino
         const paginaDestino = "confirmacion.html";
 
-        window.location.href = `${paginaDestino}${parametros.toString}`;
+        window.location.href = `${paginaDestino}?${parametros.toString()}`;
     }
 }

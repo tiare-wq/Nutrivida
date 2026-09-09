@@ -1,9 +1,22 @@
 body {
     background-color: rgb(193, 222, 164);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 header {
     margin: 20px;
+}
+
+.border.rounded.p-4.shadow.bg-white {
+    margin: 20px;
+}
+
+.card-body {
+    border: 1px solid rgb(18, 202, 98);
+    border-radius: 30px;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
 }
 
 .confirmacion-info {
@@ -16,6 +29,9 @@ header {
     width: 30px;
 }
 
+#confirmacion-reserva {
+    text-align: center;
+}
 
 #formulario-reserva td {
     padding: 10px;
