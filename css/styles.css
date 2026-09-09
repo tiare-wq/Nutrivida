@@ -1,14 +1,18 @@
 body {
     background-color: rgb(193, 222, 164);
-    display: grid;
-    grid-template-columns: 10% auto;
 }
 
 header {
     margin: 20px;
 }
 
-.nav.flex-column img {
+.confirmacion-info {
+    background-color: white;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.navbar-nav.me-auto.mb-2.mb-lg-0 img {
     width: 30px;
 }
 

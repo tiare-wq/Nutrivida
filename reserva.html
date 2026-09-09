@@ -6,195 +6,204 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/app.js" defer></script>
-    <title>Agenda de hora</title>
+    <title>Reserva de hora</title>
 </head>
-<body>
-    <div id="menu">
-        <h5>.Diet</h5>
-        <nav class="nav flex-column">
-            <a class="nav-link active" aria-current="page" href="home.html">
-                <img src="img/homeIcono.png" alt="Home">
-            </a>
-            <a class="nav-link disabled" aria-disabled="true">Agenda</a>
-            <a class="nav-link" href="logging.html">
-                <img src="img/usuarioIcono.webp" alt="Usuario">
-            </a>
-        </nav>
-    </div>
-    <div class="container">
-        <header>
-            <div>
-                <h1>Nutrivida 🍃</h1>
-                <h5>Comienza una vida saludable a partir de ahora</h5>
+<body class="container">
+    <header>
+        <div>
+            <h1>Nutrivida 🍃</h1>
+            <h5>Comienza una vida saludable a partir de ahora</h5>
+        </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="home.html">
+                            Home
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">Planes / Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Reservar</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </header>
-        <main>
-            <form id="formulario-reserva" class="border rounded p-4 shadow bg-white">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label>Nombre</label>
-                            </td>
-                            <td>
-                                <input type="text" placeholder="Ingrese su nombre">
-                            </td>
-                        </tr>
+        </nav>
+    </header>
 
-                        <tr>
-                            <td>
-                                <label>RUN</label>
-                            </td>
-                            <td>
-                                <input type="text" placeholder="11111111-1">
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <label>Correo</label>
-                            </td>
-                            <td>
-                                <input type="mail" placeholder="example@gmail.com">
-                            </td>
-                        </tr>
+    <main>
+        <form id="formulario-reserva" class="border rounded p-4 shadow bg-white">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Nombre</label>
+                        </td>
+                        <td>
+                            <input type="text" id="nombre" placeholder="Ingrese su nombre">
+                        </td>
+                    </tr>
 
-                        <tr>
-                            <td>
-                                <label>Tipo de Atención</label>
-                            </td>
-                            <td>
-                                <select id="tipo-atencion-select">
-                                    <option>
-                                        Seleccione una opción
-                                    </option>
-                                    <option class="consulta-opt">
-                                        Consulta
-                                    </option>
-                                    <option class="tipo-ev-opt">
-                                        Evaluación
-                                    </option>
-                                    <option class="tipo-plan-opt">
-                                        Plan especializado
-                                    </option>
-                                    <option class="tipo-taller-opt">
-                                        Taller grupal
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <label>RUN</label>
+                        </td>
+                        <td>
+                            <input type="text" id="run" placeholder="11111111-1">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <label>Correo</label>
+                        </td>
+                        <td>
+                            <input type="email" id="correo" placeholder="example@gmail.com">
+                        </td>
+                    </tr>
 
-                        <tr>
-                            <td>
-                                <label>Servicio / Plan</label>
-                            </td>
-                            <td>
-                                <select id="plan-servicio-select">
-                                    <option>
-                                        Seleccione una opción
-                                    </option>
-                                    <option class="consulta-serv d-none">
-                                        Primera consulta nutricional
-                                    </option>
-                                    <option class="consulta-serv d-none">
-                                        Control nutricional (seguimiendo)
-                                    </option>
-                                    <option class="consulta-serv d-none">
-                                        Control nutricional quincenal
-                                    </option>
-                                    <option class="consulta-serv d-none">
-                                        Teleconsulta nutricional
-                                    </option>
-                                    <option class="consulta-serv d-none">
-                                        Consulta de urgencia / reagendada
-                                    </option>
+                    <tr>
+                        <td>
+                            <label>Tipo de Atención</label>
+                        </td>
+                        <td>
+                            <select id="tipo-atencion-select">
+                                <option>
+                                    Seleccione una opción
+                                </option>
+                                <option class="consulta-opt">
+                                    Consulta
+                                </option>
+                                <option class="tipo-ev-opt">
+                                    Evaluación
+                                </option>
+                                <option class="tipo-plan-opt">
+                                    Plan especializado
+                                </option>
+                                <option class="tipo-taller-opt">
+                                    Taller grupal
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
 
-                                    <option class="eva-serv d-none">
-                                        Antropometría completada
-                                    </option>
-                                    <option class="eva-serv d-none">
-                                        Bioimpedanciometría
-                                    </option>
-                                    <option class="eva-serv d-none">
-                                        Encuesta de hábitos alimentarios
-                                    </option>
-                                    <option class="eva-serv d-none">
-                                        Análisis de exámenes de laboratorio
-                                    </option>
-                                    
-                                    <option class="plan d-none">
-                                        Plan de pérdida de peso (1 mes)
-                                    </option>
-                                    <option class="plan d-none">
-                                        Plan de pérdida de peso (3 meses)
-                                    </option>
-                                    <option class="plan d-none">
-                                        Plan nutrición deportiva (1 mes)
-                                    </option>
-                                    <option class="plan d-none">
-                                        Plan control diabetes / hipertensión
-                                    </option>
-                                    <option class="plan d-none">
-                                        Plan alimentación vegetariana / vegana
-                                    </option>
-                                    <option class="plan d-none">
-                                        Plan alimentación infantil (2 - 12 años)
-                                    </option>
+                    <tr>
+                        <td>
+                            <label>Servicio / Plan</label>
+                        </td>
+                        <td>
+                            <select id="plan-servicio-select">
+                                <option>
+                                    Seleccione una opción
+                                </option>
+                                <option class="consulta-serv d-none">
+                                    Primera consulta nutricional
+                                </option>
+                                <option class="consulta-serv d-none">
+                                    Control nutricional (seguimiendo)
+                                </option>
+                                <option class="consulta-serv d-none">
+                                    Control nutricional quincenal
+                                </option>
+                                <option class="consulta-serv d-none">
+                                    Teleconsulta nutricional
+                                </option>
+                                <option class="consulta-serv d-none">
+                                    Consulta de urgencia / reagendada
+                                </option>
 
-                                    <option class="taller-serv d-none">
-                                        Taller de alimentación saludable
-                                    </option>
-                                    <option class="taller-serv d-none">
-                                        Taller de cocina nutritiva
-                                    </option>
-                                    <option class="taller-serv d-none">
-                                        Taller nutrición para deportistas
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Selecciona tu hora
-                            </td>
-                            <td>
-                                <input type="date">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Horario
-                            </td>
-                            <td>
-                                <select>
-                                    <option>
-                                        Seleccione una opción
-                                    </option>
-                                    <option>
-                                        Mañana
-                                    </option>
-                                    <option>
-                                        Tarde
-                                    </option>
-                                    <option>
-                                        Noche
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <input type="submit" class="btn btn-success" value="Reservar hora">
-            </form>
-        </main>
-        <footer>
+                                <option class="eva-serv d-none">
+                                    Antropometría completada
+                                </option>
+                                <option class="eva-serv d-none">
+                                    Bioimpedanciometría
+                                </option>
+                                <option class="eva-serv d-none">
+                                    Encuesta de hábitos alimentarios
+                                </option>
+                                <option class="eva-serv d-none">
+                                    Análisis de exámenes de laboratorio
+                                </option>
+                                
+                                <option class="plan d-none">
+                                    Plan de pérdida de peso (1 mes)
+                                </option>
+                                <option class="plan d-none">
+                                    Plan de pérdida de peso (3 meses)
+                                </option>
+                                <option class="plan d-none">
+                                    Plan nutrición deportiva (1 mes)
+                                </option>
+                                <option class="plan d-none">
+                                    Plan control diabetes / hipertensión
+                                </option>
+                                <option class="plan d-none">
+                                    Plan alimentación vegetariana / vegana
+                                </option>
+                                <option class="plan d-none">
+                                    Plan alimentación infantil (2 - 12 años)
+                                </option>
 
-        </footer>
-    </div>
+                                <option class="taller-serv d-none">
+                                    Taller de alimentación saludable
+                                </option>
+                                <option class="taller-serv d-none">
+                                    Taller de cocina nutritiva
+                                </option>
+                                <option class="taller-serv d-none">
+                                    Taller nutrición para deportistas
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seleccione una fecha
+                        </td>
+                        <td>
+                            <input type="date" id="fecha">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Horario
+                        </td>
+                        <td>
+                            <select id="horario">
+                                <option>
+                                    Seleccione una opción
+                                </option>
+                                <option>
+                                    Mañana
+                                </option>
+                                <option>
+                                    Tarde
+                                </option>
+                                <option>
+                                    Noche
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" id="enviar" class="btn btn-success" value="Reservar hora">
+        </form>
+        <div id ="mensaje-form-invalido">
+            <p id="mensaje-error"></p>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
