@@ -42,13 +42,17 @@ const campoCorreo = document.getElementById("correo");
 const campoFecha = document.getElementById("fecha");
 const campoHorario = document.getElementById("horario");
 
+// Patrones Regex
+const runPattern = /^\d{7,8}$/;
+const mailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+
 submit.onclick = function(event) {
 
     event.preventDefault()
 
     const nombre = campoNombre.value.trim() === "";
-    const run = campoRun.value.trim() === "";
-    const correo = campoCorreo.value.trim() === "";
+    const run = !runPattern.test(campoRun.value.trim());
+    const correo = !mailPattern.test(campoCorreo.value.trim());
     const fecha = campoFecha.value.trim() === "";
     const horario = campoHorario.value === "";
     const atencion = tipoAtencion.selectedOptions[0].value === "";
@@ -69,7 +73,7 @@ submit.onclick = function(event) {
         parametros.append("horario", campoHorario.value);
         parametros.append("atencion", tipoAtencion.selectedOptions[0].value);
         parametros.append("planServ", planesServicios.selectedOptions[0].value);
-        parametros.append("precio", Number(planesServicios.selectedOptions[0].dataset.precio));
+        parametros.append("precio", planesServicios.selectedOptions[0].dataset.precio);
 
         // 💡 2. Definimos la página de destino
         const paginaDestino = "confirmacion.html";

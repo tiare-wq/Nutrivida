@@ -18,7 +18,7 @@ const precio = urlParam.get('precio');
 // =============================
 
 function obtenerCodigoReserva() {
-    return Math.random(0, 1) * 100000000;
+    return Math.random(0, 1) * 10**16;
 }
 
 const codReserva = document.getElementById("codigo-reserva");
@@ -34,4 +34,4 @@ const sectPrecio = document.getElementById("precio");
 
 sectNombre.textContent = `Nombre del paciente: ${nombre}`;
 sectFechaHora.textContent = `Paciente citado para el día ${fecha} en la ${horario}`;
-sectPrecio = `Valor de la atención: $${precio}`;
+sectPrecio.textContent = `Valor de la atención: $${precio}`;

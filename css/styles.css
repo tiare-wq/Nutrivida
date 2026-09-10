@@ -1,10 +1,51 @@
+a {
+    color: rgb(212, 197, 78);
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(181, 99, 204);
+}
+
 body {
-    background-color: rgb(193, 222, 164);
+    background-color: rgb(255, 255, 255);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+footer {
+    color: rgb(122, 35, 140);
+    padding: 20px 20px 0;
 }
 
 header {
     margin: 20px;
+}
+
+header h1 {
+    color: rgb(122, 35, 140);
+}
+
+.ar-plan-serv {
+    container-type: inline-size;
+    container-name: plan-servicio;
+    background-color: white;
+    border-radius: 20px;
+    flex: 1 1 260px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.ar-plan-serv:hover {
+    border: 3px solid antiquewhite;
+}
+
+.ar-plan-serv h2 {
+    padding: 10px;
+}
+
+.ar-plan-serv img {
+    width: 260px;
+    padding: 10px;
 }
 
 .border.rounded.p-4.shadow.bg-white {
@@ -16,7 +57,7 @@ header {
     border-radius: 30px;
     text-align: center;
     margin: 20px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .confirmacion-info {
@@ -25,8 +66,94 @@ header {
     text-align: center;
 }
 
+.container {
+    margin: 0 auto;
+}
+
+.contacto {
+    display: flex;
+    flex-direction: column;
+
+    margin: 20px;
+}
+
+.contacto img {
+    width: 30px;
+}
+
+.encabezado {
+    padding: 120px 20px 80px;
+}
+
+.home {
+    background-color: rgb(235, 237, 229);
+}
+
+.home iframe {
+    display: block;
+    width: 100%;
+    max-width: 854px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    margin: 40px auto;
+    border: none;
+}
+
+.mensaje-presentacion {
+    padding: 20px;
+}
+
 .navbar-nav.me-auto.mb-2.mb-lg-0 img {
     width: 30px;
+}
+
+.presentacion {
+
+    width: 100%;
+    min-height: 600px;
+
+    background-image: url("../img/nutricionistaPaciente.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.presentacion > div {
+    width: 40%;
+    margin: 30px;
+}
+
+.presentacion a {
+    font-size: 20px;
+    margin: 0 30px 50px 0;
+    color: white;
+}
+
+.presentacion h1, .presentacion h3 {
+    -webkit-text-stroke: 0.2px white;
+}
+
+.prest-planes-servicios {
+    text-align: center;
+}
+
+.prest-planes-servicios h1 {
+    padding: 30px 0 20px;
+}
+
+.resumen-planes-servicios {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ubicacion iframe {
+    width: 600px;
+    height: 450px;
+    border: 0;
+    margin: 20px;
 }
 
 #confirmacion-reserva {
@@ -41,4 +168,15 @@ header {
     width: 80px;
     background-color: rgb(14, 133, 66);
     color: white;
+}
+
+@container plan-servicio (min-width: 460px) {
+    .contenido-art {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 720px) {
+
 }
