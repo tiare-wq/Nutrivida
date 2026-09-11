@@ -292,14 +292,15 @@ enviar.onclick = function(event) {
         errorHora.textContent = "";
         errorProfesional.textContent = "";
 
+        // FORMATEAR DATOS
+        const opciones = {day: '2-digit', month: '2-digit', year: 'numeric'};
+        const formateada = new Intl.DateTimeFormat('es-CL', opciones).format(campoDiaSeleccionado);
+
         //   1. Entregamos parámetros
         const parametros = new URLSearchParams();
-        parametros.append("nombre", campoNombre.value.trim());
-        parametros.append("run", campoRun.value.trim())
-        parametros.append("fecha", campoDiaSeleccionado.toISOString());
+        parametros.append("nombre", nombre);
+        parametros.append("fecha", formateada);
         parametros.append("hora", campoHora.value);
-        parametros.append("atencion", tipoAtencion.selectedOptions[0].value);
-        parametros.append("planServ", planesServicios.selectedOptions[0].value);
         parametros.append("precio", planesServicios.selectedOptions[0].dataset.precio);
 
         // 💡 2. Definimos la página de destino

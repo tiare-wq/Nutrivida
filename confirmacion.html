@@ -12,53 +12,73 @@
     <header>
         <div class="head-header"> 
             <div>
-                <h1>Nutrivida 🍃</h1>
+                <h1>NutriVida 🍃</h1>
             </div>
-            <a id="btn-logging" class="btn btn-outline-warning" href="logging.html">
+            <a id="btn-logging" class="justify-content-center btn-nutrivida" href="logging.html">
                 <img src="img/usuarioIcono2.webp" alt="Iniciar sesión">
-                <h6>Iniciar sesión</h6>
+                <span>Iniciar sesión</span>
             </a>
         </div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="home.html">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Planes / Servicios</a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="planes-servicios.html">Consulta Nutricional</a></li>
-                            <li><a class="dropdown-item" href="planes-servicios.html">Evaluaciones</a></li>
-                            <li><a class="dropdown-item" href="planes-servicios.html">Planes de Alimentación</a></li>
-                            <li><a class="dropdown-item" href="planes-servicios.html">Talleres Grupales</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="reserva.html">Reservar</a>
-                        </li>
+
+        <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="light">
+            <div class="bg-light p-4">
+                <h5 class="text-body-emphasis h4">Menú</h5>
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Planes / Servicios</a>
+                    <ul>
+                        <li><a class="nav-item" href="planes-servicios.html">Consulta Nutricional</a></li>
+                        <li><a class="nav-item" href="planes-servicios.html">Evaluaciones</a></li>
+                        <li><a class="nav-item" href="planes-servicios.html">Planes de Alimentación</a></li>
+                        <li><a class="nav-item" href="planes-servicios.html">Talleres Grupales</a></li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="reserva.html">Reservar</a>
+                </li>
+            </div>
+            </div>
+        <nav class="navbar navbar-light bg-light d-sm-none">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
         </nav>
+
+        <ul class="nav nav-pills d-none d-sm-flex">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Planes / Servicios</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="planes-servicios.html">Consulta Nutricional</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Evaluaciones</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Planes de Alimentación</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Talleres Grupales</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="reserva.html">Reservar</a>
+            </li>
+        </ul>
     </header>
 
     <main>
-        <div id="confirmacion-reserva" class="bg-light py-5 container justify-content-center col-12 col-md-8 col-lg-6">
-            <h3>Confirmación de la reserva.</h3>
+        <div class="bg-light container col-12 col-md-8 col-lg-6">
+            <div class="justify-content-center confirmacion">
+                <h3>Confirmación de la reserva.</h3>
                 <div class="card-body">
                     <label>Código de la reserva</label>
-                    <h5 id="codigo-reserva">1010100101</h5>
+                    <h5 id="codigo-reserva"></h5>
                 </div>
-            <h5 id="nombre">Nombre del paciente: </h5>
-            <h5 id="fecha-hora">Fecha y hora de la cita: </h5>
-
-            <h5 id="precio">Valor de la consulta: $</h5>
+                <h6>Envíamos un mensaje a tu corre.o</h6>
+                <h6 id="fecha-hora"></h6>
+                <h6 id="precio"></h6>
+            </div>
         </div>
     </main>
 

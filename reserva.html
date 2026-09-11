@@ -21,7 +21,36 @@
                 <span>Iniciar sesión</span>
             </a>
         </div>
-        <ul class="nav nav-pills">
+
+        <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="light">
+            <div class="bg-light p-4">
+                <h5 class="text-body-emphasis h4">Menú</h5>
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Planes / Servicios</a>
+                    <ul>
+                        <li><a class="nav-item" href="planes-servicios.html">Consulta Nutricional</a></li>
+                        <li><a class="nav-item" href="planes-servicios.html">Evaluaciones</a></li>
+                        <li><a class="nav-item" href="planes-servicios.html">Planes de Alimentación</a></li>
+                        <li><a class="nav-item" href="planes-servicios.html">Talleres Grupales</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="reserva.html" aria-disabled="true">Reservar</a>
+                </li>
+            </div>
+            </div>
+        <nav class="navbar navbar-light bg-light d-sm-none">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <ul class="nav nav-pills d-none d-sm-flex">
             <li class="nav-item">
                 <a class="nav-link" href="home.html">Home</a>
             </li>
@@ -187,13 +216,13 @@
                         <label id="horas" for="hora">Horas disponibles:</label>
                         
                         <input type="radio" name="hora" value="10">
-                        <label for="10">10:00</label>
+                        <label for="10:00">10:00</label>
 
                         <input type="radio" name="hora" value="11">
-                        <label for="11">11:00</label>
+                        <label for="11:00">11:00</label>
 
                         <input type="radio" name="hora" value="12">
-                        <label for="12">12:00</label>
+                        <label for="12:00">12:00</label>
                     </div>
                     <div class="error-campo">
                         <span id="error-hora"></span>

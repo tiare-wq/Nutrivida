@@ -92,7 +92,25 @@ label {
     border-radius: 30px;
     text-align: center;
     margin: 20px;
-    padding: 20px;
+    padding: 10px;
+}
+
+.collapse li {
+    list-style-type: none;
+}
+
+.confirmacion {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.confirmacion h3 {
+    padding: 30px 0 10px;
+}
+
+.confirmacion h6 {
+    font-size: 20px;
+    padding: 5px;
 }
 
 .confirmacion-info {
@@ -130,6 +148,8 @@ label {
 .formulario {
     display: grid;
     justify-items: center;
+    
+    min-width: 576px;
 }
 
 .elemento-oferta {
@@ -202,6 +222,10 @@ label {
     margin-bottom: 80px;
 }
 
+.navbar {
+    border-radius: 16px;
+}
+
 .oferta {
     background-color: rgba(126, 241, 239, 0.2);
     text-align: center;
@@ -251,10 +275,6 @@ label {
     border: none;
 }
 
-#confirmacion-reserva {
-    text-align: center;
-}
-
 #horas {
     font-size: 20px;
     padding-right: 10px;
@@ -284,4 +304,8 @@ label {
     .hero h3 {
         font-size: 20px;
     }
+}
+
+@media (max-width: 360px) {
+    
 }
