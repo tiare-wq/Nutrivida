@@ -3,8 +3,14 @@ a {
     text-decoration: none;
 }
 
+a img {
+    width: 20px;
+    height: 100%;
+    margin: 5px;
+}
+
 a:visited {
-    color: rgb(181, 99, 204);
+    color: rgb(33, 211, 99);
 }
 
 body {
@@ -12,9 +18,15 @@ body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+form textarea {
+    width: 100%;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
 footer {
-    color: rgb(122, 35, 140);
-    padding: 20px 20px 0;
+    color: rgb(33, 211, 99);
+    padding: 15px 0;
 }
 
 header {
@@ -22,34 +34,41 @@ header {
 }
 
 header h1 {
-    color: rgb(122, 35, 140);
-}
-
-.ar-plan-serv {
-    container-type: inline-size;
-    container-name: plan-servicio;
-    background-color: white;
-    border-radius: 20px;
-    flex: 1 1 260px;
-    margin: 20px;
-    padding: 10px;
-}
-
-.ar-plan-serv:hover {
-    border: 3px solid antiquewhite;
-}
-
-.ar-plan-serv h2 {
-    padding: 10px;
-}
-
-.ar-plan-serv img {
-    width: 260px;
-    padding: 10px;
+    color: rgb(33, 211, 99);
 }
 
 .border.rounded.p-4.shadow.bg-white {
     margin: 20px;
+}
+
+.btn-nutrivida {
+    display: grid;
+    grid-template-columns: 20px auto;
+    background-color: rgb(40, 191, 188);
+    color: white;
+
+    width: 100%;
+    width: fit-content;
+    max-height: 50px;
+
+    border-radius: 16px;
+
+    margin: 4px;
+    padding: 8px;
+}
+
+.btn-nutrivida span {
+    color: white;
+    padding-left: 10px;
+}
+
+.btn-nutrivida img {
+    height: 20px;
+    margin: 4px;
+}
+
+.btn-nutrivida:hover {
+    background-color: rgb(28, 145, 143);
 }
 
 .card-body {
@@ -66,85 +85,117 @@ header h1 {
     text-align: center;
 }
 
-.container {
-    margin: 0 auto;
-}
-
 .contacto {
+    background-color: rgba(126, 241, 239, 0.2);
+    text-align: center;
+
     display: flex;
     flex-direction: column;
 
-    margin: 20px;
-}
-
-.contacto img {
-    width: 30px;
-}
-
-.encabezado {
-    padding: 120px 20px 80px;
-}
-
-.home {
-    background-color: rgb(235, 237, 229);
-}
-
-.home iframe {
-    display: block;
-    width: 100%;
-    max-width: 854px;
-    aspect-ratio: 16 / 9;
-    height: auto;
-    margin: 40px auto;
-    border: none;
-}
-
-.mensaje-presentacion {
+    margin-top: 20px;
     padding: 20px;
 }
 
-.navbar-nav.me-auto.mb-2.mb-lg-0 img {
-    width: 30px;
+.contacto a {
+    display: flex;
+    flex-direction: row;
+    max-width: 220px;
+    color: white
 }
 
-.presentacion {
+.contacto h6 {
+    margin: 5px;
+}
+
+.elemento-oferta {
+    container-type: inline-size;
+    container-name: plan-servicio;
+    background-color: white;
+    border-radius: 20px;
+    flex: 1 1 260px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.elemento-oferta:hover {
+    border: 3px solid rgb(33, 211, 99, 0.5);
+}
+
+.elemento-oferta h2, .elemento-oferta h6 {
+    padding: 10px;
+}
+
+.elemento-oferta img {
+    width: 260px;
+    text-align: center;
+    padding: 10px;
+}
+
+.head-header {
+    display: grid;
+    grid-template-columns: 90% auto;
+    margin-bottom: 10px;
+}
+
+.home {
+    background-color: snow;
+}
+
+.navbar-nav.me-auto.mb-2.mb-lg-0 a {
+    color: rgb(101, 204, 99);
+}
+
+.hero {
 
     width: 100%;
     min-height: 600px;
 
-    background-image: url("../img/nutricionistaPaciente.png");
+    background-image: url("../img/nutricion5.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
     display: flex;
     flex-direction: column;
+
+    padding-left: 100px;
 }
 
-.presentacion > div {
+.hero > div {
     width: 40%;
-    margin: 30px;
 }
 
-.presentacion a {
-    font-size: 20px;
-    margin: 0 30px 50px 0;
+.hero a {
     color: white;
+    font-size: 20px;
+    
+    margin-top: 10px;
 }
 
-.presentacion h1, .presentacion h3 {
-    -webkit-text-stroke: 0.2px white;
+.hero h1 {
+    font-size: 50px;
+    margin-bottom: 80px;
 }
 
-.prest-planes-servicios {
+.oferta {
+    background-color: rgba(126, 241, 239, 0.2);
     text-align: center;
+
+    padding: 40px;
 }
 
-.prest-planes-servicios h1 {
-    padding: 30px 0 20px;
+.oferta hr {
+    width: 60%;
+
+    margin: 0 auto;
+    padding-bottom: 50px;
 }
 
-.resumen-planes-servicios {
+.oferta h5 {
+    margin: 40px;
+}
+
+.oferta-wrap {
     display: flex;
     flex-wrap: wrap;
 }
@@ -154,6 +205,16 @@ header h1 {
     height: 450px;
     border: 0;
     margin: 20px;
+}
+
+.video-autoplay {
+    display: block;
+    width: 100%;
+    max-width: 854px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    margin: 40px auto;
+    border: none;
 }
 
 #confirmacion-reserva {
@@ -166,8 +227,11 @@ header h1 {
 
 #menu {
     width: 80px;
-    background-color: rgb(14, 133, 66);
     color: white;
+}
+
+#profesionales {
+    background-color: transparent;
 }
 
 @container plan-servicio (min-width: 460px) {
@@ -177,6 +241,13 @@ header h1 {
     }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
 
+    .hero h3 {
+        font-size: 20px;
+    }
 }

@@ -10,33 +10,32 @@
 </head>
 <body class="container">
     <header>
-        <div>
-            <h1>Nutrivida 🍃</h1>
-            <h5>Comienza una vida saludable a partir de ahora</h5>
-        </div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                        <a class="nav-link" href="home.html">
-                            Home
-                        </a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="planes-servicios.html">Planes / Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link disabled" aria-current="page" aria-disabled="true">Reservar</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
+        <div class="head-header"> 
+            <div>
+                <h1>NutriVida 🍃</h1>
             </div>
-        </nav>
+            <a id="btn-logging" class="justify-content-center btn-nutrivida" href="logging.html">
+                <img src="img/usuarioIcono2.webp" alt="Iniciar sesión">
+                <span>Iniciar sesión</span>
+            </a>
+        </div>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="home.html">Active</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Planes / Servicios</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="planes-servicios.html">Consulta Nutricional</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Evaluaciones</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Planes de Alimentación</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Talleres Grupales</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reserva.html">Reservar</a>
+            </li>
+        </ul>
     </header>
 
     <main>
@@ -50,7 +49,16 @@
                                 <label for="nombre">Nombre</label>
                             </td>
                             <td>
-                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese su nombre">
+                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese su nombre">                                
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                <span id="error-nombre"></span>
                             </td>
                         </tr>
 
@@ -62,6 +70,15 @@
                                 <input name="run" type="text" id="run" placeholder="11111111-1">
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                <span id="error-run"></span>
+                            </td>
+                        </tr>
                         
                         <tr>
                             <td>
@@ -69,6 +86,15 @@
                             </td>
                             <td>
                                 <input name="correo" type="email" id="correo" placeholder="example@gmail.com">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                <span id="error-correo"></span>
                             </td>
                         </tr>
 
@@ -99,6 +125,15 @@
 
                         <tr>
                             <td>
+
+                            </td>
+                            <td>
+                                <span id="error-atencion"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
                                 <label for="planes-servicios">Servicio / Plan</label>
                             </td>
                             <td>
@@ -106,66 +141,101 @@
                                     <option value="" selected disabled>
                                         Seleccione una opción
                                     </option>
-                                    <option value="1" class="consulta" data-precio="6000">
+                                    <option value="1" class="consulta" data-precio="6000" data-profesional="clinica">
                                         Primera consulta nutricional
                                     </option>
-                                    <option value="2" class="consulta" data-precio="8000">
-                                        Control nutricional (seguimiendo)
+                                    <option value="2" class="consulta" data-precio="8000" data-profesional="clinica">
+                                        Control nutricional (seguimiento)
                                     </option>
-                                    <option value="3" class="consulta" data-precio="7000">
+                                    <option value="3" class="consulta" data-precio="7000" data-profesional="clinica">
                                         Control nutricional quincenal
                                     </option>
-                                    <option value="4" class="consulta" data-precio="5000">
+                                    <option value="4" class="consulta" data-precio="5000" data-profesional="clinica">
                                         Teleconsulta nutricional
                                     </option>
-                                    <option value="5" class="consulta" data-precio="8000">
+                                    <option value="5" class="consulta" data-precio="8000" data-profesional="clinica">
                                         Consulta de urgencia / reagendada
                                     </option>
 
-                                    <option value="6" class="evaluacion" data-precio="12000">
+                                    <option value="6" class="evaluacion" data-precio="12000" data-profesional="clinica">
                                         Antropometría completada
                                     </option>
-                                    <option value="7" class="evaluacion" data-precio="14000">
+                                    <option value="7" class="evaluacion" data-precio="14000" data-profesional="clinica">
                                         Bioimpedanciometría
                                     </option>
-                                    <option value="8" class="evaluacion" data-precio="14000">
+                                    <option value="8" class="evaluacion" data-precio="14000" data-profesional="clinica">
                                         Encuesta de hábitos alimentarios
                                     </option>
-                                    <option value="9" class="evaluacion" data-precio="16000">
+                                    <option value="9" class="evaluacion" data-precio="16000" data-profesional="clinica">
                                         Análisis de exámenes de laboratorio
                                     </option>
                                     
-                                    <option value="10" class="plan" data-precio="25000">
+                                    <option value="10" class="plan" data-precio="25000" data-profesional="clinica">
                                         Plan de pérdida de peso (1 mes)
                                     </option>
-                                    <option value="11" class="plan" data-precio="20000">
+                                    <option value="11" class="plan" data-precio="20000" data-profesional="clinica">
                                         Plan de pérdida de peso (3 meses)
                                     </option>
-                                    <option value="12" class="plan" data-precio="26000">
+                                    <option value="12" class="plan" data-precio="26000" data-profesional="deportiva">
                                         Plan nutrición deportiva (1 mes)
                                     </option>
-                                    <option value="13" class="plan" data-precio="23000">
+                                    <option value="13" class="plan" data-precio="23000" data-profesional="clinica">
                                         Plan control diabetes / hipertensión
                                     </option>
-                                    <option value="14" class="plan" data-precio="28000">
+                                    <option value="14" class="plan" data-precio="28000" data-profesional="veg">
                                         Plan alimentación vegetariana / vegana
                                     </option>
-                                    <option value="15" class="plan" data-precio="23000">
+                                    <option value="15" class="plan" data-precio="23000" data-profesional="veg">
                                         Plan alimentación infantil (2 - 12 años)
                                     </option>
 
-                                    <option value="16" class="taller" data-precio="25000">
+                                    <option value="16" class="taller" data-precio="25000" data-profesional="deportiva,veg">
                                         Taller de alimentación saludable
                                     </option>
-                                    <option value="17" class="taller" data-precio="23000">
+                                    <option value="17" class="taller" data-precio="23000" data-profesional="deportiva,veg">
                                         Taller de cocina nutritiva
                                     </option>
-                                    <option value="18" class="taller" data-precio="18000">
+                                    <option value="18" class="taller" data-precio="18000" data-profesional="deportiva">
                                         Taller nutrición para deportistas
                                     </option>
                                 </select>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+                                <label for="profesional">Profesional</label>
+                            </td>
+                            <td>
+                                <select name="profesional" id="profesional-select" disabled>
+                                    <option value="" selected disabled>
+                                        Seleccione una opción
+                                    </option>
+                                    <option value="1" class="clinica">
+                                        Carolina Pérez
+                                    </option>
+                                    <option value="2" class="clinica">
+                                        Valentina Soto
+                                    </option>
+                                    <option value="3" class="deportiva">
+                                        Camilo Rojas
+                                    </option>
+                                    <option value="4" class="veg">
+                                        Daniela Muñoz
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                <span id="error-profesional"></span>
+                            </td>
+                        </tr>
+
                         <tr>
                             <td>
                                 <label for="fecha">Seleccione una fecha</label>
@@ -174,13 +244,23 @@
                                 <input name="fecha" type="date" id="fecha">
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                <span id="error-fecha"></span>
+                            </td>
+                        </tr>
+
                         <tr>
                             <td>
                                 <label for="horario">Horario</label>
                             </td>
                             <td>
                                 <select name="horario" id="horario">
-                                    <option>
+                                    <option value="" selected disabled>
                                         Seleccione una opción
                                     </option>
                                     <option>
@@ -195,13 +275,25 @@
                                 </select>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                <span id="error-horario"></span>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+                <div>
+                    <label for="motivo">Motivo de la consulta</label>
+                </div>
+                <div>
+                    <textarea name="motivo"></textarea>
+                </div>
                 <input name="enviar" type="submit" id="enviar" class="btn btn-success" value="Reservar hora">
             </form>
-            <div id ="mensaje-form-invalido">
-                <p id="mensaje-error"></p>
-            </div>
         </section>
     </main>
     <footer>

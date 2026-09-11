@@ -9,136 +9,183 @@
 </head>
 <body>
     <header>
-        <div>
-            <h1>Nutrivida 🍃</h1>
-        </div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home.html">
-                            Home
-                        </a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="planes-servicios.html">Planes / Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="reserva.html">Reservar</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
+        <div class="head-header"> 
+            <div>
+                <h1>NutriVida 🍃</h1>
             </div>
-        </nav>
+            <a id="btn-logging" class="justify-content-center btn-nutrivida" href="logging.html">
+                <img src="img/usuarioIcono2.webp" alt="Iniciar sesión">
+                <span>Iniciar sesión</span>
+            </a>
+        </div>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="home.html">Active</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Planes / Servicios</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="planes-servicios.html">Consulta Nutricional</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Evaluaciones</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Planes de Alimentación</a></li>
+                    <li><a class="dropdown-item" href="planes-servicios.html">Talleres Grupales</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reserva.html">Reservar</a>
+            </li>
+        </ul>
     </header>
 
     <main>
         <section class="home">
-            <section class="presentacion">
-                <div class="encabezado">
-                    <h1>Optimiza tu salud mediante atención personalizada</h1>
+            <section class="justify-content-center hero">
+                <div class="titulo">
+                    <h1>No todos necesitamos lo mismo. Tu plan tampoco debería serlo.</h1>
                 </div>
-                <div class="mensaje-presentacion">
-                    <h3>Consultas, evaluaciones, planes de alimentación, talleres grupales y hábitos sustentables
-                        para una vida vibrante</h3>
-                </div>
-                <div>
-                    <a class="btn btn-success" href="reserva.html">Agendar mi consulta</a>
+                <div class="subtitulo">
+                    <h3>Porque tu alimentación debe adaptarse a tu vida, no al revés. Sigue tu proceso de forma simple y personalizada.</h3>
+                    <a class="btn btn-success" href="reserva.html">Agenda tu atención ahora</a>
                 </div>
             </section>
-
-            <div class="container">
-                <iframe src="https://youtube.com/embed/tCkeUrcDXJ0" allow="autoplay; muted" allowfullscreen>
+            <div>
+                <iframe
+                    src="https://youtube.com/embed/tCkeUrcDXJ0?autoplay=1&mute=1"
+                    class="video-autoplay"
+                    allow="autoplay" allowfullscreen>
                 </iframe>
+            </div>
+            <section class="oferta">
+                <h1>Nutricionista en Temuco</h1>
+                <h5>Te acompañamos en temas como sobrepeso y obesidad, colesterol elevado, resistencia a la insulina y diabetes, hiper e
+                    hipotiriodismo, menopausia, enfermedades autoinmunes, colon irritable, acidez, reflujo, intolerancia y desórdenes
+                    alimentarios.
+                </h5>
+                
+                <hr>
 
-                <section class="prest-planes-servicios">
-                    <h1>Nutricionista en Temuco</h1>
-                    <h4>Te acompañamos en temas como sobrepeso y obesidad, colesterol elevado, resistencia a la insulina y diabetes, hiper e
-                        hipotiriodismo, menopausia, enfermedades autoinmunes, colon irritable, acidez, reflujo, intolerancia y desórdenes
-                        alimentarios.
-                    </h4>
-                    <h1>Planes y Servicios</h1>
-                </section>
-                <section class="resumen-planes-servicios">
-                    <article class="ar-plan-serv">
+                <h1>Planes y Servicios</h1>
+                <section class="oferta-wrap">
+                    <article class="elemento-oferta">
                         <div class="contenido-art">
                             <div>
                                 <a href="planes-servicios.html">
-                                    <h2>Consultas Nutricionales</h1>
+                                    <h2>Consultas Nutricionales</h2>
                                 </a>
-                                <h5>Atención nutricional personalizada para conocer tus necesidades, evaluar tu situación actual y acompañarte
+                                <h6>Atención nutricional personalizada para conocer tus necesidades, evaluar tu situación actual y acompañarte
                                 durante tu proceso. Contamos con consultas iniciales, controles de seguimiento, atención quincenal, teleconsultas
-                                y consultas de urgencia o reagendadas</h5>
+                                y consultas de urgencia o reagendadas</h6>
                             </div>
                             <img src="img/nutricionistaPaciente.png" alt="Consulta">
                         </div>
                     </article>
 
-                    <article class="ar-plan-serv">
+                    <article class="elemento-oferta">
                         <div class="contenido-art">
                             <div>
                                 <a href="planes-servicios.html">
                                     <h2>Evaluaciones Nutricionales</h2>
                                 </a>
-                                <h5>Obtén una visión más completa de tu estado nutricional mediante evaluaciones especializadas. Realizamos
+                                <h6>Obtén una visión más completa de tu estado nutricional mediante evaluaciones especializadas. Realizamos
                                 antropometría, bioimpedanciometría, análisis de hábitos alimentarios y revisión de exámenes de laboratorio
-                                en contexto nutricional.</h5>
+                                en contexto nutricional.</h6>
                             </div>
                             <img src="img/evaluacion.png" alt="Evaluación">
                         </div>
                     </article>
 
-                    <article class="ar-plan-serv">
+                    <article class="elemento-oferta">
                         <div class="contenido-art">
                             <div>
                                 <a href="planes-servicios.html">
                                     <h2>Planes de Alimentación</h2>
                                 </a>
-                                <h5>Diseñamos planes personalizados de acuerdo con tus objetivos y necesidades. Contamos con alternativas para
+                                <h6>Diseñamos planes personalizados de acuerdo con tus objetivos y necesidades. Contamos con alternativas para
                                     pérdida de peso, nutrición deportiva, control de diabetes e hipertensión, alimentación vegetariana y vegana,
-                                    además de planes para niños y niñas.</h5>
+                                    además de planes para niños y niñas.</h6>
                             </div>
                             <img src="img/planes.png" alt="Plan">
                         </div>
                     </article>
 
-                    <article class="ar-plan-serv">
+                    <article class="elemento-oferta">
                         <div class="contenido-art">
                             <div>
                                 <a href="planes-servicios.html">
                                     <h2>Talleres Grupales</h2>
                                 </a>
-                                <h5>Aprende sobre alimentación saludable de manera práctica y cercana. Participa en talleres de alimentació
+                                <h6>Aprende sobre alimentación saludable de manera práctica y cercana. Participa en talleres de alimentació
                                 equilibrada, cocina nutritiva y nutrición para deportistas, con actividades diseñadas para aprender y
-                                compartir en grupo.</h5>
+                                compartir en grupo.</h6>
                             </div>
                             <img src="img/taller.png" alt="Taller">
                         </div>
                     </article>
-                    
                 </section>
+            </section>
 
-                <section class="contacto">
-                    <div class="ubicacion">
-                        <h4>Encuentranos aquí</h4>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6374098.936843957!2d-79.51257006255237!3d-38.73266112048231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9614d3231b7706bb%3A0x91abf0b1575e5c52!2sNutricionista%20Steffy%20van%20Battenburg!5e0!3m2!1ses-419!2scl!4v1789067591908!5m2!1ses-419!2scl"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="strict-origin-when-cross-origin">
-                        </iframe>
-                    </div>
-                    <a class="WhatsApp">
-                        <img src="img/whatsappIcono.png">
-                        <h4>WhatsApp: +569 88737833</h4>
-                    </div>
+            <section id="profesionales" class="oferta">
+                <h1>Nuestros profesionales</h1>
+                <section class="oferta-wrap">
+                    <article class="elemento-oferta">
+                        <div class="contenido-art">
+                            <div>
+                                <h2>Carolina Pérez</h2>
+                                <h6>Enfocada en el manejo nutricional de distintas condiciones de salud y en la mejora de hábitos
+                                    alimentarios. Ofrece un acompañamiento personalizado según las necesidades de cada paciente.</h6>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="elemento-oferta">
+                        <div class="contenido-art">
+                            <div>
+                                <h2>Valentina Soto</h2>
+                                <h6>Enfocada en ayudarte a alcanzar tus objetivos deportivos mediante una alimentación personalizada,
+                                    equilibrada y adaptada a tu entrenamiento.</h6>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="elemento-oferta">
+                        <div class="contenido-art">
+                            <div>
+                                <h2>Camilo Rojas</h2>
+                                <h4>Nutrición Deportiva</h4>
+                                <h6>Especialista en nutrición deportiva, enfocada en rendimiento, recuperación y composición corporal.
+                                    Diseña estrategias alimentarias adaptadas a cada entrenamiento y objetivo.</h6>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="elemento-oferta">
+                        <div class="contenido-art">
+                            <div>
+                                <h2>Daniela Muñoz</h2>
+                                <h4>Nutrición Vegetariana y Vegana</h4>
+                                <h6>Especialista en alimentación vegetariana y vegana, enfocada en una nutrición equilibrada y completa.
+                                    Acompaña a cada persona según sus necesidades, preferencias y estilo de vida.</h6>
+                            </div>
+                        </div>
+                    </article>
                 </section>
-            </div>
+            </section>
+
+            <section class="justify-content-center align-items-center contacto">
+                <div class="ubicacion">
+                    <h5>Encuentranos aquí</h5>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6374098.936843957!2d-79.51257006255237!3d-38.73266112048231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9614d3231b7706bb%3A0x91abf0b1575e5c52!2sNutricionista%20Steffy%20van%20Battenburg!5e0!3m2!1ses-419!2scl!4v1789067591908!5m2!1ses-419!2scl"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+                <a class="btn-nutrivida" href="https://web.whatsapp.com/" target="_blank">
+                    <img src="img/whatsappIcono.png">
+                    <span>Contáctanos</span>
+                </a>
+            </section>
         </section>
     </main>
 

@@ -10,24 +10,33 @@
 </head>
 <body class="container">
     <header>
-        <div>
-            <h1>Nutrivida 🍃</h1>
-            <h5>Comienza una vida saludable a partir de ahora</h5>
+        <div class="head-header"> 
+            <div>
+                <h1>Nutrivida 🍃</h1>
+            </div>
+            <a id="btn-logging" class="btn btn-outline-warning" href="logging.html">
+                <img src="img/usuarioIcono2.webp" alt="Iniciar sesión">
+                <h6>Iniciar sesión</h6>
+            </a>
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                        <a class="nav-link" href="home.html">
-                            Home
-                        </a>
+                            <a class="nav-link" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Planes / Servicios</a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="planes-servicios.html">Consulta Nutricional</a></li>
+                            <li><a class="dropdown-item" href="planes-servicios.html">Evaluaciones</a></li>
+                            <li><a class="dropdown-item" href="planes-servicios.html">Planes de Alimentación</a></li>
+                            <li><a class="dropdown-item" href="planes-servicios.html">Talleres Grupales</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="planes-servicios.html">Planes / Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link active" aria-current="page">Reservar</a>
+                            <a class="nav-link active" aria-current="page" href="reserva.html">Reservar</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
