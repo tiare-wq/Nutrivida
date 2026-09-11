@@ -1,0 +1,55 @@
+h2 {
+    font-size: 21px;
+}
+
+.calendar {
+    background-color: snow;
+    min-width: 480px;
+
+    border: 2px solid black;
+    border-radius: 16px;
+    box-shadow: 10px rgb(80, 80, 80);
+
+    margin: 20px;
+    padding: 5px;
+}
+
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-day .week-day {
+    text-align: center;
+
+    margin: 5px;
+    padding: 10px;
+
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    background-color: aliceblue;
+}
+
+.calendar-day.seleccionado {
+    background-color: antiquewhite;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calendar-header button {
+    background-color: transparent;
+    border: none;
+    border-radius: 16px;
+
+    cursor: pointer;
+}
+
+.change-btn:hover {
+    background-color: #999;
+}

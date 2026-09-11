@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/calendario.css">
     <script src="js/formulario.js" defer></script>
     <title>Reserva de hora</title>
 </head>
-<body class="container">
+<body>
     <header>
         <div class="head-header"> 
             <div>
@@ -21,7 +23,7 @@
         </div>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home.html">Active</a>
+                <a class="nav-link" href="home.html">Home</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Planes / Servicios</a>
@@ -33,15 +35,170 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="reserva.html">Reservar</a>
+                <a class="nav-link active" aria-current="page" href="reserva.html" aria-disabled="true">Reservar</a>
             </li>
         </ul>
     </header>
 
     <main>
-        <section class="bg-light py-5 container justify-content-center col-12 col-md-8 col-lg-6">
-            <h2>Reserva de hora</h2>
-            <form id="formulario-reserva" class="border rounded p-4 shadow bg-white">
+        <section class="container justify-content-center reserva">
+            <form class="border rounded p-4 shadow bg-white formulario">
+
+                <h2 class="sub-form">Búsqueda por especialidad</h2>
+                
+                <section class="busqueda-especialidad">
+                    <div class="campo">
+                        <label for="atencion">Tipo de Atención</label>
+                        <select name="atencion" id="tipo-atencion-select">
+                            <option value="" selected disabled>
+                                Seleccione una opción
+                            </option>
+                            <option value="consulta">
+                                Consulta
+                            </option>
+                            <option value="evaluacion">
+                                Evaluación
+                            </option>
+                            <option value="plan">
+                                Plan especializado
+                            </option>
+                            <option value="taller">
+                                Taller grupal
+                            </option>
+                        </select>
+                    </div>
+                    
+                    <div class="error-campo">
+                        <span id="error-atencion"></span>
+                    </div>
+
+                    <div class="campo">
+                        <label for="planes-servicios">Servicio / Plan</label>
+                        <select name="planes-servicios" id="plan-servicio-select" disabled>
+                            <option value="" selected disabled>
+                                Seleccione una opción
+                            </option>
+                            <option value="1" class="consulta" data-precio="6000" data-profesional="clinica">
+                                Primera consulta nutricional
+                            </option>
+                            <option value="2" class="consulta" data-precio="8000" data-profesional="clinica">
+                                Control nutricional (seguimiento)
+                            </option>
+                            <option value="3" class="consulta" data-precio="7000" data-profesional="clinica">
+                                Control nutricional quincenal
+                            </option>
+                            <option value="4" class="consulta" data-precio="5000" data-profesional="clinica">
+                                Teleconsulta nutricional
+                            </option>
+                            <option value="5" class="consulta" data-precio="8000" data-profesional="clinica">
+                                Consulta de urgencia / reagendada
+                            </option>
+
+                            <option value="6" class="evaluacion" data-precio="12000" data-profesional="clinica">
+                                Antropometría completada
+                            </option>
+                            <option value="7" class="evaluacion" data-precio="14000" data-profesional="clinica">
+                                Bioimpedanciometría
+                            </option>
+                            <option value="8" class="evaluacion" data-precio="14000" data-profesional="clinica">
+                                Encuesta de hábitos alimentarios
+                            </option>
+                            <option value="9" class="evaluacion" data-precio="16000" data-profesional="clinica">
+                                Análisis de exámenes de laboratorio
+                            </option>
+                            
+                            <option value="10" class="plan" data-precio="25000" data-profesional="clinica">
+                                Plan de pérdida de peso (1 mes)
+                            </option>
+                            <option value="11" class="plan" data-precio="20000" data-profesional="clinica">
+                                Plan de pérdida de peso (3 meses)
+                            </option>
+                            <option value="12" class="plan" data-precio="26000" data-profesional="deportiva">
+                                Plan nutrición deportiva (1 mes)
+                            </option>
+                            <option value="13" class="plan" data-precio="23000" data-profesional="clinica">
+                                Plan control diabetes / hipertensión
+                            </option>
+                            <option value="14" class="plan" data-precio="28000" data-profesional="veg">
+                                Plan alimentación vegetariana / vegana
+                            </option>
+                            <option value="15" class="plan" data-precio="23000" data-profesional="veg">
+                                Plan alimentación infantil (2 - 12 años)
+                            </option>
+
+                            <option value="16" class="taller" data-precio="25000" data-profesional="deportiva,veg">
+                                Taller de alimentación saludable
+                            </option>
+                            <option value="17" class="taller" data-precio="23000" data-profesional="deportiva,veg">
+                                Taller de cocina nutritiva
+                            </option>
+                            <option value="18" class="taller" data-precio="18000" data-profesional="deportiva">
+                                Taller nutrición para deportistas
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="error-campo">
+                        <span class="error-servicio"></span>
+                    </div>
+
+                    <div class="campo">
+                        <label for="profesional">Profesional</label>
+                        <select name="profesional" id="profesional-select" disabled>
+                            <option value="" selected disabled>
+                                Seleccione una opción
+                            </option>
+                            <option value="1" class="clinica">
+                                Carolina Pérez
+                            </option>
+                            <option value="2" class="clinica">
+                                Valentina Soto
+                            </option>
+                            <option value="3" class="deportiva">
+                                Camilo Rojas
+                            </option>
+                            <option value="4" class="veg">
+                                Daniela Muñoz
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="error-campo">
+                        <span id="error-profesional"></span>
+                    </div>
+                </section>
+
+                <!-- Reserva de hora -->
+                <section id="reserva-hora" class="reserva-hora d-none">
+                    <h2 class="sub-form">Seleccione su sesión</h2>
+
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button id="prev-btn" class="calender-btn change-btn"><i class="fas fa-angle-left"></i></button>
+                            <h2 id="current-month"></h2>
+                            <button id="next-btn" class="calender-btn change-btn"><i class="fas fa-angle-right"></i></button>
+                        </div>
+                        <div id="calendar-body" class="calendar-body">
+                        </div>
+                    </div>
+                    <span id="error-fecha"></span>
+
+                    <div >
+                        <label id="horas" for="hora">Horas disponibles:</label>
+                        
+                        <input type="radio" name="hora" value="10">
+                        <label for="10">10:00</label>
+
+                        <input type="radio" name="hora" value="11">
+                        <label for="11">11:00</label>
+
+                        <input type="radio" name="hora" value="12">
+                        <label for="12">12:00</label>
+                        
+                        <span id="error-hora"></span>
+                    </div>
+                </section>
+
                 <table>
                     <tbody>
                         <tr>
@@ -95,193 +252,6 @@
                             </td>
                             <td>
                                 <span id="error-correo"></span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label for="atencion">Tipo de Atención</label>
-                            </td>
-                            <td>
-                                <select name="atencion" id="tipo-atencion-select">
-                                    <option value="" selected disabled>
-                                        Seleccione una opción
-                                    </option>
-                                    <option value="consulta">
-                                        Consulta
-                                    </option>
-                                    <option value="evaluacion">
-                                        Evaluación
-                                    </option>
-                                    <option value="plan">
-                                        Plan especializado
-                                    </option>
-                                    <option value="taller">
-                                        Taller grupal
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <span id="error-atencion"></span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label for="planes-servicios">Servicio / Plan</label>
-                            </td>
-                            <td>
-                                <select name="planes-servicios" id="plan-servicio-select" disabled>
-                                    <option value="" selected disabled>
-                                        Seleccione una opción
-                                    </option>
-                                    <option value="1" class="consulta" data-precio="6000" data-profesional="clinica">
-                                        Primera consulta nutricional
-                                    </option>
-                                    <option value="2" class="consulta" data-precio="8000" data-profesional="clinica">
-                                        Control nutricional (seguimiento)
-                                    </option>
-                                    <option value="3" class="consulta" data-precio="7000" data-profesional="clinica">
-                                        Control nutricional quincenal
-                                    </option>
-                                    <option value="4" class="consulta" data-precio="5000" data-profesional="clinica">
-                                        Teleconsulta nutricional
-                                    </option>
-                                    <option value="5" class="consulta" data-precio="8000" data-profesional="clinica">
-                                        Consulta de urgencia / reagendada
-                                    </option>
-
-                                    <option value="6" class="evaluacion" data-precio="12000" data-profesional="clinica">
-                                        Antropometría completada
-                                    </option>
-                                    <option value="7" class="evaluacion" data-precio="14000" data-profesional="clinica">
-                                        Bioimpedanciometría
-                                    </option>
-                                    <option value="8" class="evaluacion" data-precio="14000" data-profesional="clinica">
-                                        Encuesta de hábitos alimentarios
-                                    </option>
-                                    <option value="9" class="evaluacion" data-precio="16000" data-profesional="clinica">
-                                        Análisis de exámenes de laboratorio
-                                    </option>
-                                    
-                                    <option value="10" class="plan" data-precio="25000" data-profesional="clinica">
-                                        Plan de pérdida de peso (1 mes)
-                                    </option>
-                                    <option value="11" class="plan" data-precio="20000" data-profesional="clinica">
-                                        Plan de pérdida de peso (3 meses)
-                                    </option>
-                                    <option value="12" class="plan" data-precio="26000" data-profesional="deportiva">
-                                        Plan nutrición deportiva (1 mes)
-                                    </option>
-                                    <option value="13" class="plan" data-precio="23000" data-profesional="clinica">
-                                        Plan control diabetes / hipertensión
-                                    </option>
-                                    <option value="14" class="plan" data-precio="28000" data-profesional="veg">
-                                        Plan alimentación vegetariana / vegana
-                                    </option>
-                                    <option value="15" class="plan" data-precio="23000" data-profesional="veg">
-                                        Plan alimentación infantil (2 - 12 años)
-                                    </option>
-
-                                    <option value="16" class="taller" data-precio="25000" data-profesional="deportiva,veg">
-                                        Taller de alimentación saludable
-                                    </option>
-                                    <option value="17" class="taller" data-precio="23000" data-profesional="deportiva,veg">
-                                        Taller de cocina nutritiva
-                                    </option>
-                                    <option value="18" class="taller" data-precio="18000" data-profesional="deportiva">
-                                        Taller nutrición para deportistas
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label for="profesional">Profesional</label>
-                            </td>
-                            <td>
-                                <select name="profesional" id="profesional-select" disabled>
-                                    <option value="" selected disabled>
-                                        Seleccione una opción
-                                    </option>
-                                    <option value="1" class="clinica">
-                                        Carolina Pérez
-                                    </option>
-                                    <option value="2" class="clinica">
-                                        Valentina Soto
-                                    </option>
-                                    <option value="3" class="deportiva">
-                                        Camilo Rojas
-                                    </option>
-                                    <option value="4" class="veg">
-                                        Daniela Muñoz
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <span id="error-profesional"></span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label for="fecha">Seleccione una fecha</label>
-                            </td>
-                            <td>
-                                <input name="fecha" type="date" id="fecha">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <span id="error-fecha"></span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label for="horario">Horario</label>
-                            </td>
-                            <td>
-                                <select name="horario" id="horario">
-                                    <option value="" selected disabled>
-                                        Seleccione una opción
-                                    </option>
-                                    <option>
-                                        Mañana
-                                    </option>
-                                    <option>
-                                        Tarde
-                                    </option>
-                                    <option>
-                                        Noche
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <span id="error-horario"></span>
                             </td>
                         </tr>
                     </tbody>

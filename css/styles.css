@@ -37,6 +37,10 @@ header h1 {
     color: rgb(33, 211, 99);
 }
 
+label {
+    padding: 5px;
+}
+
 .border.rounded.p-4.shadow.bg-white {
     margin: 20px;
 }
@@ -60,6 +64,7 @@ header h1 {
 .btn-nutrivida span {
     color: white;
     padding-left: 10px;
+    padding-right: 8px;
 }
 
 .btn-nutrivida img {
@@ -69,6 +74,17 @@ header h1 {
 
 .btn-nutrivida:hover {
     background-color: rgb(28, 145, 143);
+}
+
+.busqueda-especialidad {
+    max-width: 480px;
+}
+
+.campo {
+    display: grid;
+    grid-template-columns: 30% auto;
+
+    margin: 20px;
 }
 
 .card-body {
@@ -105,6 +121,11 @@ header h1 {
 
 .contacto h6 {
     margin: 5px;
+}
+
+.formulario {
+    display: grid;
+    justify-items: center;
 }
 
 .elemento-oferta {
@@ -150,7 +171,7 @@ header h1 {
     width: 100%;
     min-height: 600px;
 
-    background-image: url("../img/nutricion5.png");
+    background-image: url("../img/nutricion.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -200,6 +221,15 @@ header h1 {
     flex-wrap: wrap;
 }
 
+.reserva {
+    text-align: center;
+}
+
+.sub-form {
+    font-size: 25px;
+    margin: 10px;
+}
+
 .ubicacion iframe {
     width: 600px;
     height: 450px;
@@ -221,13 +251,9 @@ header h1 {
     text-align: center;
 }
 
-#formulario-reserva td {
-    padding: 10px;
-}
-
-#menu {
-    width: 80px;
-    color: white;
+#horas {
+    font-size: 20px;
+    padding-right: 10px;
 }
 
 #profesionales {
@@ -242,6 +268,10 @@ header h1 {
 }
 
 @media (max-width: 768px) {
+    .campo {
+        grid-template-columns: 1fr;
+    }
+
     .hero h1 {
         font-size: 30px;
         margin-bottom: 40px;
