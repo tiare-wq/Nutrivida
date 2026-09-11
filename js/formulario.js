@@ -1,5 +1,10 @@
 function ocultarReservaHora() {
-        horario.classList.add("d-none");
+    horario.classList.add("d-none");
+    enviar.value = "Continuar";
+}
+
+function ocultarDatosContacto() {
+    datosContacto.classList.add("d-none");
 }
 
 // ======================================
@@ -10,6 +15,8 @@ const tipoAtencion = document.getElementById("tipo-atencion-select");
 const planesServicios = document.getElementById("plan-servicio-select");
 const profesionales = document.getElementById("profesional-select");
 const horario = document.getElementById("reserva-hora");
+const datosContacto = document.getElementById("datos-contacto");
+const enviar = document.getElementById("enviar");
 
 let campoDiaSeleccionado = null;
 
@@ -22,6 +29,7 @@ tipoAtencion.onchange = function() {
     campoDiaSeleccionado = null;
 
     ocultarReservaHora();
+    ocultarDatosContacto();
 
     planesServicios.disabled = false;
 
@@ -49,6 +57,7 @@ tipoAtencion.onchange = function() {
 planesServicios.onchange = function() {
 
     ocultarReservaHora();
+    ocultarDatosContacto();
 
     profesionales.disabled = false;
 
@@ -120,10 +129,18 @@ nextBtn.onclick = function(event) {
 
 function renderCalendar() {
 
+    enviar.value = "Enviar";
+
+    ocultarDatosContacto();
+
     const diasMes = new Date(anioActual, mesActual + 1, 0).getDate();
     const primerDia = new Date(anioActual, mesActual, 1).getDay();
 
     const posicionPrimerDia = (primerDia + 6) % 7;
+
+    if (datosContacto.classList.contains("d-none")) {
+        datosContacto.classList.remove("d-none");
+    }
 
     const nombreMes = new Date(anioActual, mesActual).toLocaleDateString('es-CL', {month: "long", year: "numeric"});
     campoMesActual.textContent = nombreMes[0].toUpperCase() + nombreMes.slice(1);
@@ -168,25 +185,24 @@ function seleccionarDia(dia, elemento) {
 // VALIDACIÓN DE DATOS FORMULARIO
 // ======================================
 
-const submit = document.getElementById("enviar");
 const mensajeForm = document.getElementById("mensaje-form-invalido");
 
 const campoNombre = document.getElementById("nombre");
 const campoRun = document.getElementById("run");
 const campoCorreo = document.getElementById("correo");
-const campoHora = document.querySelector("input[name='hora']:checked");
 
 // Patrones Regex
 const runPattern = /^\d{7,8}-[0-9kK]$/;
 const mailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
 
-submit.onclick = function(event) {
+enviar.onclick = function(event) {
 
     event.preventDefault();
 
     const nombre = campoNombre.value.trim() === "";
     const run = !runPattern.test(campoRun.value.trim());
     const correo = !mailPattern.test(campoCorreo.value.trim());
+    const campoHora = document.querySelector("input[name='hora']:checked");
     const hora = campoHora === null;
     const atencion = tipoAtencion.selectedOptions[0].value === "";
     const planServ = planesServicios.selectedOptions[0].value === "";
@@ -218,6 +234,24 @@ submit.onclick = function(event) {
 
     let formularioValido = true;
 
+    if (atencion) {
+        errorAtencion.textContent = "Seleccione una atención.";
+        formularioValido = false;
+    }
+
+    if (planServ) {
+        errorPlanServ.textContent = "Seleccione un plan o servicio.";
+        formularioValido = false;
+    }
+
+    if (profesional) {
+        errorProfesional.textContent = "Seleccione un profesional";
+        formularioValido = false;
+    }
+
+    if (horario.classList.contains("d-none")) {
+        return;
+    }
     if (nombre) {
         errorNombre.textContent = "Introduzca su nombre";
         formularioValido = false;
@@ -233,31 +267,18 @@ submit.onclick = function(event) {
         formularioValido = false;
     }
 
-    if (atencion) {
-        errorAtencion.textContent = "Seleccione una atención.";
-        formularioValido = false;
-    }
-
-    if (planServ) {
-        errorPlanServ.textContent = "Seleccione un plan o servicio.";
-        formularioValido = false;
-    }
-
     if (fechaAnterior) {
         errorFecha.textContent = "La fecha no puede ser anterior a la actual";
+        formularioValido = false;
     }
 
     if (fecha) {
         errorFecha.textContent = "Seleccione una fecha";
+        formularioValido = false;
     }
 
     if (hora) {
         errorHora.textContent = "Seleccione un hora";
-        formularioValido = false;
-    }
-
-    if (profesional) {
-        errorProfesional.textContent = "Seleccione un profesional";
         formularioValido = false;
     }
 
@@ -276,7 +297,7 @@ submit.onclick = function(event) {
         parametros.append("nombre", campoNombre.value.trim());
         parametros.append("run", campoRun.value.trim())
         parametros.append("fecha", campoDiaSeleccionado.toISOString());
-        parametros.append("hora", campoHora);
+        parametros.append("hora", campoHora.value);
         parametros.append("atencion", tipoAtencion.selectedOptions[0].value);
         parametros.append("planServ", planesServicios.selectedOptions[0].value);
         parametros.append("precio", planesServicios.selectedOptions[0].dataset.precio);

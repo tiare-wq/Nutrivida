@@ -76,7 +76,7 @@ label {
     background-color: rgb(28, 145, 143);
 }
 
-.busqueda-especialidad {
+.datos-form{
     max-width: 480px;
 }
 
@@ -121,6 +121,10 @@ label {
 
 .contacto h6 {
     margin: 5px;
+}
+
+.datos-form span, .reserva-hora span {
+    color: rgb(212, 92, 92);
 }
 
 .formulario {

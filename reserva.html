@@ -46,7 +46,7 @@
 
                 <h2 class="sub-form">Búsqueda por especialidad</h2>
                 
-                <section class="busqueda-especialidad">
+                <section class="datos-form">
                     <div class="campo">
                         <label for="atencion">Tipo de Atención</label>
                         <select name="atencion" id="tipo-atencion-select">
@@ -139,7 +139,7 @@
                     </div>
 
                     <div class="error-campo">
-                        <span class="error-servicio"></span>
+                        <span id="error-servicio"></span>
                     </div>
 
                     <div class="campo">
@@ -194,75 +194,49 @@
 
                         <input type="radio" name="hora" value="12">
                         <label for="12">12:00</label>
-                        
+                    </div>
+                    <div class="error-campo">
                         <span id="error-hora"></span>
                     </div>
                 </section>
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="nombre">Nombre</label>
-                            </td>
-                            <td>
-                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese su nombre">                                
-                            </td>
-                        </tr>
+                <section id="datos-contacto" class="datos-form d-none">
+                    <h2 class="sub-form">Completar Datos</h2>
 
-                        <tr>
-                            <td>
+                    <div class="campo">
+                        <label for="nombre">Nombre</label>
+                        <input name="nombre" type="text" id="nombre" placeholder="Ingrese su nombre">
+                    </div>
 
-                            </td>
-                            <td>
-                                <span id="error-nombre"></span>
-                            </td>
-                        </tr>
+                    <div class="error-campo">
+                        <span id="error-nombre"></span>
+                    </div>
 
-                        <tr>
-                            <td>
-                                <label for="run" >RUN</label>
-                            </td>
-                            <td>
-                                <input name="run" type="text" id="run" placeholder="11111111-1">
-                            </td>
-                        </tr>
+                    <div class="campo">
+                        <label for="run" >RUN</label>
+                        <input name="run" type="text" id="run" placeholder="11111111-1">
+                    </div>
 
-                        <tr>
-                            <td>
+                    <div class="error-campo">
+                        <span id="error-run"></span>
+                    </div>
 
-                            </td>
-                            <td>
-                                <span id="error-run"></span>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <label for="correo" >Correo</label>
-                            </td>
-                            <td>
-                                <input name="correo" type="email" id="correo" placeholder="example@gmail.com">
-                            </td>
-                        </tr>
+                    <div class="campo">
+                        <label for="correo" >Correo</label>
+                        <input name="correo" type="email" id="correo" placeholder="example@gmail.com">
+                    </div>
 
-                        <tr>
-                            <td>
+                    <div class="error-campo">
+                        <span id="error-correo"></span>
+                    </div>
 
-                            </td>
-                            <td>
-                                <span id="error-correo"></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div>
                     <label for="motivo">Motivo de la consulta</label>
-                </div>
-                <div>
                     <textarea name="motivo"></textarea>
-                </div>
-                <input name="enviar" type="submit" id="enviar" class="btn btn-success" value="Reservar hora">
+
+                </section>
+
+                <input name="enviar" type="submit" id="enviar" class="btn-nutrivida" value="Continuar">
+
             </form>
         </section>
     </main>
