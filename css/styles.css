@@ -141,13 +141,6 @@ label {
     color: rgb(212, 92, 92);
 }
 
-.formulario {
-    display: grid;
-    justify-items: center;
-    
-    min-width: 576px;
-}
-
 .elemento-oferta {
     container-type: inline-size;
     container-name: plan-servicio;
@@ -170,6 +163,13 @@ label {
     max-width: 260px;
     text-align: center;
     padding: 10px;
+}
+
+.formulario {
+    display: grid;
+    justify-items: center;
+    
+    min-width: 576px;
 }
 
 .head-header {
@@ -321,12 +321,32 @@ label {
 
 @media (max-width: 360px) {
 
+    .campo select,
+    .campo input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .datos-form {
+        width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    }
+
     .elemento-oferta {
         padding: 5px;
     }
 
     .elemento-oferta img {
         width: 100%;
+    }
+
+    .formulario {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 15px !important;
     }
 
     .head-header {
@@ -356,6 +376,18 @@ label {
         padding: 5px;
     }
 
+    .reserva.container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sub-form {
+        margin: 0;
+        padding: 0;
+    }
+    
     .titulo h1 {
         font-size: 25px;
 

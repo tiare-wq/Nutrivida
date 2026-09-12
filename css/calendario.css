@@ -4,7 +4,8 @@ h2 {
 
 .calendar {
     background-color: snow;
-    min-width: 480px;
+    width: 100%;
+    max-width: 480px;
 
     border: 2px solid black;
     border-radius: 16px;
@@ -52,4 +53,10 @@ h2 {
 
 .change-btn:hover {
     background-color: #999;
+}
+
+@media (max-width: 360px) {
+    .calendar {
+        max-width: 200px;
+    }
 }
