@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/confirmacion.js" defer></script>
-    <title>Reservación Confirmada</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Talleres Grupales</title>
 </head>
 <body class="container">
     <header>
@@ -29,14 +28,14 @@
                 <li class="nav-item">
                     <a class="nav-link">Planes / Servicios</a>
                     <ul>
-                        <li><a class="nav-item" href="planes-servicios.html">Consulta Nutricional</a></li>
-                        <li><a class="nav-item" href="planes-servicios.html">Evaluaciones</a></li>
-                        <li><a class="nav-item" href="planes-servicios.html">Planes de Alimentación</a></li>
-                        <li><a class="nav-item" href="planes-servicios.html">Talleres Grupales</a></li>
+                        <li><a class="nav-item" href="consulta.html">Consulta Nutricional</a></li>
+                        <li><a class="nav-item" href="evaluacion.html">Evaluaciones</a></li>
+                        <li><a class="nav-item" href="planes.html">Planes de Alimentación</a></li>
+                        <li><a class="nav-link active" aria-current="page" href="taller.html">Talleres Grupales</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="reserva.html">Reservar</a>
+                    <a class="nav-link" href="reserva.html">Reservar</a>
                 </li>
             </div>
             </div>
@@ -55,30 +54,80 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Planes / Servicios</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="planes-servicios.html">Consulta Nutricional</a></li>
-                    <li><a class="dropdown-item" href="planes-servicios.html">Evaluaciones</a></li>
-                    <li><a class="dropdown-item" href="planes-servicios.html">Planes de Alimentación</a></li>
-                    <li><a class="dropdown-item" href="planes-servicios.html">Talleres Grupales</a></li>
+                    <li><a class="dropdown-item" href="consulta.html">Consulta Nutricional</a></li>
+                    <li><a class="dropdown-item" href="evaluacion.html">Evaluaciones</a></li>
+                    <li><a class="dropdown-item" href="planes.html">Planes de Alimentación</a></li>
+                    <li><a class="dropdown-item" href="taller.html">Talleres Grupales</a></li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="reserva.html">Reservar</a>
+                <a class="nav-link" href="reserva.html">Reservar</a>
             </li>
         </ul>
     </header>
 
     <main>
-        <div class="bg-light container col-12 col-md-8 col-lg-6">
-            <div class="justify-content-center confirmacion">
-                <h3>Confirmación de la reserva.</h3>
-                <div class="card-body">
-                    <label>Código de la reserva</label>
-                    <h5 id="codigo-reserva"></h5>
-                </div>
-                <h6>Envíamos un mensaje a tu corre.o</h6>
-                <h6 id="fecha-hora"></h6>
-                <h6 id="precio"></h6>
+        <div class="container-fluid justify-content-center row">
+            <h2 class="sub-servicios">Talleres Grupales</h2>
+            <div class="col-12 col-md-6 col-lg-3 servicio">
+                <pre>
+<b>1. Taller de
+alimentación saludable</b>
+
+Descripción: Taller
+grupal orientado a
+entregar conocimientos
+y herramientas prácticas
+para mantener una
+alimentación saludable
+y equilibrada.
+
+Duración: 90 min
+Modalidad: Presencial (grupo)
+Precio: $15.000
+                </pre>
             </div>
+
+            <div class="col-12 col-md-6 col-lg-3 servicio">
+                <pre>
+<b>2. Taller de
+cocina nutritiva</b>
+
+Descripción: Taller
+grupal práctico
+enfocado en la
+preparación de
+alimentos y recetas
+nutritivas,
+promoviendo hábitos
+de cocina saludable.
+
+Duración: 120 min
+Modalidad: Presencial (grupo)
+Precio: $20.000
+                </pre>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3 servicio">
+                <pre>
+<b>3. Taller de nutrición
+para deportistas</b>
+
+Descripción: Taller
+grupal dirigido a
+deportistas y personas
+físicamente activas,
+con orientación sobre
+alimentación y nutrición
+aplicada al rendimiento
+deportivo.
+
+Duración: 90 min
+Modalidad: Presencial (grupo)
+Precio: $18.000
+                </pre>
+            </div>
+
         </div>
     </main>
 

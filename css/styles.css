@@ -1,5 +1,5 @@
 a {
-    color: rgb(212, 197, 78);
+    color: rgb(33, 211, 99);
     text-decoration: none;
 }
 
@@ -7,10 +7,6 @@ a img {
     width: 20px;
     height: 100%;
     margin: 5px;
-}
-
-a:visited {
-    color: rgb(33, 211, 99);
 }
 
 body {
@@ -253,9 +249,26 @@ label {
     text-align: center;
 }
 
+.servicio {
+    background-color: rgba(119, 233, 195, 0.5);
+    margin: 20px;
+}
+
+.servicio:hover {
+    background-color: rgba(119, 233, 195, 0.8);
+}
+
+.servicio pre {
+    padding: 20px;
+}
+
 .sub-form {
     font-size: 25px;
     margin: 10px;
+}
+
+.sub-servicios {
+    text-align: center;
 }
 
 .ubicacion iframe {

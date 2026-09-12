@@ -304,7 +304,7 @@ enviar.onclick = function(event) {
         parametros.append("precio", planesServicios.selectedOptions[0].dataset.precio);
 
         // 💡 2. Definimos la página de destino
-        const paginaDestino = "confirmacion.html";
+        const paginaDestino = "../html/confirmacion.html";
 
         window.location.href = `${paginaDestino}?${parametros.toString()}`;
     }
