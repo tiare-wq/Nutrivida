@@ -298,7 +298,6 @@ enviar.onclick = function(event) {
 
         //   1. Entregamos parámetros
         const parametros = new URLSearchParams();
-        parametros.append("nombre", nombre);
         parametros.append("fecha", formateada);
         parametros.append("hora", campoHora.value);
         parametros.append("precio", planesServicios.selectedOptions[0].dataset.precio);
