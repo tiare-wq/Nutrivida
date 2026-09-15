@@ -141,6 +141,10 @@ label {
     color: rgb(212, 92, 92);
 }
 
+.descr-servicio {
+    margin-top: 20px;
+}
+
 .elemento-oferta {
     container-type: inline-size;
     container-name: plan-servicio;
@@ -170,15 +174,6 @@ label {
     justify-items: center;
     
     min-width: 576px;
-}
-
-.logging-form {
-    background-color: snow;
-    border-radius: 16px;
-    max-width: 540px;
-
-    margin: 20px;
-    padding: 20px;
 }
 
 .head-header {
@@ -221,10 +216,6 @@ label {
 .hero h1 {
     font-size: 50px;
     margin-bottom: 80px;
-}
-
-.logging {
-    background-color: #6A994E;
 }
 
 .navbar {
@@ -330,7 +321,7 @@ label {
     }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .campo {
         grid-template-columns: 1fr;
     }
@@ -345,7 +336,7 @@ label {
     }
 }
 
-@media (max-width: 360px) {
+@media screen and (max-width: 360px) {
 
     .campo select,
     .campo input {

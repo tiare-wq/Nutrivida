@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/logging.css">
     <title>Iniciar Sesión</title>
 </head>
 <body>
@@ -70,16 +71,19 @@
     <main>
         <section class="logging justify-content-center row">
             <form class="logging-form">
-                <h2 class="sub-form">Iniciar sesión</h2>
-                <div class="campo">
-                    <label for="username">Nombre de usuario</label>
-                    <input id="username">
+                <div class="seccion-informacion">
+                    <h2 class="sub-form">Iniciar sesión</h2>
+                    <div class="inputs">
+                        <label for="nombre-usuario">Nombre</label>
+                        <input id="nombre-usuario" type="text" placeholder="Nombre de usuario">
+                    </div>
+                    <div class="inputs">
+                        <label class="contraseña" for="password">Contraseña</label>
+                        <input type="password" id="contraseña" placeholder="Contraseña">
+                    </div>
+                    <input type="submit" class="btn btn-success" value="Iniciar sesión">
+                    <p><a href="recuperar-contraseña">¿Olvidaste tu contraseña?</a></p>
                 </div>
-                <div class="campo">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password">
-                </div>
-                <input type="submit" class="btn btn-success" value="Iniciar sesión">
             </form>
         </section>
     </main>

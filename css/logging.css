@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+
+input {
+    background-color: transparent;
+    width: 100%;
+
+    border: none;
+    outline: none;
+}
+
+inputs:focus {
+    border-color: blue;
+}
+
+label {
+    padding-right: 10px;
+}
+
+p {
+    margin: 20px;
+}
+
+.inputs {
+    border: 2px solid black;
+    border-radius: 16px;
+
+    margin: 20px;
+    padding: 10px;
+}
+
+.logging {
+    background-color: #6A994E;
+
+    height: 90vh;
+    align-content: center;
+}
+
+.logging-form {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+
+    background-color: snow;
+    border-radius: 16px;
+    max-width: 540px;
+
+    margin: 20px;
+    padding: 20px;
+}
+
+.seccion-informacion {
+    flex-basis: 65%;
+
+    align-content: center;
+}
