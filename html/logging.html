@@ -3,9 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Iniciar Sesión</title>
 </head>
 <body>
     
+    <header>
+        <div class="head-header"> 
+            <div>
+                <h1>NutriVida 🍃</h1>
+            </div>
+            <a id="btn-logging" class="justify-content-center btn-nutrivida" href="logging.html">
+                <img src="../img/usuarioIcono2.webp" alt="Iniciar sesión">
+                <span>Iniciar sesión</span>
+            </a>
+        </div>
+
+        <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="light">
+            <div class="bg-light p-4">
+                <h5 class="text-body-emphasis h4">Menú</h5>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Planes / Servicios</a>
+                    <ul>
+                        <li><a class="nav-link active" aria-current="page" href="consulta.html">Consulta Nutricional</a></li>
+                        <li><a class="nav-item" href="evaluacion.html">Evaluaciones</a></li>
+                        <li><a class="nav-item" href="planes.html">Planes de Alimentación</a></li>
+                        <li><a class="nav-item" href="taller.html">Talleres Grupales</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reserva.html">Reservar</a>
+                </li>
+            </div>
+            </div>
+        <nav class="navbar navbar-light bg-light d-sm-none">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <ul class="nav nav-pills d-none d-sm-flex">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Planes / Servicios</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="consulta.html">Consulta Nutricional</a></li>
+                    <li><a class="dropdown-item" href="evaluacion.html">Evaluaciones</a></li>
+                    <li><a class="dropdown-item" href="planes.html">Planes de Alimentación</a></li>
+                    <li><a class="dropdown-item" href="taller.html">Talleres Grupales</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reserva.html">Reservar</a>
+            </li>
+        </ul>
+    </header>
+
+    <main>
+        <section class="logging justify-content-center row">
+            <form class="logging-form">
+                <h2 class="sub-form">Iniciar sesión</h2>
+                <div class="campo">
+                    <label for="username">Nombre de usuario</label>
+                    <input id="username">
+                </div>
+                <div class="campo">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password">
+                </div>
+                <input type="submit" class="btn btn-success" value="Iniciar sesión">
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Nutrivida © 2026 Nutrivida SpA</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

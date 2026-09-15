@@ -172,6 +172,15 @@ label {
     min-width: 576px;
 }
 
+.logging-form {
+    background-color: snow;
+    border-radius: 16px;
+    max-width: 540px;
+
+    margin: 20px;
+    padding: 20px;
+}
+
 .head-header {
     display: grid;
     grid-template-columns: 90% auto;
@@ -214,12 +223,21 @@ label {
     margin-bottom: 80px;
 }
 
+.logging {
+    background-color: #6A994E;
+}
+
 .navbar {
     border-radius: 16px;
 }
 
 .navbar-nav.me-auto.mb-2.mb-lg-0 a {
     color: rgb(101, 204, 99);
+}
+
+.nombre-caract {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .oferta {
@@ -252,6 +270,7 @@ label {
 .servicio {
     background-color: rgba(119, 233, 195, 0.5);
     margin: 20px;
+    padding: 20px;
 }
 
 .servicio:hover {
@@ -264,10 +283,17 @@ label {
 
 .sub-form {
     font-size: 25px;
+    text-align: center;
     margin: 10px;
 }
 
 .sub-servicios {
+    text-align: center;
+}
+
+.titulo-servicio {
+    font-size: 20px;
+    font-weight: bold;
     text-align: center;
 }
 
