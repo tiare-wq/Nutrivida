@@ -1,3 +1,9 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 a {
     color: rgb(33, 211, 99);
     text-decoration: none;
@@ -226,11 +232,6 @@ label {
     color: rgb(101, 204, 99);
 }
 
-.nombre-caract {
-    font-size: 18px;
-    font-weight: bold;
-}
-
 .oferta {
     background-color: rgba(126, 241, 239, 0.2);
     text-align: center;
@@ -258,34 +259,10 @@ label {
     text-align: center;
 }
 
-.servicio {
-    background-color: rgba(119, 233, 195, 0.5);
-    margin: 20px;
-    padding: 20px;
-}
-
-.servicio:hover {
-    background-color: rgba(119, 233, 195, 0.8);
-}
-
-.servicio pre {
-    padding: 20px;
-}
-
 .sub-form {
     font-size: 25px;
     text-align: center;
     margin: 10px;
-}
-
-.sub-servicios {
-    text-align: center;
-}
-
-.titulo-servicio {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
 }
 
 .ubicacion iframe {
