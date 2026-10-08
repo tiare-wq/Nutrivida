@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/styles.css'
 import './css/servicios.css'
+import './css/formulario.css'
 import './css/login.css'
 import App from './App.jsx'
 

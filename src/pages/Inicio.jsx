@@ -153,11 +153,6 @@ function Inicio() {
                 </section>
             </section>
         </main>
-
-        <footer>
-            <p>Nutrivida © 2026 Nutrivida SpA</p>
-        </footer>
-
     </body>
     )
 }

@@ -1,0 +1,34 @@
+input {
+    border: 1px solid black;
+}
+
+input, textarea {
+    max-width: 600px;
+    border-radius: 12px;
+    padding: 5px;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: rgb(24, 168, 212);
+    box-shadow: 0 0 6px rgb(24, 168, 212);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    margin: 20px;
+}
+
+.subtitulo-form {
+    font-size: 30px;
+    text-align: center;
+    margin: 10px;
+}
+
+#nombre-servicio {
+    min-width: 300px;
+}

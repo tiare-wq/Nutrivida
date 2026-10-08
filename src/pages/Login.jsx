@@ -1,22 +1,5 @@
 /* function Login() {
     return(
-        <body>
-            
-            <header>
-                <div class="head-header"> 
-                    <div>
-                        <h1>NutriVida 🍃</h1>
-                    </div>
-                    <a id="btn-logging" className="justify-content-center btn-nutrivida" href="logging.html">
-                        <img src="../img/usuarioIcono2.webp" alt="Iniciar sesión"/>
-                        <span>Iniciar sesión</span>
-                    </a>
-                </div>
-
-            </header>
-
-            <main>
-                <section className="logging justify-content-center row">
                     <form className="logging-form">
                         <div className="seccion-informacion">
                             <h2 className="sub-form">Iniciar sesión</h2>
@@ -32,14 +15,6 @@
                             <p><a href="recuperar-contraseña">¿Olvidaste tu contraseña?</a></p>
                         </div>
                     </form>
-                </section>
-            </main>
-
-            <footer>
-                <p>Nutrivida © 2026 Nutrivida SpA</p>
-            </footer>
-
-        </body>
     )
 }
 export default Login */
@@ -64,44 +39,45 @@ function Login() {
         console.log('Password:', password)
     }
     return (
-        <div className="container mt-4">
-            <h1>Iniciar Sesión</h1>
-            <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-                <label className="form-label">
-                Correo electrónico
-                </label>
-                <input
-                type="text"
-                className="form-control"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                />
-            </div>
-            <div className="mb-3">
-                <label className="form-label">
-                Contraseña
-                </label>
-                <input
-                type="password"
-                className="form-control"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                />
-            </div>
-            {
-                error && (
-                <div className="alert alert-danger">
-                    {error}
+        <div className="container justify-content-center align-items-center">
+            <form className="login-form" onSubmit={handleSubmit}>
+                <h1 className='subtitulo-form'>Iniciar Sesión</h1>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Correo electrónico
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    />
                 </div>
-            )}
-            <button
-            type="submit"
-            className="btn btn-primary"
-            >
-            Ingresar
-            </button>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Contraseña
+                    </label>
+                    <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    />
+                </div>
+                {
+                    error && (
+                    <div className="alert alert-danger">
+                        {error}
+                    </div>
+                )}
+                <button
+                type="submit"
+                className="btn btn-primary"
+                >
+                Ingresar
+                </button>
             </form>
+            <a href="recuperar-contraseña">¿Olvidaste tu contraseña?</a>
         </div>
     )
 }
