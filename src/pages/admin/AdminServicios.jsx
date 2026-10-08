@@ -1,4 +1,26 @@
+import { useState } from "react"
+
 function AdminServicios() {
+
+    const [categoria, setCategoria] = useState('')
+    const [nombre, setNombre] = useState('')
+    const [descr, setDescr] = useState('')
+    const [duracion, setDuracion] = useState('')
+    const [modalidad, setModalidad] = useState('')
+    const [precio, setPrecio] = useState('')
+    const [error, setError] = useState('')
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+        const campoCategoria = document.getElementById("categoria-servicio")
+        if (campoCategoria.value == "") {
+            setError('Seleccione una categoría')
+            return
+        }
+
+    }
+
+
     return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
         <form className="d-inline-block w-auto border rounded p-4 shadow bg-white">
@@ -7,7 +29,7 @@ function AdminServicios() {
             <div className="campo">
                 <label for="categoria-servicio">Categoría</label>
                 <select id="categoria-servicio" name="categorias">
-                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="" select disabled selected>Seleccione una opción</option>
                     <option value="1">Consulta</option>
                     <option value="2">Evaluación</option>
                     <option value="3">Planes / Servicios</option>
@@ -33,7 +55,7 @@ function AdminServicios() {
             <div className="campo">
                 <label for="modalidad-servicio">Modalidad</label>
                 <select id="modalidad-servicio" name="modalidades">
-                    <option value="" selected disables>Seleccione una opción</option>
+                    <option value="" select disabled selected>Seleccione una opción</option>
                     <option value="1">Presencial</option>
                     <option value="2">Presencial (grupal)</option>
                     <option value="3">Online</option>
@@ -45,7 +67,7 @@ function AdminServicios() {
                 <input id="precio-servicio" type="text"></input>
             </div>
 
-            <button className="action" type="submit">Agregar servicio</button>
+            <button className="action" type="submit">Agregar</button>
         </form>
     </div>
     )

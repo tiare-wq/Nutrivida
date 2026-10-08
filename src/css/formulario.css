@@ -10,8 +10,8 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-    border-color: rgb(24, 168, 212);
-    box-shadow: 0 0 6px rgb(24, 168, 212);
+    border-color: blue;
+    box-shadow: 0 0 3px blue;
 }
 
 .campo {
@@ -21,6 +21,10 @@ input:focus, textarea:focus {
     align-items: center;
 
     margin: 20px;
+}
+
+.campo > select {
+    padding: 5px;
 }
 
 .subtitulo-form {

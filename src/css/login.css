@@ -1,34 +1,15 @@
-#login-input {
-    background-color: transparent;
-    width: 100%;
-
-    border: none;
-    outline: none;
+.forgot-password {
+    margin: 20px;
 }
 
-#login-inputs:focus {
-    border-color: blue;
-}
-
-label {
+.login-label {
     padding-right: 10px;
 }
 
-p {
-    margin: 20px;
-}
-
-.inputs {
-    border: 2px solid black;
-    border-radius: 16px;
-
-    margin: 20px;
-    padding: 10px;
-}
-
 .login {
-    background-color: #6A994E;
+    background-color: snow;
 
+    width: 100vw;
     height: 90vh;
     align-content: center;
 }
@@ -46,8 +27,15 @@ p {
     padding: 20px;
 }
 
-.seccion-informacion {
-    flex-basis: 65%;
+.login-input {
+    background-color: transparent;
+    width: 100%;
+}
 
-    align-content: center;
+.login-input:focus {
+    border-color: blue;
+}
+
+.login-section {
+    text-align: center;
 }
