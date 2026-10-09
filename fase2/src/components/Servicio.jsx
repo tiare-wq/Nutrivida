@@ -6,6 +6,7 @@ function Servicio({
     duracion,
     modalidad,
     precio,
+    accion
     }) {
         return (
             <div className="col-12 col-md-6 col-lg-4 servicio">
@@ -26,10 +27,12 @@ function Servicio({
                         <p>${precio}</p>
                     </div>
                 </div>
-                <button class="action">
-                    Agregar al carrito
-                </button>
+                <div className="contenedor-action">
+                    <button class="action">
+                        {accion}
+                    </button>
+                </div>
             </div>
         )
 }
-export default Servicio
+export default Servicio;

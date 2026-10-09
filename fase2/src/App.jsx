@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import AdminServicios from './pages/admin/AdminServicios'
-import Inicio from './pages/Inicio'
-import Login from './pages/Login'
 import Navbar from './components/Navbar'
-import Planes from './pages/Planes'
+import AdminServicios from './pages/admin/AdminServicios'
+import Consultas from './pages/publico/Consultas'
+import Evaluaciones from './pages/publico/Evaluaciones'
+import Inicio from './pages/publico/Inicio'
+import Login from './pages/publico/Login'
+import Planes from './pages/publico/Planes'
+import Talleres from './pages/publico/Talleres'
 
 function App() {
   return (
@@ -32,9 +35,12 @@ function App() {
 
       <Routes>
         <Route path="/admin-servicios" element={<AdminServicios />} />
+        <Route path="/consultas" element={<Consultas />} />
+        <Route path="/evaluaciones" element={<Evaluaciones />} />
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/login" element={<Login />} />
         <Route path="/planes" element={<Planes />} />
+        <Route path="/talleres" element={<Talleres />} />
       </Routes>
 
       <footer>

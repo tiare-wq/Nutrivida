@@ -4,12 +4,20 @@
     border-radius: 8px;
     
     white-space: nowrap;
+
     padding: 10px;
 }
 
 .action:hover {
     background-color: rgb(138, 26, 80);
     border: 2px solid rgb(68, 6, 43);
+}
+
+.contenedor-action {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-right: 10%;
 }
 
 .descr-servicio {
@@ -31,6 +39,7 @@
 
 .servicio {
     background-color: rgba(119, 233, 195, 0.5);
+
     margin: 20px;
     padding: 20px;
 }

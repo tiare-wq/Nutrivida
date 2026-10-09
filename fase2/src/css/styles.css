@@ -54,8 +54,8 @@ label {
     color: white;
 
     width: 100%;
-    width: fit-content;
     max-height: 50px;
+    white-space: nowrap;
 
     border-radius: 16px;
 
@@ -173,8 +173,11 @@ label {
 }
 
 .head-header {
-    display: grid;
-    grid-template-columns: 85% auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
     margin-bottom: 10px;
 }
 

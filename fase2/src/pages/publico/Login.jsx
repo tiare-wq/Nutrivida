@@ -21,7 +21,7 @@ function Login() {
         <div className="d-flex flex-column justify-content-center align-items-center login">
             <section class="login-section">
                 <form className="login-form" onSubmit={handleSubmit}>
-                    <h1 className='subtitulo-form'>Iniciar Sesión</h1>
+                    <h1 className='login-subtitulo'>Iniciar Sesión</h1>
                     <div className="mb-3">
                         <label className="login-label">
                         Correo electrónico
