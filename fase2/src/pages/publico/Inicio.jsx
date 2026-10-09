@@ -1,7 +1,6 @@
 function Inicio() {
 
     return (
-    <body>
         <main>
             <section className="home">
                 <section className="justify-content-center hero">
@@ -153,7 +152,6 @@ function Inicio() {
                 </section>
             </section>
         </main>
-    </body>
     )
 }
 

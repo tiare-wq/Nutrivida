@@ -17,7 +17,6 @@ input:focus, textarea:focus {
 .campo {
     display: flex;
     flex-direction: column;
-
     align-items: center;
 
     margin: 20px;
@@ -25,6 +24,15 @@ input:focus, textarea:focus {
 
 .campo > select {
     padding: 5px;
+}
+
+.formulario {
+    display: grid;
+    justify-items: center;
+}
+
+.form-select {
+    min-width: 200%;
 }
 
 .subtitulo-form {

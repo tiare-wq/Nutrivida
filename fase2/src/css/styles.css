@@ -28,7 +28,7 @@ form textarea {
 
 footer {
     color: rgb(33, 211, 99);
-    padding: 15px 0;
+    padding: 15px 10px;
 }
 
 header {
@@ -77,10 +77,6 @@ label {
 
 .btn-nutrivida:hover {
     background-color: rgb(75, 158, 44);
-}
-
-.datos-form{
-    max-width: 480px;
 }
 
 .card-body {
@@ -163,13 +159,6 @@ label {
     max-width: 260px;
     text-align: center;
     padding: 10px;
-}
-
-.formulario {
-    display: grid;
-    justify-items: center;
-    
-    min-width: 576px;
 }
 
 .head-header {
@@ -375,7 +364,7 @@ label {
     }
     
     .titulo h1 {
-        font-size: 25px;
+        font-size: 20px;
 
         width: 60%;
 

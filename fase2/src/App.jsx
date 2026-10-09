@@ -6,6 +6,7 @@ import Evaluaciones from './pages/publico/Evaluaciones'
 import Inicio from './pages/publico/Inicio'
 import Login from './pages/publico/Login'
 import Planes from './pages/publico/Planes'
+import Reserva from './pages/publico/Reserva'
 import Talleres from './pages/publico/Talleres'
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/login" element={<Login />} />
         <Route path="/planes" element={<Planes />} />
+        <Route path="/reservas" element={<Reserva />} />
         <Route path="/talleres" element={<Talleres />} />
       </Routes>
 

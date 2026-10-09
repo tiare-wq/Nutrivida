@@ -1,21 +1,20 @@
 import { useState } from 'react'
 function Login() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
+
         if (!email.includes('@')) {
-            setError('El correo electrónico no es válido')
+            setError('El correo electrónico no es válido');
             return
         }
         if (password.length < 4) {
-            setError('La contraseña debe tener al menos 4 caracteres')
+            setError('La contraseña debe tener al menos 4 caracteres');
             return
         }
-        setError('')
-        console.log('Email:', email)
-        console.log('Password:', password)
+        setError('');
     }
     return (
         <div className="d-flex flex-column justify-content-center align-items-center login">

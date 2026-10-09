@@ -1,3 +1,5 @@
+/*  TIPO PROFESION DEBE SER UN MULTISELECT Y PASARSE A TEXTO SEPARADOS POR COMAS */
+
 import { useState } from "react"
 
 function AdminServicios() {
@@ -29,7 +31,7 @@ function AdminServicios() {
             <div className="campo">
                 <label for="categoria-servicio">Categoría</label>
                 <select id="categoria-servicio" name="categorias">
-                    <option value="" select disabled selected>Seleccione una opción</option>
+                    <option value="" selected disabled>Seleccione una opción</option>
                     <option value="1">Consulta</option>
                     <option value="2">Evaluación</option>
                     <option value="3">Planes / Servicios</option>
@@ -48,6 +50,11 @@ function AdminServicios() {
             </div>
 
             <div className="campo">
+                <label for="tp-profesional">Tipo profesional</label>
+                <input id="tp-profesional" type="text"></input>
+            </div>
+
+            <div className="campo">
                 <label for="duracion-servicio">Duración</label>
                 <input id="duracion-servicio" type="text"></input>
             </div>
@@ -55,7 +62,7 @@ function AdminServicios() {
             <div className="campo">
                 <label for="modalidad-servicio">Modalidad</label>
                 <select id="modalidad-servicio" name="modalidades">
-                    <option value="" select disabled selected>Seleccione una opción</option>
+                    <option value="" selected disabled>Seleccione una opción</option>
                     <option value="1">Presencial</option>
                     <option value="2">Presencial (grupal)</option>
                     <option value="3">Online</option>
