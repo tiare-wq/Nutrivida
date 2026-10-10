@@ -11,11 +11,7 @@ function Reserva() {
 
     // ======================================
     // OPCIONES DE SELECT PLANES-SERVICIOS
-    // ======================================
 
-    const tipoAtencion = document.getElementById("tipo-atencion-select");
-    const planesServicios = document.getElementById("plan-servicio-select");
-    const profesionales = document.getElementById("profesional-select");
     const horario = document.getElementById("reserva-hora");
     const datosContacto = document.getElementById("datos-contacto");
     const enviar = document.getElementById("enviar");
@@ -36,20 +32,7 @@ function Reserva() {
         planesServicios.disabled = false;
 
         const opcionSeleccionada = tipoAtencion.selectedOptions[0];
-        
-        for (const opc of opcionesPlanesServicios) {
 
-            if(opc.value == "") {
-                opc.hidden = false;
-                continue
-            }
-
-            if (opc.classList.contains(opcionSeleccionada.value)) {
-                opc.hidden = false;
-            } else {
-                opc.hidden = true;
-            }
-        }
     }
 
     // ======================================
@@ -234,23 +217,6 @@ function Reserva() {
         errorHora.textContent = "";
         errorProfesional.textContent = "";
 
-        let formularioValido = true;
-
-        if (atencion) {
-            errorAtencion.textContent = "Seleccione una atención.";
-            formularioValido = false;
-        }
-
-        if (planServ) {
-            errorPlanServ.textContent = "Seleccione un plan o servicio.";
-            formularioValido = false;
-        }
-
-        if (profesional) {
-            errorProfesional.textContent = "Seleccione un profesional";
-            formularioValido = false;
-        }
-
         if (horario.classList.contains("d-none")) {
             return;
         }
@@ -313,42 +279,6 @@ function Reserva() {
 
     return (
         <div>
-            <section class="container justify-content-center reserva">
-            <form class="border rounded p-4 shadow bg-white formulario">
-
-                <h2 class="sub-form">Búsqueda por especialidad</h2>
-                
-                <section class="datos-form">
-
-                    <div class="error-campo">
-                        <span id="error-servicio"></span>
-                    </div>
-
-                    <div class="campo">
-                        <label for="profesional-select">Profesional</label>
-                        <select name="profesional" id="profesional-select" disabled>
-                            <option value="" selected disabled>
-                                Seleccione una opción
-                            </option>
-                            <option value="1" class="clinica">
-                                Carolina Pérez
-                            </option>
-                            <option value="2" class="clinica">
-                                Valentina Soto
-                            </option>
-                            <option value="3" class="deportiva">
-                                Camilo Rojas
-                            </option>
-                            <option value="4" class="veg">
-                                Daniela Muñoz
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="error-campo">
-                        <span id="error-profesional"></span>
-                    </div>
-                </section>
 
                 <!-- Reserva de hora -->
                 <section id="reserva-hora" class="reserva-hora d-none">

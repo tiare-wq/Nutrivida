@@ -3,6 +3,7 @@ const accReserva = "Reservar ahora";
 const evaluaciones = [
     {
         id: "E1",
+        atencion: "evaluaciones",
         nombre: "Antropometría completa",
         descr: "Evaluación de peso, talla, circunferencias y otros indicadores antropométricos para conocer la composición y evolución corporal.",
         tpProfesional: "clinico",
@@ -13,6 +14,7 @@ const evaluaciones = [
     },
     {
         id: "E2",
+        atencion: "evaluaciones",
         nombre: "Bioimpedanciometría",
         descr: "Evaluación de la composición corporal mediante bioimpedancia, permitiendo obtener información sobre diferentes componentes del cuerpo.",
         tpProfesional: "clinico",
@@ -23,6 +25,7 @@ const evaluaciones = [
     },
     {
         id: "E3",
+        atencion: "evaluaciones",
         nombre: "Encuesta de hábitos alimentarios",
         descr: "Evaluación de los hábitos y patrones de alimentación del paciente para identificar aspectos que pueden ser considerados en su orientación nutricional.",
         tpProfesional: "clinico",
@@ -33,6 +36,7 @@ const evaluaciones = [
     },
     {
         id: "E4",
+        atencion: "evaluaciones",
         nombre: "Análisis de exámenes de laboratorio",
         descr: "Revisión y análisis de resultados de exámenes de laboratorio como apoyo para la evaluación y orientación nutricional.",
         tpProfesional: "clinico",

@@ -13,6 +13,7 @@ function Planes() {
           (
             <Servicio
               id={servicio.id}
+              atencion={servicio.atencion}
               nombre={servicio.nombre}
               descr={servicio.descr}
               duracion={servicio.duracion}

@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import consultas from '../../data/consultas'
 import evaluaciones from '../../data/evaluaciones'
 import planes from '../../data/planes'
 import talleres from '../../data/talleres'
+import { useLocation } from "react-router-dom";
 
 function Reserva() {
-
-    const planesServicios = document.getElementById('servicio-select');
-    const servicios = planesServicios.options;
+    const location = useLocation();
 
     const [atencion, setAtencion] = useState('');
     const [campoAtencion, setCampoAtencion] = useState('');
@@ -16,20 +15,104 @@ function Reserva() {
     const [servicio, setServicio] = useState('');
     const [campoServicio, setCampoServicio] = useState('');
 
+    const [prof, setProf] = useState('');
+    const [campoProf, setCampoProf] = useState('');
+    
+    // CARGAR DATOS
+    const todasLasAtenciones = [
+        ['consultas', 'Consulta'],
+        ['evaluaciones', 'Evaluación'],
+        ['planes', 'Plan especializado'],
+        ['talleres', 'Taller grupal']
+    ];
+
+    const todosLosServicios = [
+        ...consultas.map(item => ({ ...item, categoria: 'consultas' })),
+        ...evaluaciones.map(item => ({ ...item, categoria: 'evaluaciones' })),
+        ...planes.map(item => ({ ...item, categoria: 'planes' })),
+        ...talleres.map(item => ({ ...item, categoria: 'talleres' }))
+    ];
+
+    const serviciosFiltrados = todosLosServicios.filter(
+        item => item.categoria === atencion
+    );
+
+    const servicioSeleccionado = todosLosServicios.find(
+        item => String(item.id) === servicio
+    );
+
+    const todosProfesionales = [
+        ['1', 'Carolina Pérez', 'clinico'],
+        ['2', 'Valentina Soto', 'clinico'],
+        ['3', 'Camilo Rojas', 'deportivo'],
+        ['4', 'Daniela Muñoz', 'veg']
+    ];
+
+    const profesionalesFiltrados = todosProfesionales.filter(
+        item => item[2] === servicioSeleccionado?.tpProfesional
+    );
+
+    // OBTENER DATOS DEL PATH SI ES QUE HAY
+    useEffect(() => {
+        const datos = location.state;
+
+        if (!datos) return;
+
+        const nuevaAtencion = datos.atencion ?? '';
+        const nuevoServicio = datos.servicio != null
+            ? String(datos.servicio)
+            : '';
+
+        setAtencion(nuevaAtencion);
+        setServicio(nuevoServicio);
+
+        const atencionEncontrada = todasLasAtenciones.find(
+            item => item[0] === nuevaAtencion
+        );
+
+        const servicioEncontrado = todosLosServicios.find(
+            item =>
+                item.categoria === nuevaAtencion &&
+                String(item.id) === nuevoServicio
+        );
+
+        setCampoAtencion(atencionEncontrada?.[1] ?? '');
+        setCampoServicio(servicioEncontrado?.nombre ?? '');
+    }, [location.state]);
+
+    // MANEJAR EXCEPTIONS
     const [error, setError] = useState('');
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (atencion === '') {{
+        if (atencion === '') {
             setError('Seleccione un tipo de atención');
             return;
-        }}
+        }
+
+        if (servicio === '') {
+            setError('Seleccione un plan o servicio');
+            return;
+        }
+
+        if (prof === '') {
+            setError('Seleccione un profesional');
+            return;
+        }
 
         setError('');
     }
 
-    const limpiar = (event) => {
+    const limpiar = (level) => {
 
+        setProf('');
+        setCampoProf('');
+
+        if (level >= 1)
+            return
+
+        setServicio('');
+        setCampoServicio('');
     }
 
     return (
@@ -41,78 +124,68 @@ function Reserva() {
                     <section>
 
                         <div className="campo">
-                            <label for="atencion-select">Tipo de Atención</label>
-                            <select name="atencion" id="atencion-select" className="form-select"
+                            <label htmlFor="atencion-select">Tipo de Atención</label>
+                            <select name="atencion" id="atencion-select" className="form-select" value={atencion}
                                 onChange={(event) => {
-                                    const select = event.target
-                                    setAtencion(select.value);
-                                    setCampoAtencion(select.options[select.selectedIndex].text);
-                                    limpiar(event)
-                                    if (select.value !== "") {
-                                        planesServicios.disabled = false;
-                                        for (const servicio of servicios) {
-                                            if (select.value === "") {
-                                                servicio.hidden = false;
-                                                continue;
-                                            }
-                                            if (servicio.classList.contains(atencion)) {
-                                                servicio.hidden = false;
-                                            } else {
-                                                servicio.hidden = true;
-                                            }
-                                        }
-                                    } else {
-                                        planesServicios.disabled = true;
-                                    }
+                                    setAtencion(event.target.value);
+                                    setCampoAtencion(
+                                        todasLasAtenciones.find(item => item[0] === event.target.value)?.[1] ?? ''
+                                    );
+                                    limpiar(0);
                                 }}>
-                                <option value="" selected disabled>
+                                <option value="" select disabled>
                                     Seleccione una opción
                                 </option>
-                                <option value="consultas">
-                                    Consulta
-                                </option>
-                                <option value="evaluaciones">
-                                    Evaluación
-                                </option>
-                                <option value="planes">
-                                    Plan especializado
-                                </option>
-                                <option value="talleres">
-                                    Taller grupal
-                                </option>
+                                {todasLasAtenciones.map(item => (
+                                        <option value={item[0]}>
+                                            {item[1]}
+                                        </option>
+                                ))}
                             </select>
                         </div>
 
                         <div className="campo">
-                            <label for="servicio-select">Servicio / Plan</label>
-                            <select name="planes-servicios" id="servicio-select" disabled
+                            <label htmlFor="servicio-select">Servicio / Plan</label>
+                            <select name="planes-servicios" id="servicio-select" className="form-select" value={servicio} disabled={!atencion}
                                 onChange={(event) => {
                                     const select = event.target
                                     setServicio(select.value);
-                                    setCampoServicio(select.options[select.selectedIndex].text);
+                                    setCampoServicio(
+                                        todosLosServicios.find(item => item[0] === select.value)?.nombre ?? ''
+                                    );
+
+                                    limpiar(1);
                                 }}>
-                                <option value="" selected disabled>
+                                <option value="" disabled>
                                     Seleccione una opción
                                 </option>
-                                {consultas.map((consulta) => (
-                                        <option value={consulta.id} className="consultas" data-precio={consulta.precio} data-prof={consulta.tpProfesional}>
-                                            {consulta.nombre}
-                                        </option>
+                                {serviciosFiltrados.map(item => (
+                                    <option
+                                        key={item.id}
+                                        value={item.id}
+                                    >
+                                        {item.nombre}
+                                    </option>
                                 ))}
-                                {evaluaciones.map((evaluacion) => (
-                                        <option value={evaluacion.id} className="evaluaciones" data-precio={evaluacion.precio} data-prof={evaluacion.tpProfesional}>
-                                            {evaluacion.nombre}
-                                        </option>
-                                ))}
-                                {planes.map((plan) => (
-                                        <option value={plan.id} className="planes" data-precio={plan.precio} data-prof={plan.tpProfesional}>
-                                            {plan.nombre}
-                                        </option>
-                                ))}
-                                {talleres.map((taller) => (
-                                        <option value={taller.id} className="talleres" data-precio={taller.precio} data-prof={taller.tpProfesional}>
-                                            {taller.nombre}
-                                        </option>
+                            </select>
+                        </div>
+
+                        <div className="campo">
+                            <label htmlFor="profesional-select">Profesional</label>
+                            <select name="profesional" id="profesional-select" className="form-select" value={prof} disabled={!servicio}
+                                onChange={(event) => {
+                                    setProf(event.target.value);
+                                    setCampoProf(event.target.options[event.target.selectedIndex].text);
+
+                                    limpiar(2);
+                                }}>
+                                <option value="" disabled>
+                                    Seleccione una opción
+                                </option>
+                                {profesionalesFiltrados.map(item => (
+                                    <option value={item[0]}>
+                                        {item[1]}
+                                    </option>
                                 ))}
                             </select>
                         </div>

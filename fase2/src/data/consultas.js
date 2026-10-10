@@ -3,6 +3,7 @@ const accReserva = "Reservar ahora"
 const consultas = [
     {
         id: "C1",
+        atencion: "consultas",
         nombre: "Primera consulta nutricional",
         descr: "Evaluación inicial. Anamnesis, antropometría completa y diseño del primer plan alimenticio.",
         tpProfesional: "clinico",
@@ -14,6 +15,7 @@ const consultas = [
 
     {
         id: "C2",
+        atencion: "consultas",
         nombre: "Control nutricional (seguimiento)",
         descr: "Seguimiento de la evolución del paciente, revisión de objetivos y ajustes al plan alimenticio según sus avances.",
         tpProfesional: "clinico",
@@ -25,6 +27,7 @@ const consultas = [
 
     {
         id: "C3",
+        atencion: "consultas",
         nombre: "Control nutricional quincenal",
         descr: "Consulta de seguimiento realizada cada 15 días para evaluar avances y realizar los ajustes necesarios al plan alimenticio.",
         tpProfesional: "clinico",
@@ -36,6 +39,7 @@ const consultas = [
 
     {
         id: "C4",
+        atencion: "consultas",
         nombre: "Control nutricional quincenal",
         descr: "Atención nutricional a distancia mediante videollamada, permitiendo realizar seguimiento y orientación sin asistir presencialmente a la clínica.",
         tpProfesional: "clinico",
@@ -45,11 +49,5 @@ const consultas = [
         accion: accReserva
     }
 ];
-
-// EVALUACIONES
-
-// PLANES DE ALIMENTACIÓN
-
-// TALLERES
 
 export default consultas;

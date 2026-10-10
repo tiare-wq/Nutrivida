@@ -32,7 +32,8 @@ input:focus, textarea:focus {
 }
 
 .form-select {
-    min-width: 200%;
+    width: 100%;
+    min-width: 300px;
 }
 
 .subtitulo-form {
