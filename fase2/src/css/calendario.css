@@ -1,31 +1,65 @@
-h2 {
-    font-size: 21px;
-}
-
 .calendar {
     background-color: snow;
     width: 100%;
-    max-width: 480px;
+    max-width: 420px;
+    box-sizing: border-box;
 
     border: 2px solid black;
-    border-radius: 16px;
-    box-shadow: 10px rgb(80, 80, 80);
+    border-radius: 20px;
 
-    margin: 20px;
-    padding: 5px;
+    margin: 20px auto;
+    padding: 12px;
+}
+
+.calendar-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+}
+
+.calendar-header h3 {
+    margin: 0;
+}
+
+.calendar-header button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .calendar-body {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: repeat(6, 40px);
+    gap: 4px;
 }
 
-.calendar-day .week-day {
-    text-align: center;
+.week-day,
+.calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    margin: 5px;
-    padding: 10px;
+    width: 100%;
+    aspect-ratio: 1;
+}
 
+.week-day p {
+    margin: 0;
+}
+
+.calendar-day {
+    background-color: transparent;
+    border: 1px solid #999;
     cursor: pointer;
 }
 
@@ -37,26 +71,18 @@ h2 {
     background-color: antiquewhite;
 }
 
-.calendar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.calendar-day.empty {
+    visibility: hidden;
 }
 
-.calendar-header button {
-    background-color: transparent;
-    border: none;
-    border-radius: 16px;
-
-    cursor: pointer;
-}
-
-.change-btn:hover {
-    background-color: #999;
-}
-
-@media screen and (max-width: 360px) {
+@media (max-width: 480px) {
     .calendar {
-        max-width: 200px;
+        max-width: 100%;
+        margin: 12px auto;
+        padding: 8px;
+    }
+
+    .calendar-body {
+        gap: 3px;
     }
 }

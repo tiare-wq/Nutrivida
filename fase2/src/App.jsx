@@ -1,13 +1,14 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import AdminServicios from './pages/admin/AdminServicios'
-import Consultas from './pages/publico/Consultas'
-import Evaluaciones from './pages/publico/Evaluaciones'
-import Inicio from './pages/publico/Inicio'
-import Login from './pages/publico/Login'
-import Planes from './pages/publico/Planes'
-import Reserva from './pages/publico/Reserva'
-import Talleres from './pages/publico/Talleres'
+import AdminServicios from './pages/admin/AdminServicios';
+import Confirmacion from './pages/publico/Confirmacion';
+import Consultas from './pages/publico/Consultas';
+import Evaluaciones from './pages/publico/Evaluaciones';
+import Inicio from './pages/publico/Inicio';
+import Login from './pages/publico/Login';
+import Planes from './pages/publico/Planes';
+import Reserva from './pages/publico/Reserva';
+import Talleres from './pages/publico/Talleres';
 
 function App() {
   return (
@@ -19,14 +20,14 @@ function App() {
             </div>
 
             <nav class="nav-main">
-              <a className='btn-nutrivida'>
+              <Link className='btn-nutrivida'>
                 <img src="../img/carrito.png" alt="Carrito" />
-              </a>
+              </Link>
 
-              <a id="btn-login" className="justify-content-center btn-nutrivida" href="/login">
+              <Link id="btn-login" className="justify-content-center btn-nutrivida" to="/login">
                   <img src="../img/usuarioIcono2.webp" alt="Iniciar sesión" />
                   <span>Iniciar sesión</span>
-              </a>
+              </Link>
             </nav>
             
         </div>
@@ -37,6 +38,7 @@ function App() {
       <Routes>
         <Route path="/admin-servicios" element={<AdminServicios />} />
         <Route path="/consultas" element={<Consultas />} />
+        <Route path="/confirmacion-reserva" element={<Confirmacion />} />
         <Route path="/evaluaciones" element={<Evaluaciones />} />
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/login" element={<Login />} />

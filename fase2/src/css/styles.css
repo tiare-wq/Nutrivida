@@ -242,10 +242,6 @@ label {
     flex-wrap: wrap;
 }
 
-.reserva {
-    text-align: center;
-}
-
 .ubicacion iframe {
     width: 600px;
     height: 450px;
