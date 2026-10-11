@@ -9,6 +9,7 @@ import Login from './pages/publico/Login';
 import Planes from './pages/publico/Planes';
 import Reserva from './pages/publico/Reserva';
 import Talleres from './pages/publico/Talleres';
+import Registro from './pages/publico/Registro';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/planes" element={<Planes />} />
         <Route path="/reservas" element={<Reserva />} />
         <Route path="/talleres" element={<Talleres />} />
+        <Route path="/registro" element={<Registro />} />
       </Routes>
 
       <footer>
