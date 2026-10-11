@@ -55,14 +55,20 @@ input:focus, textarea:focus {
 #btn-form {
     display: block;
     text-align: center;
-    width: fit-content;
-    min-width: 100px;
-
-    margin: 4px auto;
 }
 
 @media screen and (max-width: 600px) {
-    .form-radio {
+    .campo select,
+    .campo input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .form-radio > div {
         flex-direction: column;
+    }
+
+    .formulario {
+        min-width: 250px;
     }
 }

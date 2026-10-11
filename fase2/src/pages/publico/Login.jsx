@@ -1,5 +1,11 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import pacientes from '../../data/pacientes';
+
 function Login() {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -14,7 +20,21 @@ function Login() {
             setError('La contraseña debe tener al menos 4 caracteres');
             return
         }
+
+        const paciente = pacientes.find(
+            p => p.correo === email && p.password === password
+        );
+
+        if (!paciente) {
+            setError('Es posible que el correo electrónico o la contraseña no esté conectado a ninguna cuenta.');
+            return;
+        }
+        
         setError('');
+
+        navigate('/perfil', {
+            state: { paciente }
+        });
     }
     return (
         <div className="d-flex flex-column justify-content-center align-items-center login">

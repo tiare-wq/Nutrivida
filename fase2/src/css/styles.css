@@ -5,14 +5,20 @@
 }
 
 a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
     color: rgb(33, 211, 99);
     text-decoration: none;
+
+    gap: 8px;
 }
 
 a img {
-    width: 20px;
-    height: 100%;
-    margin: 5px;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
 }
 
 body {
@@ -53,7 +59,7 @@ label {
     background-color: rgb(103, 201, 47);
     color: white;
 
-    width: 100%;
+    width: fit-content;
     max-height: 50px;
     white-space: nowrap;
 
@@ -68,11 +74,6 @@ label {
     color: white;
     padding-left: 10px;
     padding-right: 8px;
-}
-
-.btn-nutrivida img {
-    height: 20px;
-    margin: 4px;
 }
 
 .btn-nutrivida:hover {
@@ -103,10 +104,6 @@ label {
 
 .contacto h6 {
     margin: 5px;
-}
-
-.datos-form span, .reserva-hora span {
-    color: rgb(212, 92, 92);
 }
 
 .elemento-oferta {
@@ -248,10 +245,6 @@ label {
 }
 
 @media screen and (max-width: 768px) {
-    .campo {
-        grid-template-columns: 1fr;
-    }
-
     .hero h1 {
         font-size: 30px;
         margin-bottom: 40px;
@@ -263,33 +256,12 @@ label {
 }
 
 @media screen and (max-width: 360px) {
-
-    .campo select,
-    .campo input {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .datos-form {
-        width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    }
-
     .elemento-oferta {
         padding: 5px;
     }
 
     .elemento-oferta img {
         width: 100%;
-    }
-
-    .formulario {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        margin: 0;
-        padding: 15px !important;
     }
 
     .head-header {
@@ -317,18 +289,6 @@ label {
 
     .oferta {
         padding: 5px;
-    }
-
-    .reserva.container {
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-    }
-
-    .sub-form {
-        margin: 0;
-        padding: 0;
     }
     
     .titulo h1 {
