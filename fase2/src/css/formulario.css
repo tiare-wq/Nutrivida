@@ -52,7 +52,7 @@ input:focus, textarea:focus {
     min-width: 300px;
 }
 
-#reservar {
+#btn-form {
     display: block;
     text-align: center;
     width: fit-content;

@@ -14,12 +14,12 @@ function App() {
   return (
     <BrowserRouter>
       <header>
-        <div class="head-header"> 
+        <div className="head-header"> 
             <div>
                 <h1>NutriVida 🍃</h1>
             </div>
 
-            <nav class="nav-main">
+            <nav className="nav-main">
               <Link className='btn-nutrivida'>
                 <img src="../img/carrito.png" alt="Carrito" />
               </Link>

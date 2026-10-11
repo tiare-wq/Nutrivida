@@ -17,7 +17,6 @@ function Reserva() {
     limiteReservas.setMonth(limiteReservas.getMonth() + 3);
 
     const [atencion, setAtencion] = useState('');
-    const [campoAtencion, setCampoAtencion] = useState('');
 
     const [servicio, setServicio] = useState('');
     const [campoServicio, setCampoServicio] = useState('');
@@ -81,17 +80,12 @@ function Reserva() {
         setAtencion(nuevaAtencion);
         setServicio(nuevoServicio);
 
-        const atencionEncontrada = todasLasAtenciones.find(
-            item => item[0] === nuevaAtencion
-        );
-
         const servicioEncontrado = todosLosServicios.find(
             item =>
                 item.categoria === nuevaAtencion &&
                 String(item.id) === nuevoServicio
         );
 
-        setCampoAtencion(atencionEncontrada?.[1] ?? '');
         setCampoServicio(servicioEncontrado?.nombre ?? '');
     }, [location.state]);
 
@@ -193,9 +187,6 @@ function Reserva() {
                             <select name="atencion" id="atencion-select" className="form-dato" value={atencion}
                                 onChange={(event) => {
                                     setAtencion(event.target.value);
-                                    setCampoAtencion(
-                                        todasLasAtenciones.find(item => item[0] === event.target.value)?.[1] ?? ''
-                                    );
                                     limpiar(0);
                                 }}>
                                 <option value="" select disabled>
@@ -216,7 +207,7 @@ function Reserva() {
                                     const select = event.target
                                     setServicio(select.value);
                                     setCampoServicio(
-                                        todosLosServicios.find(item => item[0] === select.value)?.nombre ?? ''
+                                        todosLosServicios.find(item => item.id === select.value)?.nombre ?? ''
                                     );
 
                                     limpiar(1);
@@ -318,7 +309,7 @@ function Reserva() {
                         </div>
                     )}
 
-                    <button name="enviar" type="submit" id="reservar" className="btn-nutrivida">
+                    <button name="enviar" type="submit" id="btn-form" className="btn-nutrivida">
                         {profesional? "Enviar": "Continuar"}
                     </button>
 

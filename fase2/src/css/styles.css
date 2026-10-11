@@ -79,36 +79,8 @@ label {
     background-color: rgb(75, 158, 44);
 }
 
-.card-body {
-    border: 1px solid rgb(18, 202, 98);
-    border-radius: 30px;
-    text-align: center;
-    margin: 20px;
-    padding: 10px;
-}
-
 .collapse li {
     list-style-type: none;
-}
-
-.confirmacion {
-    text-align: center;
-    padding-bottom: 30px;
-}
-
-.confirmacion h3 {
-    padding: 30px 0 10px;
-}
-
-.confirmacion h6 {
-    font-size: 20px;
-    padding: 5px;
-}
-
-.confirmacion-info {
-    background-color: white;
-    border-radius: 16px;
-    text-align: center;
 }
 
 .contacto {
