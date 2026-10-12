@@ -175,6 +175,12 @@ label {
     margin-bottom: 80px;
 }
 
+.icono {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
 .navbar {
     border-radius: 16px;
 }

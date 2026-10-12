@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import './css/styles.css';
 import './css/private.css';
+import './css/perfil.css';
 import './css/servicios.css';
 import './css/formulario.css';
 import './css/calendario.css';

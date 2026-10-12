@@ -1,0 +1,48 @@
+.btn-perfil {
+    background-color: transparent;
+    color: green;
+    border: none;
+}
+
+.card-perfil {
+    background-color: white;
+    border-radius: 10px;
+
+    margin: 20px;
+    padding: 20px;
+}
+
+.fondo {
+    background-color: rgb(217, 228, 214);
+    padding: 20px;
+}
+
+.fondo-principal {
+    background-image: url("../../img/fondoHojas.png");
+    width: 100%;
+
+    border-radius: 10px;
+
+    padding: 20px;
+}
+
+.foto-perfil {
+    max-width: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.head-perfil {
+    display: flex;
+    align-items: center;
+}
+
+.head-editar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mensaje-bienvenida {
+    margin: 20px;
+}

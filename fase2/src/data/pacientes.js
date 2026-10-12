@@ -9,7 +9,7 @@ const pacientes = [
         'password': 'Paamela123.',
         'reservasPendientes': [],
         'historial': [],
-        'foto': ''
+        'foto': '../../img/paciente1.jpg'
     }
 ]
 
