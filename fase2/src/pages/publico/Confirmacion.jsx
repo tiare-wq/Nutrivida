@@ -17,7 +17,7 @@ function Confirmacion() {
     return (
         <main>
             <div className="bg-light container col-12 col-md-8 col-lg-6">
-                <div className="justify-content-center confirmacion">
+                <div className="confirmacion">
                     <h2>Confirmación de la reserva.</h2>
 
                     <div class="card-codigo">
