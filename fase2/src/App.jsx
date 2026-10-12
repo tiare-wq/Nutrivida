@@ -11,6 +11,7 @@ import PrivateLayout from './layouts/PrivateLayout';
 import PublicLayout from './layouts/PublicLayout';
 import Reserva from './pages/publico/Reserva';
 import Talleres from './pages/publico/Talleres';
+import MisReservas from './pages/privado/MisReservas';
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
         </Route>
 
         <Route element={<PrivateLayout />}>
-          <Route path="perfil" element={<PerfilPaciente />} />
           <Route path="admin-servicios" element={<AdminServicios />} />
+          <Route path="mis-reservas" element={<MisReservas />} />
+          <Route path="perfil" element={<PerfilPaciente />} />
         </Route>
       </Routes>
 

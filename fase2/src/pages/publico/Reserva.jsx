@@ -117,8 +117,8 @@ function Reserva() {
             return;
         }
 
-        const runValido = !runPattern.test(run.trim());
-        if (runValido) {
+        const runValido = runPattern.test(run.trim());
+        if (!runValido) {
             setError('El formato del RUN no es válido. Por favor, ingrese su RUN sin puntos y con guión.');
             return;
         }

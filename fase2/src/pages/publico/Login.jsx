@@ -29,12 +29,12 @@ function Login() {
             setError('Es posible que el correo electrónico o la contraseña no esté conectado a ninguna cuenta.');
             return;
         }
-        
         setError('');
 
-        navigate('/perfil', {
-            state: { paciente }
-        });
+        if (paciente) {
+            localStorage.setItem("pacienteId", paciente.id);
+            navigate("/perfil");
+        };
     }
     return (
         <div className="d-flex flex-column justify-content-center align-items-center login">

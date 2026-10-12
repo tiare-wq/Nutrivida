@@ -7,7 +7,7 @@ const pacientes = [
         'telefono': '+56 9 3456 1234',
         'correo': 'pame@outlook.com',
         'password': 'Paamela123.',
-        'reservasPendientes': [],
+        'reservas': [],
         'historial': [],
         'foto': '../../img/paciente1.jpg'
     }

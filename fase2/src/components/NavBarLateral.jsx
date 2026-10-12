@@ -16,10 +16,11 @@ function NavbarLateral() {
                     <img src="../../img/calendario.png" alt="Calendario" />
                     Mis reservas
                 </Link>
-                <Link className="nav-link" to="/inicio">
+                <Link className="nav-link" to="/inicio"
+                onClick={() => localStorage.removeItem("pacienteId")}>
                     <img src="../../img/cerrarSesion.png" alt="Cerrar sesión" />
                     Cerrar sesión
-                    </Link>
+                </Link>
             </nav>
         </div>
     )

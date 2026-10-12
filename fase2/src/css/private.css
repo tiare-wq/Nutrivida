@@ -1,3 +1,25 @@
+.card-private {
+    background-color: white;
+    border-radius: 10px;
+
+    margin: 20px;
+    padding: 20px;
+}
+
+.fondo {
+    background-color: rgb(217, 228, 214);
+    height: 100vh;
+    padding: 20px;
+}
+
+.fondo-principal {
+    background-image: url("../../img/fondoHojas.png");
+    width: 100%;
+    border-radius: 10px;
+
+    padding: 20px;
+}
+
 .nav-private {
     background-image: url("../../img/navbarHojas.png");
     width: 100%;
@@ -9,6 +31,9 @@
 }
 
 .nav-private .nav-link {
+    display: flex;
+    justify-content: start;
+    align-items: center;
     color: green;
 
     margin: 0;

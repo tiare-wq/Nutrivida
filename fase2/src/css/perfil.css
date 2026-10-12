@@ -4,26 +4,24 @@
     border: none;
 }
 
-.card-perfil {
-    background-color: white;
-    border-radius: 10px;
-
-    margin: 20px;
-    padding: 20px;
+.campo-perfil {
+    display: grid;
+    grid-template-columns: 40% auto;
+    align-items: center;
+    min-height: 60px;
 }
 
-.fondo {
-    background-color: rgb(217, 228, 214);
-    padding: 20px;
+.campo-perfil input {
+    border: none;
 }
 
-.fondo-principal {
-    background-image: url("../../img/fondoHojas.png");
-    width: 100%;
+.campo-perfil label {
+    display: flex;
+    align-items: center;
+}
 
-    border-radius: 10px;
-
-    padding: 20px;
+.campo-perfil p{
+    margin: 0 0 0 10px;
 }
 
 .foto-perfil {
