@@ -8,6 +8,10 @@ function NavbarLateral() {
                 <hr />
             </div>
             <nav className="nav flex-column nav-private">
+                <Link className="nav-link" to="/inicio">
+                    <img src="../../img/inicio.png" alt="Inicio" />
+                    Inicio
+                </Link>
                 <Link className="nav-link" to="/perfil">
                     <img src="../../img/perfil.png" alt="Perfil" />
                     Mi perfil

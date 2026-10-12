@@ -6,6 +6,14 @@
     padding: 20px;
 }
 
+.card-private th, td {
+    padding: 10px;
+}
+
+.card-private table {
+    width: 100%;
+}
+
 .fondo {
     background-color: rgb(217, 228, 214);
     height: 100vh;

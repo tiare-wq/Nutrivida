@@ -150,6 +150,38 @@ function Reserva() {
         parametros.append("fecha", formateada);
         parametros.append("hora", hora);
 
+        const pacienteId = Number(localStorage.getItem('pacienteId'));
+
+        if (pacienteId) {
+
+            const pacientesGuardados = JSON.parse(
+                localStorage.getItem('pacientes') || '[]'
+            );
+
+            const nuevaReserva = {
+                id: Date.now(),
+                profesional: campoProfesional,
+                servicio: campoServicio,
+                precio: serv.precio,
+                fecha: campoFecha,
+                hora: hora
+            };
+
+            const pacientesActualizados = pacientesGuardados.map(p =>
+                p.id === pacienteId
+                    ? {
+                        ...p,
+                        reservas: [...(p.reservas ?? []), nuevaReserva]
+                    }
+                    : p
+            );
+
+            localStorage.setItem(
+                'pacientes',
+                JSON.stringify(pacientesActualizados)
+            );
+        }
+
         const paginaDestino = "/confirmacion-reserva";
         window.location.href = `${paginaDestino}?${parametros.toString()}`;
     }
