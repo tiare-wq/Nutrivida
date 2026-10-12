@@ -7,7 +7,7 @@ function PublicLayout() {
             <header>
                 <div className="head-header"> 
                     <div>
-                        <h1>NutriVida 🍃</h1>
+                        <h1><a href="/inicio">NutriVida 🍃</a></h1>
                     </div>
 
                     <nav className="nav-main">

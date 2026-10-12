@@ -4,7 +4,7 @@ function NavbarLateral() {
     return (
         <div className="nav-private">
             <div>
-                <h3>NutriVida 🍃</h3>
+                <h3><a href="/inicio">NutriVida 🍃</a></h3>
                 <hr />
             </div>
             <nav className="nav flex-column nav-private">
