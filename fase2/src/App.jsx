@@ -35,8 +35,7 @@ function App() {
           <Route path="perfil" element={<PerfilPaciente />} />
         </Route>
       </Routes>
-
     </BrowserRouter>
-  )
+  );
 }
-export default App
+export default App;
