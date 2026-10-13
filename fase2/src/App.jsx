@@ -30,13 +30,7 @@ function Guard({ children, admin = false }) {
       />
     );
   if (admin && user.role !== "admin")
-    return (
-      <section className="page">
-        <h1>Acceso restringido</h1>
-        <p>Esta sección requiere una cuenta administradora.</p>
-        <Link to="/cuenta">Volver a mi cuenta</Link>
-      </section>
-    );
+    return <Navigate to="/cuenta" replace />;
   return children;
 }
 function ScrollTop() {
