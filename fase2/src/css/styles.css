@@ -33,8 +33,17 @@ form textarea {
 }
 
 footer {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: rgba(227, 241, 198, 0.082);
     color: rgb(33, 211, 99);
-    padding: 15px 10px;
+
+    padding: 20px 5%;
+}
+
+footer > div {
+    padding: 10px;
 }
 
 header {
@@ -78,6 +87,10 @@ label {
 
 .btn-nutrivida:hover {
     background-color: rgb(75, 158, 44);
+}
+
+.cart-nav {
+    padding: 10px;
 }
 
 .collapse li {
@@ -135,8 +148,6 @@ label {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
-    margin-bottom: 10px;
 }
 
 .home {
@@ -251,6 +262,10 @@ label {
 }
 
 @media screen and (max-width: 768px) {
+    footer {
+        flex-direction: column;
+    }
+
     .hero h1 {
         font-size: 30px;
         margin-bottom: 40px;

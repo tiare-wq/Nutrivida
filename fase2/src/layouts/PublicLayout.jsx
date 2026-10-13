@@ -1,8 +1,12 @@
-import { Container } from "react-bootstrap";
-import { Outlet, Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import { Outlet, Link } from "react-router-dom";
+
+import { useApp } from "../../context";
+
+import Navbar from "../components/Navbar";
 
 function PublicLayout() {
+    const { user, items } = useApp();
+
     return (
         <div>
             <header>
@@ -12,31 +16,28 @@ function PublicLayout() {
                     </div>
 
                     <nav className="nav-main">
-                    <Link className='btn-nutrivida'>
-                        <img src="../../img/carrito.png" alt="Carrito" />
-                    </Link>
-
-                    {user ? (
-                        <>
-                        <Nav.Link as={NavLink} to="/cuenta">
-                            Mi cuenta
-                        </Nav.Link>
-                        <Button variant="outline-success" size="sm" onClick={logout}>
-                            Salir
-                        </Button>
-                        </>
-                    ) : (
-                        <Nav.Link as={NavLink} to="/login">
-                        Ingresar
-                        </Nav.Link>
-                    )}
-
-                    <Link className="justify-content-center btn-nutrivida" to="/login">
-                        <img src="../../img/perfil.png" alt="Iniciar sesión" />
-                        <span>Iniciar sesión</span>
-                    </Link>
+                        <Link to="/carrito" className="cart-nav">
+                            Carrito{" "}
+                            <span className="cart-badge">
+                                {items.reduce((n, i) => n + i.quantity, 0)}
+                            </span>
+                        </Link>
+                        
+                        {user ? (
+                            <>
+                            <Link to="/perfil" className="cart-nav">
+                                Mi perfil
+                            </Link>
+                            <Button className="cart-nav" variant="outline-success" size="sm" onClick={logout}>
+                                Salir
+                            </Button>
+                            </>
+                        ) : (
+                            <Link to="/login" className="cart-nav">
+                                Ingresar
+                            </Link>
+                        )}
                     </nav>
-                    
                 </div>
             </header>
 
@@ -46,25 +47,28 @@ function PublicLayout() {
                 <Outlet />
             </main>
 
-            <footer className="site-footer">
-                <Container>
+            <footer>
                 <div>
                     <Link to="/" className="footer-brand">
                     NutriVida
                     </Link>
+                    <br />
                     <p>Nutrición y bienestar, a tu medida.</p>
                 </div>
                 <div>
                     <Link to="/servicios">Servicios</Link>
+                    <br />
                     <Link to="/reserva">Reservar una atención</Link>
+                    <br />
                     <Link to="/cuenta">Mi cuenta</Link>
                 </div>
-                <p>
-                    NutriVida © 2026
-                    <br />
-                    Proyecto académico · Sin cobros en línea
-                </p>
-                </Container>
+                <div>
+                    <p>
+                        NutriVida © 2026
+                        <br />
+                        Proyecto académico · Sin cobros en línea
+                    </p>
+                </div>
             </footer>
         </div>
     );
