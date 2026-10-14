@@ -1,0 +1,21 @@
+.carrito-page { padding: 32px 16px 64px; }
+.carrito-page > h1 { margin-bottom: 8px; }
+.carrito-page .card-private { margin: 24px 0; border: 1px solid #d5e3d1; }
+.carrito-lista { display: grid; gap: 16px; }
+.carrito-fila { display: grid; grid-template-columns: minmax(0, 1fr) 110px 140px auto; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid #d5e3d1; }
+.carrito-fila h2 { font-size: 1.2rem; }
+.carrito-fila p { margin: 4px 0 0; }
+.carrito-fila label { display: block; margin-bottom: 4px; }
+.carrito-total, .carrito-acciones { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 20px; }
+.carrito-total strong { font-size: 1.25rem; }
+.carrito-nota { margin-top: 18px; color: #345a3a; }
+.usuario-actual { color: #235a31; font-weight: 700; white-space: nowrap; }
+.nav-main { align-items: center; flex-wrap: wrap; }
+.nav-main .btn-nutrivida { border: 0; font: inherit; cursor: pointer; }
+.nav-private .nav-link img { width: 20px; height: 20px; flex: 0 0 20px; object-fit: contain; }
+.nav-private button.nav-link { width: 100%; border: 0; background: transparent; text-align: left; cursor: pointer; font: inherit; }
+.private > main { min-width: 0; max-height: 100vh; overflow-y: auto; }
+.fondo { min-height: 100vh; height: auto; }
+.tabla-scroll { overflow-x: auto; }
+@media (max-width: 860px) { .private > main { max-height: none; overflow: visible; } }
+@media (max-width: 760px) { .carrito-fila { grid-template-columns: 1fr 100px; } .carrito-fila strong { grid-column: 1; } .carrito-total, .carrito-acciones { align-items: flex-start; flex-direction: column; } }
