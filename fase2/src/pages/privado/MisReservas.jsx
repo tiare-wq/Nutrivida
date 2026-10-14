@@ -16,7 +16,7 @@ function MisReservas() {
 
                 <div className="card-private">
                     <h3>Reservas pendientes</h3>
-                    <div className="p-3 tabla-scroll">
+                    <div className="p-3">
                         {(reservas == null || reservas.length === 0) && (
                                 <h6>No hay reservas pendientes.</h6>
                         )}

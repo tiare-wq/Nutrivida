@@ -15,6 +15,7 @@ import MisReservas from './pages/privado/MisReservas';
 import MisPlanes from './pages/privado/MisPlanes';
 import Carrito from './pages/publico/Carrito';
 import { pacienteActual } from './data/almacen';
+import ScrollTop from './routes/ScrollTop';
 
 function Acceso({ children }) {
   const location = useLocation();
@@ -26,7 +27,7 @@ function Acceso({ children }) {
 function App() {
   return (
     <BrowserRouter>
-
+      <ScrollTop />
       <Routes>
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Navigate to="/inicio" replace />} />

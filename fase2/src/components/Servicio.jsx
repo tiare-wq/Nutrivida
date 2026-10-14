@@ -56,7 +56,7 @@ function Servicio({
                         {accion}
                     </button>
                 </div>
-                {error && <p className="alert alert-warning" role="alert">{error}</p>}
+                {error && <p className="alert alert-warning m-3" role="alert">{error}</p>}
             </div>
         )
 }

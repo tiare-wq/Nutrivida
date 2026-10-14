@@ -116,7 +116,7 @@ function PerfilPaciente() {
                     </div>
                     <div className="mensaje-bienvenida">
                         <h4>¡Hola {nombreActual}!</h4>
-                        <h6>{correoActual} · ID {id}</h6>
+                        <h6>{correoActual}</h6>
                     </div>
                 </div>
 

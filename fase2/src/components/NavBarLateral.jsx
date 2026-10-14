@@ -19,7 +19,7 @@ function NavbarLateral() {
         <div className="nav-private">
             <div>
                 <h3><Link to="/inicio">NutriVida 🍃</Link></h3>
-                {paciente && <p>{paciente.nombre} · ID {paciente.id}</p>}
+                {paciente && <p>{paciente.nombre}</p>}
                 <hr />
             </div>
             <nav className="nav flex-column nav-private">
@@ -36,7 +36,7 @@ function NavbarLateral() {
                     Mis reservas
                 </Link>
                 <Link className="nav-link" to="/carrito"><img src="../../img/carrito.png" alt="" />Carrito</Link>
-                <Link className="nav-link" to="/mis-planes"><img src="../../img/planes.png" alt="" />{planActivo(paciente) ? 'Mi plan activo' : 'Mis planes'}</Link>
+                <Link className="nav-link" to="/mis-planes"><img src="../../img/planesIcono.png" alt="" />{planActivo(paciente) ? 'Mi plan activo' : 'Mis planes'}</Link>
                 <button className="nav-link" type="button" onClick={salir}>
                     <img src="../../img/cerrarSesion.png" alt="" />Salir
                 </button>

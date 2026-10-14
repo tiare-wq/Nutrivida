@@ -71,7 +71,7 @@ function Reserva() {
     }
 
     return <main>
-        <div className="d-flex justify-content-center align-items-center">
+        <div className="d-flex justify-content-center align-items-center page min-vh-100">
             <form className="border rounded p-4 shadow bg-white formulario" onSubmit={enviar}>
                 <h1 className="subtitulo-form">Reserva tu atención</h1>
                 {paciente && <p>Paciente: {paciente.nombre} · ID {paciente.id}</p>}

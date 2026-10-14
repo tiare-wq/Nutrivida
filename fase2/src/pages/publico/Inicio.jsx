@@ -4,7 +4,7 @@ function Inicio() {
 
     return (
         <main>
-            <section className="home">
+            <section className="min-vh-100 home">
                 <section className="justify-content-center hero">
                     <div className="titulo">
                         <h1>No todos necesitamos lo mismo. Tu plan tampoco debería serlo.</h1>

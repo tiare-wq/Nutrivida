@@ -50,7 +50,7 @@ function Carrito() {
 
     return <main className="container carrito-page">
         <h1>Tu carrito de planes</h1>
-        <p>{paciente.nombre} · ID {paciente.id} · {comprados} de 10 planes registrados este año.</p>
+        <p>{paciente.nombre} · {comprados} de 10 planes registrados este año.</p>
         {error && <p className="alert alert-warning" role="alert">{error}</p>}
         {pedido && <div className="alert alert-success" role="status">
             Pedido #{pedido.id} registrado. Tus planes aparecen en <Link to="/mis-planes">Mis planes</Link>. No se realizó un cobro en línea.

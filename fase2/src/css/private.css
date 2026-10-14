@@ -12,6 +12,7 @@
 
 .card-private table {
     width: 100%;
+    margin: 10px;
 }
 
 .fondo {
@@ -50,7 +51,7 @@
 
 .private {
     display: grid;
-    grid-template-columns: 20% minmax(0, 1fr);
+    grid-template-columns: 16% minmax(0, 1fr);
 }
 
 @media screen and (max-width: 860px) {

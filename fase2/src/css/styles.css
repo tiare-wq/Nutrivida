@@ -24,6 +24,8 @@ a img {
 body {
     background-color: rgb(255, 255, 255);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    min-width: 315px;
 }
 
 form textarea {
@@ -33,8 +35,17 @@ form textarea {
 }
 
 footer {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: rgba(227, 241, 198, 0.082);
     color: rgb(33, 211, 99);
-    padding: 15px 10px;
+
+    padding: 20px 5%;
+}
+
+footer > div {
+    padding: 10px;
 }
 
 header {
@@ -181,6 +192,15 @@ label {
     object-fit: contain;
 }
 
+.link-header {
+    background-color: transparent;
+    border: none;
+
+    color: green;
+    font-size: 18px;
+    padding: 20px;
+}
+
 .navbar {
     border-radius: 16px;
 }
@@ -224,6 +244,13 @@ label {
     margin: 20px;
 }
 
+.usuario-actual {
+    font-weight: bold;
+    font-size: 25px;
+
+    padding: 25px;
+}
+
 .video-autoplay {
     display: block;
     width: 100%;
@@ -251,6 +278,10 @@ label {
 }
 
 @media screen and (max-width: 768px) {
+    footer {
+        flex-direction: column;
+    }
+
     .hero h1 {
         font-size: 30px;
         margin-bottom: 40px;
@@ -258,6 +289,16 @@ label {
 
     .hero h3 {
         font-size: 20px;
+    }
+
+    .head-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ubicacion iframe {
+        width: 100%;
+        height: 90%;
     }
 }
 

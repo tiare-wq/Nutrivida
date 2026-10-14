@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer'
 import Navbar from '../components/Navbar';
 import { cerrarSesion, leerCarrito, pacienteActual, planActivo } from '../data/almacen';
 
@@ -36,16 +37,15 @@ function PublicLayout() {
                     </div>
 
                     <nav className="nav-main" aria-label="Cuenta y carrito">
-                    {paciente && <Link className="usuario-actual" to="/perfil">{paciente.nombre} · ID {paciente.id}</Link>}
-                    <Link className="btn-nutrivida" to="/carrito">
-                        <img src="../../img/carrito.png" alt="" />
+                    {paciente && <Link className="usuario-actual" to="/perfil">{paciente.nombre}</Link>}
+                    <Link className="link-header" to="/carrito">
                         <span>Carrito ({cantidad})</span>
                     </Link>
                     {paciente ? <>
-                        <Link className="btn-nutrivida" to="/mis-planes"><span>{planActivo(paciente) ? 'Mi plan activo' : 'Mis planes'}</span></Link>
-                        <button className="btn-nutrivida" type="button" onClick={salir}><span>Salir</span></button>
-                    </> : <Link className="justify-content-center btn-nutrivida" to="/login">
-                        <img src="../../img/perfil.png" alt="" /><span>Iniciar sesión</span>
+                        <Link className="link-header" to="/mis-planes"><span>{planActivo(paciente) ? 'Mi plan activo' : 'Mis planes'}</span></Link>
+                        <button className="link-header" type="button" onClick={salir}><span>Salir</span></button>
+                    </> : <Link className="justify-content-center link-header" to="/login">
+                        <span>Iniciar sesión</span>
                     </Link>}
                     </nav>
                     
@@ -57,10 +57,8 @@ function PublicLayout() {
             <main>
                 <Outlet />
             </main>
-
-            <footer>
-                <p>NutriVida © 2026 NutriVida SpA</p>
-            </footer>
+            
+            <Footer />
         </div>
     );
 }
