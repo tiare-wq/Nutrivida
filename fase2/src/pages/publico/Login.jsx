@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import pacientes from '../../data/pacientes';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { agregarPlan, iniciarSesion } from '../../data/almacen';
 
 function Login() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,9 +21,7 @@ function Login() {
             return
         }
 
-        const paciente = pacientes.find(
-            p => p.correo === email && p.password === password
-        );
+        const paciente = iniciarSesion(email, password);
 
         if (!paciente) {
             setError('Es posible que el correo electrónico o la contraseña no esté conectado a ninguna cuenta.');
@@ -31,32 +29,37 @@ function Login() {
         }
         setError('');
 
-        if (paciente) {
-            localStorage.setItem("pacienteId", paciente.id);
-            navigate("/perfil");
-        };
+        if (location.state?.planId) {
+            const aviso = agregarPlan(location.state.planId);
+            if (aviso) setError(aviso);
+            else navigate('/carrito');
+        } else {
+            navigate(location.state?.next || '/perfil', { state: location.state?.reserva });
+        }
     }
     return (
-        <div className="d-flex flex-column justify-content-center align-items-center login">
-            <section class="login-section">
+        <div className="d-flex flex-column justify-content-center align-items-center min-vh-100 100-vw login">
+            <section className="login-section">
                 <form className="login-form" onSubmit={handleSubmit}>
                     <h1 className='login-subtitulo'>Iniciar Sesión</h1>
                     <div className="mb-3">
-                        <label className="login-label">
+                        <label className="login-label" htmlFor="login-correo">
                         Correo electrónico
                         </label>
                         <input
-                        type="text"
+                        id="login-correo"
+                        type="email"
                         className='login-input'
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="login-label">
+                        <label className="login-label" htmlFor="login-password">
                         Contraseña
                         </label>
                         <input
+                        id="login-password"
                         type="password"
                         className='login-input'
                         value={password}

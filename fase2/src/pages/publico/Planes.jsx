@@ -6,7 +6,7 @@ function Planes() {
 
   return (
       <main className="container">
-        <div className="container-fluid justify-content-center h-100 row">
+        <div className="container-fluid justify-content-center h-100 row min-vh-100">
           <h1 className="titulo-servicio">Planes de Alimentación</h1>
 
           {planes.map((servicio) =>

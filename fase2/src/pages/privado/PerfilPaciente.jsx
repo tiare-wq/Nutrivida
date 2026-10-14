@@ -1,18 +1,14 @@
 import { useState } from "react";
 
-import pacientes from '../../data/pacientes';
+import { guardarPacientes, leerPacientes } from '../../data/almacen';
 
 function PerfilPaciente() {
 
     const [listaPacientes, setListaPacientes] = useState(() => {
-        const guardados = localStorage.getItem("pacientes");
-
-        return guardados
-            ? JSON.parse(guardados).map(p => ({
+        return leerPacientes().map(p => ({
                 ...p,
                 fechaNac: new Date(p.fechaNac)
-            }))
-            : pacientes;
+            }));
     });
 
     const id = Number(localStorage.getItem("pacienteId"));
@@ -34,7 +30,7 @@ function PerfilPaciente() {
     const [fechaNac, setFechaNac] = useState(formateada);
     const [telefono, setTelefono] = useState(paciente.telefono);
     const [correo, setCorreo] = useState(paciente.correo);
-    const [foto, setFoto] = useState(paciente.foto);
+    const foto = paciente.foto;
 
     const [succes, setSucces] = useState('');
 
@@ -95,7 +91,7 @@ function PerfilPaciente() {
                 ? {
                     ...p,
                     nombre,
-                    run,
+                    rut: run,
                     correo,
                     telefono,
                     fechaNac: fechaDate
@@ -105,10 +101,7 @@ function PerfilPaciente() {
 
         setListaPacientes(actualizados);
 
-        localStorage.setItem(
-            "pacientes",
-            JSON.stringify(actualizados)
-        );
+        guardarPacientes(actualizados);
     };
 
     return (

@@ -4,7 +4,7 @@ import consultas from '../../data/consultas';
 function Consultas() {
   return (
         <main className="container">
-            <div className="container-fluid justify-content-center h-100 row">
+            <div className="container-fluid justify-content-center h-100 min-vh-100 row">
                 <h1 className="titulo-servicio">Consultas Nutricionales</h1>
 
                 {consultas.map((servicio) => (

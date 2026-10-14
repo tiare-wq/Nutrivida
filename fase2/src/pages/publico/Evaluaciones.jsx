@@ -3,7 +3,7 @@ import evaluaciones from '../../data/evaluaciones';
 
 function Evaluaciones() {
   return (
-    <main className="container">
+    <main className="container min-vh-100">
       <div className="container-fluid justify-content-center h-100 row">
         <h1 className="titulo-servicio">Evaluaciones</h1>
 

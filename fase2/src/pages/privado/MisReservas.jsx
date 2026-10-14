@@ -1,22 +1,8 @@
-import { useState } from "react";
-
-import pacientes from "../../data/pacientes";
+import { pacienteActual } from '../../data/almacen';
 
 function MisReservas() {
 
-    const [listaPacientes, setListaPacientes] = useState(() => {
-        const guardados = localStorage.getItem("pacientes");
-
-        return guardados
-            ? JSON.parse(guardados).map(p => ({
-                ...p,
-                fechaNac: new Date(p.fechaNac)
-            }))
-            : pacientes;
-    });
-
-    const id = Number(localStorage.getItem("pacienteId"));
-    const paciente = listaPacientes.find(p => p.id === id);
+    const paciente = pacienteActual();
     
     const reservas = paciente?.reservas ?? [];
 
@@ -47,10 +33,9 @@ function MisReservas() {
                                 </thead>
                                 <tbody>
                                     {reservas.map(reserva => {
-                                    const formateada = new Intl.DateTimeFormat(
-                                        'es-CL',
-                                        opciones
-                                    ).format(new Date(reserva.fecha));
+                                    const formateada = /^\d{4}-\d{2}-\d{2}$/.test(reserva.fecha)
+                                        ? reserva.fecha.split('-').reverse().join('-')
+                                        : new Intl.DateTimeFormat('es-CL', opciones).format(new Date(reserva.fecha));
 
                                     return (
                                         <tr key={reserva.id}>

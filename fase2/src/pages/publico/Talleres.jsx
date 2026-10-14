@@ -6,7 +6,7 @@ function Talleres() {
 
   return (
         <main className="container">
-            <div className="container-fluid justify-content-center h-100 row">
+            <div className="container-fluid justify-content-center h-100 row min-vh-100">
                 <h1 className="titulo-servicio">Talleres Grupales</h1>
                 
                 {talleres.map((servicio) =>
