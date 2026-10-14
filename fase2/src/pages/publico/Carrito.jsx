@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import planes from '../../data/planes';
 import { cambiarCantidad, compradosEsteAnio, leerCarrito, pacienteActual, quitarPlan, registrarPedido } from '../../data/almacen';
@@ -57,6 +57,7 @@ function Carrito() {
         </div>}
         {detalle.length === 0 && !pedido && <div className="card-private">
             <p>Aún no tienes planes en el carrito.</p>
+            <p>Para tu compra reciente.</p>
             <Link className="btn btn-success" to="/planes">Ver planes</Link>
         </div>}
         {detalle.length > 0 && <div className="card-private">

@@ -50,9 +50,8 @@ function PublicLayout() {
                     </nav>
                     
                 </div>
+                <Navbar />
             </header>
-
-            <Navbar />
 
             <main>
                 <Outlet />

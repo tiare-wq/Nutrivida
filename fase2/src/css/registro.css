@@ -1,0 +1,140 @@
+
+.registro {
+    background-color: snow;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.registro-card {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 540px;
+    height: fit-content;
+
+    background-color: snow;
+    border-radius: 16px;
+
+    margin: 20px;
+    padding: 20px;
+}
+
+.registro-card h1 {
+    font-size: 30px;
+    text-align: center;
+
+    margin: 10px;
+    padding-bottom: 15px;
+}
+
+.registro-card > p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.registro-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.registro-card label {
+    padding-right: 10px;
+}
+
+.registro-card input {
+    background-color: transparent;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.registro-card input:focus {
+    border-color: blue;
+    outline: none;
+}
+
+/* Teléfono con código de país */
+
+.telefono-container {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.codigo-pais {
+    padding: 10px;
+    background-color: transparent;
+    border-right: 1px solid #ccc;
+    white-space: nowrap;
+}
+
+.telefono-container input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    border-radius: 0;
+}
+
+.telefono-container:focus-within {
+    border-color: blue;
+}
+
+/* Botón de registro */
+
+.registro-card button {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* Mensajes de validación */
+
+.registro-error {
+    color: #b42318;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.registro-exito {
+    color: #287a43;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Enlace de inicio de sesión */
+
+.registro-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 600px) {
+    .registro {
+        padding: 10px;
+    }
+
+    .registro-card {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .registro-card h1 {
+        font-size: 26px;
+    }
+}

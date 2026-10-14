@@ -22,7 +22,7 @@ a img {
 }
 
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(227, 241, 198, 0.082);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
     min-width: 315px;
@@ -37,8 +37,6 @@ form textarea {
 footer {
     display: flex;
     justify-content: space-between;
-
-    background-color: rgba(227, 241, 198, 0.082);
     color: rgb(33, 211, 99);
 
     padding: 20px 5%;

@@ -8,7 +8,7 @@ function Confirmacion() {
     </main>;
 
     return <main>
-        <div className="bg-light container col-12 col-md-8 col-lg-6 min-vh-100">
+        <div className="bg-light container col-12 col-md-8 col-lg-6">
             <div className="confirmacion">
                 <h1>Reserva confirmada</h1>
                 <div className="card-codigo"><span>Código de reserva</span><h2>{reserva.id}</h2></div>

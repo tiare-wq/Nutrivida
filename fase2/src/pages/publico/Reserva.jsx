@@ -74,7 +74,7 @@ function Reserva() {
         <div className="d-flex justify-content-center align-items-center page min-vh-100">
             <form className="border rounded p-4 shadow bg-white formulario" onSubmit={enviar}>
                 <h1 className="subtitulo-form">Reserva tu atención</h1>
-                {paciente && <p>Paciente: {paciente.nombre} · ID {paciente.id}</p>}
+                {paciente && <p>Paciente: {paciente.nombre}</p>}
                 <div className="campo">
                     <label htmlFor="atencion-select">Tipo de atención</label>
                     <select id="atencion-select" className="form-dato" value={atencion} onChange={event => {

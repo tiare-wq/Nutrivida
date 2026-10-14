@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { agregarPlan, iniciarSesion } from '../../data/almacen';
 
 function Login() {
@@ -80,6 +80,10 @@ function Login() {
                     </button>
                 </form>
                 <a className='forgot-password' href="recuperar-contraseña">¿Olvidaste tu contraseña?</a>
+                <p>¿No tienes una cuenta?
+                    <br />
+                    <Link to="/registro"> Regístrate aquí</Link>
+                </p>
             </section>
         </div>
     )

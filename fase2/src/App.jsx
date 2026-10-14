@@ -16,6 +16,7 @@ import MisPlanes from './pages/privado/MisPlanes';
 import Carrito from './pages/publico/Carrito';
 import { pacienteActual } from './data/almacen';
 import ScrollTop from './routes/ScrollTop';
+import Registro from './pages/publico/Registro';
 
 function Acceso({ children }) {
   const location = useLocation();
@@ -38,6 +39,7 @@ function App() {
           <Route path="/inicio" element={<Inicio />} />
           <Route path="/login" element={<Login />} />
           <Route path="/planes" element={<Planes />} />
+          <Route path="/registro" element={<Registro />} />
           <Route path="/reservas" element={<Reserva />} />
           <Route path="/talleres" element={<Talleres />} />
         </Route>
