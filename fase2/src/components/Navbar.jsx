@@ -28,22 +28,22 @@ function Navbar() {
 
                             <ul className="list-unstyled ps-3">
                                 <li>
-                                    <Link className="nav-link" to="/servicios/consultas">
+                                    <Link className="nav-link" to="/consultas">
                                         Consulta Nutricional
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="nav-link" to="/servicios/evaluaciones">
+                                    <Link className="nav-link" to="/evaluaciones">
                                         Evaluaciones
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="nav-link" to="/servicios/planes">
+                                    <Link className="nav-link" to="/planes">
                                         Planes de Alimentación
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="nav-link" to="/servicios/talleres">
+                                    <Link className="nav-link" to="/talleres">
                                         Talleres Grupales
                                     </Link>
                                 </li>
@@ -51,7 +51,7 @@ function Navbar() {
                         </li>
 
                         <li className="nav-item">
-                            <Link className="nav-link" to="/reserva">
+                            <Link className="nav-link" to="/reservas">
                                 Reservar
                             </Link>
                         </li>
@@ -96,22 +96,22 @@ function Navbar() {
 
                     <ul className="dropdown-menu">
                         <li>
-                            <Link className="dropdown-item" to="/servicios/consultas">
+                            <Link className="dropdown-item" to="/consultas">
                                 Consulta Nutricional
                             </Link>
                         </li>
                         <li>
-                            <Link className="dropdown-item" to="/servicios/evaluaciones">
+                            <Link className="dropdown-item" to="/evaluaciones">
                                 Evaluaciones
                             </Link>
                         </li>
                         <li>
-                            <Link className="dropdown-item" to="/servicios/planes">
+                            <Link className="dropdown-item" to="/planes">
                                 Planes de Alimentación
                             </Link>
                         </li>
                         <li>
-                            <Link className="dropdown-item" to="/servicios/talleres">
+                            <Link className="dropdown-item" to="/talleres">
                                 Talleres Grupales
                             </Link>
                         </li>
@@ -119,7 +119,7 @@ function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" to="/reserva">
+                    <Link className="nav-link" to="/reservas">
                         Reservar
                     </Link>
                 </li>

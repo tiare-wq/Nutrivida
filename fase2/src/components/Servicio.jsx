@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { agregarPlan, pacienteActual } from "../data/almacen";
 
 function Servicio({
     id,
@@ -11,6 +13,7 @@ function Servicio({
     accion
     }) {
         const navigate = useNavigate();
+        const [error, setError] = useState('');
         const toAccion = () => {
             if (accion === "Reservar ahora") {
                 navigate('/reservas', {
@@ -19,7 +22,13 @@ function Servicio({
                     servicio: id
                 }})
             } else if (accion === "Agregar al carrito") {
-                navigate('/carrito')
+                if (!pacienteActual()) {
+                    navigate('/login', { state: { planId: id } });
+                    return;
+                }
+                const aviso = agregarPlan(id);
+                if (aviso) setError(aviso);
+                else navigate('/carrito');
             }
         } 
 
@@ -47,6 +56,7 @@ function Servicio({
                         {accion}
                     </button>
                 </div>
+                {error && <p className="alert alert-warning" role="alert">{error}</p>}
             </div>
         )
 }

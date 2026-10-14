@@ -1,42 +1,26 @@
+import { Link, useLocation } from 'react-router-dom';
+
 function Confirmacion() {
-    const queryParam = window.location.search;
-    const urlParam = new URLSearchParams(queryParam);
+    const reserva = useLocation().state;
+    if (!reserva) return <main className="container py-5">
+        <h1>No hay una reserva para mostrar</h1>
+        <Link to="/reservas">Volver a reservar</Link>
+    </main>;
 
-    const nombre = urlParam.get('nombre');
-    const profesional = urlParam.get('profesional');
-    const servicio = urlParam.get('servicio');
-    const precio = urlParam.get('precio');
-    const fecha = urlParam.get('fecha');
-    const hora = urlParam.get('hora');
-
-    const obtenerCodigoReserva = () => {
-        return Math.random(0, 1) * 10**16;
-    }
-    let codigo = obtenerCodigoReserva();
-
-    return (
-        <main>
-            <div className="bg-light container col-12 col-md-8 col-lg-6">
-                <div className="confirmacion">
-                    <h2>Confirmación de la reserva.</h2>
-
-                    <div class="card-codigo">
-                        <label>Código de la reserva</label>
-                        <h5>{codigo}</h5>
-                    </div>
-
-                    <h6>¡Hola {nombre}! Envíamos un mensaje a tu correo.</h6>
-                    <h6>Se agendó su cita para el día {fecha} a las {hora} horas.</h6>
-                    <h6>Servicio: {servicio}</h6>
-                    <h6>Profesional: {profesional}</h6>
-                    <h6>Valor de la atención: ${precio}.</h6>
-                    
-                    <button id="btn-form" className="btn-nutrivida">
-                        Volver
-                    </button>
-                </div>
+    return <main>
+        <div className="bg-light container col-12 col-md-8 col-lg-6">
+            <div className="confirmacion">
+                <h1>Reserva confirmada</h1>
+                <div className="card-codigo"><span>Código de reserva</span><h2>{reserva.id}</h2></div>
+                <p>Tu atención quedó guardada en este navegador.</p>
+                <p>{reserva.fecha.split('-').reverse().join('-')} a las {reserva.hora} horas.</p>
+                <p>Servicio: {reserva.servicio}</p>
+                <p>Profesional: {reserva.profesional}</p>
+                <p>Valor: ${reserva.precio}</p>
+                <Link className="btn btn-success" to="/mis-reservas">Ver mis reservas</Link>
             </div>
-        </main>
-    )
+        </div>
+    </main>;
 }
+
 export default Confirmacion;

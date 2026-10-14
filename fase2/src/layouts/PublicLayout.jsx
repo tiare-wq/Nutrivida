@@ -1,43 +1,54 @@
-import { Outlet, Link } from "react-router-dom";
-
-import { useApp } from "../../context";
-
-import Navbar from "../components/Navbar";
+import { useEffect, useState } from 'react';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import { cerrarSesion, leerCarrito, pacienteActual, planActivo } from '../data/almacen';
 
 function PublicLayout() {
-    const { user, items } = useApp();
+    const navigate = useNavigate();
+    const [paciente, setPaciente] = useState(() => pacienteActual());
+    const [cantidad, setCantidad] = useState(() => leerCarrito(pacienteActual()?.id).reduce((total, plan) => total + plan.cantidad, 0));
+
+    useEffect(() => {
+        const actualizar = () => {
+            const actual = pacienteActual();
+            setPaciente(actual);
+            setCantidad(leerCarrito(actual?.id).reduce((total, plan) => total + plan.cantidad, 0));
+        };
+        window.addEventListener('nutrivida:actualizar', actualizar);
+        window.addEventListener('storage', actualizar);
+        return () => {
+            window.removeEventListener('nutrivida:actualizar', actualizar);
+            window.removeEventListener('storage', actualizar);
+        };
+    }, []);
+
+    function salir() {
+        cerrarSesion();
+        navigate('/inicio');
+    }
 
     return (
         <div>
             <header>
                 <div className="head-header"> 
                     <div>
-                        <h1>NutriVida 🍃</h1>
+                        <h1><Link to="/inicio">NutriVida 🍃</Link></h1>
                     </div>
 
-                    <nav className="nav-main">
-                        <Link to="/carrito" className="cart-nav">
-                            Carrito{" "}
-                            <span className="cart-badge">
-                                {items.reduce((n, i) => n + i.quantity, 0)}
-                            </span>
-                        </Link>
-                        
-                        {user ? (
-                            <>
-                            <Link to="/perfil" className="cart-nav">
-                                Mi perfil
-                            </Link>
-                            <Button className="cart-nav" variant="outline-success" size="sm" onClick={logout}>
-                                Salir
-                            </Button>
-                            </>
-                        ) : (
-                            <Link to="/login" className="cart-nav">
-                                Ingresar
-                            </Link>
-                        )}
+                    <nav className="nav-main" aria-label="Cuenta y carrito">
+                    {paciente && <Link className="usuario-actual" to="/perfil">{paciente.nombre} · ID {paciente.id}</Link>}
+                    <Link className="btn-nutrivida" to="/carrito">
+                        <img src="../../img/carrito.png" alt="" />
+                        <span>Carrito ({cantidad})</span>
+                    </Link>
+                    {paciente ? <>
+                        <Link className="btn-nutrivida" to="/mis-planes"><span>{planActivo(paciente) ? 'Mi plan activo' : 'Mis planes'}</span></Link>
+                        <button className="btn-nutrivida" type="button" onClick={salir}><span>Salir</span></button>
+                    </> : <Link className="justify-content-center btn-nutrivida" to="/login">
+                        <img src="../../img/perfil.png" alt="" /><span>Iniciar sesión</span>
+                    </Link>}
                     </nav>
+                    
                 </div>
             </header>
 
@@ -48,27 +59,7 @@ function PublicLayout() {
             </main>
 
             <footer>
-                <div>
-                    <Link to="/" className="footer-brand">
-                    NutriVida
-                    </Link>
-                    <br />
-                    <p>Nutrición y bienestar, a tu medida.</p>
-                </div>
-                <div>
-                    <Link to="/servicios">Servicios</Link>
-                    <br />
-                    <Link to="/reserva">Reservar una atención</Link>
-                    <br />
-                    <Link to="/cuenta">Mi cuenta</Link>
-                </div>
-                <div>
-                    <p>
-                        NutriVida © 2026
-                        <br />
-                        Proyecto académico · Sin cobros en línea
-                    </p>
-                </div>
+                <p>NutriVida © 2026 NutriVida SpA</p>
             </footer>
         </div>
     );
