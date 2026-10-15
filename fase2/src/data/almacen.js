@@ -8,6 +8,12 @@ function avisarCambio() {
     window.dispatchEvent(new Event('nutrivida:actualizar'));
 }
 
+export function agregarPaciente(nuevoPaciente) {
+    const pacientes = JSON.parse(localStorage.getItem('pacientes')) || [];
+    pacientes.push(nuevoPaciente);
+    localStorage.setItem('pacientes', JSON.stringify(pacientes));
+}
+
 export function leerPacientes() {
     try {
         const guardados = JSON.parse(localStorage.getItem('pacientes'));
@@ -36,6 +42,13 @@ export function iniciarSesion(correo, password) {
         avisarCambio();
     }
     return paciente;
+}
+
+export function registrarSesion(paciente) {
+    if (paciente) {
+        localStorage.setItem('pacienteId', String(paciente.id));
+        avisarCambio();
+    }
 }
 
 export function cerrarSesion() {

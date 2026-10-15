@@ -80,8 +80,7 @@ function Login() {
                     </button>
                 </form>
                 <a className='forgot-password' href="recuperar-contraseña">¿Olvidaste tu contraseña?</a>
-                <p>¿No tienes una cuenta?
-                    <br />
+                <p>¿No tienes una cuenta?{' '}
                     <Link to="/registro"> Regístrate aquí</Link>
                 </p>
             </section>

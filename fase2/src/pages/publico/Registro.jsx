@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../../css/registro.css';
+import { agregarPaciente, registrarSesion } from '../../data/almacen';
 
 function Registro() {
     const navigate = useNavigate();
@@ -59,7 +60,6 @@ function Registro() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setError('');
         setMensaje('');
 
         if (
@@ -91,6 +91,13 @@ function Registro() {
             setError('Ingresa una fecha de nacimiento válida.');
             return;
         }
+        
+        const minimo_edad = new Date();
+        minimo_edad.setFullYear(hoy.getFullYear() - 14)
+        if (fechaIngresada > minimo_edad) {
+            setError('Debes tener al menos 14 años para registrarte');
+            return;
+        }
 
         if (!/^9\d{8}$/.test(telefono)) {
             setError('Ingresa un celular válido de 9 dígitos.');
@@ -116,6 +123,7 @@ function Registro() {
             setError('Las contraseñas no coinciden.');
             return;
         }
+        setError('');
 
         enviar();
     };
@@ -125,12 +133,24 @@ function Registro() {
         const pacientes = JSON.parse(localStorage.getItem('pacientes')) || [];
         const id = pacientes.length + 1;
 
-        const paciente = [id, {nombreCompleto}, rut, fechaNac, telefono, email, password, [], [], ''];
-        localStorage.setItem('pacienteId', id);
+        const paciente = {
+            id,
+            nombre: nombreCompleto,
+            rut,
+            fechaNac,
+            telefono,
+            correo: email,
+            password,
+            reservas: [],
+            historial: [],
+            foto: ''};
+
+        agregarPaciente(paciente);
+        registrarSesion(paciente);
 
 
         navigate('/perfil', {
-            state: {nombreCompleto, rut, fechaNac, telefono, email}
+            state: { paciente }
         })
     }
 
