@@ -55,7 +55,7 @@
 
 .private {
     display: grid;
-    grid-template-columns: 16% minmax(0, 1fr);
+    grid-template-columns: 20% minmax(0, 1fr);
 }
 
 .tabla-ver {

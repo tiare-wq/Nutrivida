@@ -30,8 +30,8 @@ function Acceso({ children }) {
 
 function AccesoAdmin({ children }) {
   const location = useLocation();
-  const admin = () => localStorage.setItem('isAdmin');
-  if (!admin) return <Navigate to="/login" state={{ next: location.pathname }} replace />
+  const admin = () => localStorage.getItem('isAdmin') === 'true';
+  if (!admin) return <Navigate to="/login-admin" state={{ next: location.pathname }} replace />
   return children;
 }
 
@@ -60,7 +60,7 @@ function App() {
           <Route path="mis-planes" element={<MisPlanes />} />
           <Route path="perfil" element={<PerfilPaciente />} />
         </Route>
-        <Route element={<Acceso><PrivateLayout /></Acceso>}>
+        <Route element={<AccesoAdmin><PrivateLayout /></AccesoAdmin>}>
           <Route path="admin/agregar" element={<Agregar />} />
           <Route path="admin/eliminar" element={<Eliminar />} />
           <Route path="admin/ver-todo" element={<Ver />} />

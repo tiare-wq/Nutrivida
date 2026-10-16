@@ -62,6 +62,7 @@ export function registrarSesion(paciente) {
 }
 
 export function cerrarSesion() {
+    localStorage.removeItem('pacienteId');
     localStorage.removeItem('isAdmin');
     avisarCambio();
 }
