@@ -44,6 +44,16 @@ export function iniciarSesion(correo, password) {
     return paciente;
 }
 
+export function iniciarSesionAdmin(correo, password) {
+    const valido = correo.trim().toLowerCase() === "admin@nutrivida.cl" && password === "Admin123.";
+    if (valido) {
+        localStorage.setItem('isAdmin', true);
+        avisarCambio();
+    }
+    
+    return valido;
+}
+
 export function registrarSesion(paciente) {
     if (paciente) {
         localStorage.setItem('pacienteId', String(paciente.id));
@@ -52,7 +62,7 @@ export function registrarSesion(paciente) {
 }
 
 export function cerrarSesion() {
-    localStorage.removeItem('pacienteId');
+    localStorage.removeItem('isAdmin');
     avisarCambio();
 }
 

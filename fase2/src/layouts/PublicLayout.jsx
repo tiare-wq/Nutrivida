@@ -8,9 +8,11 @@ function PublicLayout() {
     const navigate = useNavigate();
     const [paciente, setPaciente] = useState(() => pacienteActual());
     const [cantidad, setCantidad] = useState(() => leerCarrito(pacienteActual()?.id).reduce((total, plan) => total + plan.cantidad, 0));
+    const [admin, setAdmin] = useState(() => localStorage.getItem('isAdmin') === 'true');
 
     useEffect(() => {
         const actualizar = () => {
+            setAdmin(() => localStorage.getItem('isAdmin'));
             const actual = pacienteActual();
             setPaciente(actual);
             setCantidad(leerCarrito(actual?.id).reduce((total, plan) => total + plan.cantidad, 0));
@@ -44,9 +46,27 @@ function PublicLayout() {
                     {paciente ? <>
                         <Link className="link-header" to="/mis-planes"><span>{planActivo(paciente) ? 'Mi plan activo' : 'Mis planes'}</span></Link>
                         <button className="link-header" type="button" onClick={salir}><span>Salir</span></button>
-                    </> : <Link className="justify-content-center link-header" to="/login">
-                        <span>Iniciar sesión</span>
-                    </Link>}
+                    </> : admin ? (
+                        <>
+                            <Link className="link-header" to="/admin/agregar">
+                                <span>Administración</span>
+                            </Link>
+
+                            <button className="link-header" type="button" onClick={salir}>
+                                <span>Salir</span>
+                            </button>
+                        </>
+                    ) : (
+                        <div>
+                            <Link className="link-header" to="/login">
+                                <span>Iniciar sesión</span>
+                            </Link>
+
+                            <Link className="link-header" to="/registro">
+                                <span>Registrarse</span>
+                            </Link>
+                        </div>
+                    )}
                     </nav>
                     
                 </div>

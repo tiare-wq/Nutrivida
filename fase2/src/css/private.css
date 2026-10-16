@@ -29,6 +29,10 @@
     padding: 20px;
 }
 
+.form-ver {
+    width: 60%;
+}
+
 .nav-private {
     background-image: url("../../img/navbarHojas.png");
     width: 100%;
@@ -52,6 +56,28 @@
 .private {
     display: grid;
     grid-template-columns: 16% minmax(0, 1fr);
+}
+
+.tabla-ver {
+    width: 60%;
+    min-width: 360px;
+    margin: 20px;
+}
+
+.tabla-ver th {
+    padding: 10px;
+}
+
+.tabla-ver thead {
+    background-color: #A8BFA5;
+}
+
+.tabla-ver tr {
+    background-color: rgb(255, 255, 255, 0.6);
+}
+
+.tabla-ver tr:nth-child(even) {
+  background-color: #A8BFA5;
 }
 
 @media screen and (max-width: 860px) {

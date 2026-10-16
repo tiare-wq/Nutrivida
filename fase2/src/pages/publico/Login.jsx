@@ -83,6 +83,9 @@ function Login() {
                 <p>¿No tienes una cuenta?{' '}
                     <Link to="/registro"> Regístrate aquí</Link>
                 </p>
+                <p>¿Eres administrador? {' '}
+                    <Link to="/login-admin" >Inicia sesión aquí</Link>
+                </p>
             </section>
         </div>
     )

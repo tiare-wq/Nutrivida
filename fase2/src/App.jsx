@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import AdminServicios from './pages/privado/AdminServicios';
+import Agregar from './pages/privado/Agregar';
 import Confirmacion from './pages/publico/Confirmacion';
 import Consultas from './pages/publico/Consultas';
+import Eliminar from './pages/privado/Eliminar';
 import Evaluaciones from './pages/publico/Evaluaciones';
 import Inicio from './pages/publico/Inicio';
 import Login from './pages/publico/Login';
+import LoginAdmin from './pages/publico/LoginAdmin';
 import PerfilPaciente from './pages/privado/PerfilPaciente';
 import Planes from './pages/publico/Planes';
 import PrivateLayout from './layouts/PrivateLayout';
@@ -17,11 +19,19 @@ import Carrito from './pages/publico/Carrito';
 import { pacienteActual } from './data/almacen';
 import ScrollTop from './routes/ScrollTop';
 import Registro from './pages/publico/Registro';
+import Ver from './pages/privado/Ver';
 
 function Acceso({ children }) {
   const location = useLocation();
   const paciente = pacienteActual();
   if (!paciente) return <Navigate to="/login" state={{ next: location.pathname }} replace />;
+  return children;
+}
+
+function AccesoAdmin({ children }) {
+  const location = useLocation();
+  const admin = () => localStorage.setItem('isAdmin');
+  if (!admin) return <Navigate to="/login" state={{ next: location.pathname }} replace />
   return children;
 }
 
@@ -38,6 +48,7 @@ function App() {
           <Route path="/evaluaciones" element={<Evaluaciones />} />
           <Route path="/inicio" element={<Inicio />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/login-admin" element={<LoginAdmin />} />
           <Route path="/planes" element={<Planes />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/reservas" element={<Reserva />} />
@@ -49,8 +60,10 @@ function App() {
           <Route path="mis-planes" element={<MisPlanes />} />
           <Route path="perfil" element={<PerfilPaciente />} />
         </Route>
-        <Route element={<PrivateLayout />}>
-          <Route path="admin-servicios" element={<AdminServicios />} />
+        <Route element={<Acceso><PrivateLayout /></Acceso>}>
+          <Route path="admin/agregar" element={<Agregar />} />
+          <Route path="admin/eliminar" element={<Eliminar />} />
+          <Route path="admin/ver-todo" element={<Ver />} />
         </Route>
         <Route path="*" element={<Navigate to="/inicio" replace />} />
       </Routes>
