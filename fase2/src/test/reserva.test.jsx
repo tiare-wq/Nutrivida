@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import Reserva from '../pages/publico/Reserva.jsx'; 
 
-
 const mockNavigate = vi.fn();
 let mockLocationState = null;
 
