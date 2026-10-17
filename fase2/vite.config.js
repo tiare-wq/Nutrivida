@@ -1,34 +1,17 @@
-
-import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
     plugins: [react()],
-
     test: {
         environment: 'jsdom',
-        globals: false,
+        globals: true,
         clearMocks: true,
-
-        setupFiles: ['./src/test/setup.js'],
-
-        reporters: [
-            'default',
-            'html',
-            'json',
-            'junit'
-        ],
-
-        outputFile: {
-            html: './outputs/reporte.html',
-            json: './outputs/reporte.json',
-            junit: './outputs/reporte-junit.xml'
-        },
-
+        setupFiles: './src/test/setup.js',
         coverage: {
-            enabled: true,
-            provider: 'v8',
-            reporter: ['text', 'json', 'html']
-        }
+            enabled: true, // Forzar la ejecución de cobertura
+            provider: 'v8', 
+            reporter: ['text', 'json', 'html'], // Formatos del reporte de cobertura
+            },
     }
 });
