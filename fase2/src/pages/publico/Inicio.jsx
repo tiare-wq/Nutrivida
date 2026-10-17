@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom';
+
 function Inicio() {
 
     return (
         <main>
-            <section className="home">
+            <section className="min-vh-100 home">
                 <section className="justify-content-center hero">
                     <div className="titulo">
                         <h1>No todos necesitamos lo mismo. Tu plan tampoco debería serlo.</h1>
                     </div>
                     <div className="subtitulo">
                         <h3 className="d-none d-sm-none">Porque tu alimentación debe adaptarse a tu vida, no al revés. Sigue tu proceso de forma simple y personalizada.</h3>
-                        <a className="btn btn-success" href="html/reserva.html">Agenda tu atención ahora</a>
+                        <Link className="btn btn-success" to="/reservas">Agenda tu atención ahora</Link>
                     </div>
                 </section>
                 <div>
@@ -33,9 +35,9 @@ function Inicio() {
                         <article className="elemento-oferta">
                             <div className="contenido-art">
                                 <div>
-                                    <a href="html/consulta.html">
+                                    <Link to="/consultas">
                                         <h2>Consultas Nutricionales</h2>
-                                    </a>
+                                    </Link>
                                     <h6>Atención nutricional personalizada para conocer tus necesidades, evaluar tu situación actual y acompañarte
                                     durante tu proceso. Contamos con consultas iniciales, controles de seguimiento, atención quincenal, teleconsultas
                                     y consultas de urgencia o reagendadas</h6>
@@ -47,9 +49,9 @@ function Inicio() {
                         <article className="elemento-oferta">
                             <div className="contenido-art">
                                 <div>
-                                    <a href="html/evaluacion.html">
+                                    <Link to="/evaluaciones">
                                         <h2>Evaluaciones Nutricionales</h2>
-                                    </a>
+                                    </Link>
                                     <h6>Obtén una visión más completa de tu estado nutricional mediante evaluaciones especializadas. Realizamos
                                     antropometría, bioimpedanciometría, análisis de hábitos alimentarios y revisión de exámenes de laboratorio
                                     en contexto nutricional.</h6>
@@ -61,9 +63,9 @@ function Inicio() {
                         <article className="elemento-oferta">
                             <div className="contenido-art">
                                 <div>
-                                    <a href="html/planes.html">
+                                    <Link to="/planes">
                                         <h2>Planes de Alimentación</h2>
-                                    </a>
+                                    </Link>
                                     <h6>Diseñamos planes personalizados de acuerdo con tus objetivos y necesidades. Contamos con alternativas para
                                         pérdida de peso, nutrición deportiva, control de diabetes e hipertensión, alimentación vegetariana y vegana,
                                         además de planes para niños y niñas.</h6>
@@ -75,9 +77,9 @@ function Inicio() {
                         <article className="elemento-oferta">
                             <div className="contenido-art">
                                 <div>
-                                    <a href="html/taller.html">
+                                    <Link to="/talleres">
                                         <h2>Talleres Grupales</h2>
-                                    </a>
+                                    </Link>
                                     <h6>Aprende sobre alimentación saludable de manera práctica y cercana. Participa en talleres de alimentació
                                     equilibrada, cocina nutritiva y nutrición para deportistas, con actividades diseñadas para aprender y
                                     compartir en grupo.</h6>

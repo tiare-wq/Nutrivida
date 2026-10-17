@@ -1,15 +1,30 @@
+import { useState, useEffect } from 'react';
 import Servicio from '../../components/Servicio';
-import talleres from '../../data/talleres';
+import { leerTalleres } from '../../data/servicios';
 
 function Talleres() {
-  const accion = "Reservar ahora"
+  const [listaTalleres, setListaTalleres] = useState(() => {
+          return leerTalleres();
+      });
+  
+      useEffect(() => {
+          const actualizar = () => {
+              setListaTalleres(leerTalleres());
+          };
+  
+          window.addEventListener('servicios:actualizar', actualizar);
+  
+          return () => {
+              window.removeEventListener('servicios:actualizar', actualizar);
+          };
+      }, []);
 
   return (
         <main className="container">
-            <div className="container-fluid justify-content-center h-100 row">
+            <div className="container-fluid justify-content-center h-100 row min-vh-100">
                 <h1 className="titulo-servicio">Talleres Grupales</h1>
                 
-                {talleres.map((servicio) =>
+                {listaTalleres.map((servicio) =>
                 (
                     <Servicio
                         id={servicio.id}

@@ -38,14 +38,15 @@
 }
 
 .servicio {
-    background-color: rgba(119, 233, 195, 0.5);
+    background-color: rgb(171, 211, 174);
+    border-radius: 16px;
 
     margin: 20px;
     padding: 20px;
 }
 
 .servicio:hover {
-    background-color: rgba(119, 233, 195, 0.8);
+    background-color: rgb(105, 178, 126);
 }
 
 .subtitulo-servicio {

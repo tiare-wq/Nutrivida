@@ -1,15 +1,30 @@
+import { useState, useEffect } from 'react';
 import Servicio from '../../components/Servicio';
-import planes from '../../data/planes';
+import { leerPlanes } from '../../data/servicios';
 
 function Planes() {
-  const accion = "Agregar al carrito"
+  const [listaPlanes, setListaPlanes] = useState(() => {
+            return leerPlanes();
+        });
+    
+        useEffect(() => {
+            const actualizar = () => {
+                setListaPlanes(leerPlanes());
+            };
+    
+            window.addEventListener('servicios:actualizar', actualizar);
+    
+            return () => {
+                window.removeEventListener('servicios:actualizar', actualizar);
+            };
+        }, []);
 
   return (
       <main className="container">
-        <div className="container-fluid justify-content-center h-100 row">
+        <div className="container-fluid justify-content-center h-100 row min-vh-100">
           <h1 className="titulo-servicio">Planes de Alimentación</h1>
 
-          {planes.map((servicio) =>
+          {listaPlanes.map((servicio) =>
           (
             <Servicio
               id={servicio.id}

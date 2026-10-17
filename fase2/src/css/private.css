@@ -1,0 +1,87 @@
+.card-private {
+    background-color: white;
+    border-radius: 10px;
+
+    margin: 20px;
+    padding: 20px;
+}
+
+.card-private th, td {
+    padding: 10px;
+}
+
+.card-private table {
+    width: 100%;
+    margin: 10px;
+}
+
+.fondo {
+    background-color: rgb(217, 228, 214);
+    height: 100vh;
+    padding: 20px;
+}
+
+.fondo-principal {
+    background-image: url("../../img/fondoHojas.png");
+    width: 100%;
+    border-radius: 10px;
+
+    padding: 20px;
+}
+
+.form-ver {
+    width: 60%;
+}
+
+.nav-private {
+    background-image: url("../../img/navbarHojas.png");
+    width: 100%;
+
+    color: rgb(33, 211, 99);
+    
+    white-space: nowrap;
+    padding: 20px;
+}
+
+.nav-private .nav-link {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: green;
+
+    margin: 0;
+    padding: 5px 0;
+}
+
+.private {
+    display: grid;
+    grid-template-columns: 20% minmax(0, 1fr);
+}
+
+.tabla-ver {
+    width: 60%;
+    min-width: 360px;
+    margin: 20px;
+}
+
+.tabla-ver th {
+    padding: 10px;
+}
+
+.tabla-ver thead {
+    background-color: #A8BFA5;
+}
+
+.tabla-ver tr {
+    background-color: rgb(255, 255, 255, 0.6);
+}
+
+.tabla-ver tr:nth-child(even) {
+  background-color: #A8BFA5;
+}
+
+@media screen and (max-width: 860px) {
+    .private {
+        grid-template-columns: 1fr;
+    }
+}

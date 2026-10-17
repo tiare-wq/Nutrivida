@@ -1,9 +1,11 @@
-
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../../css/registro.css';
+import { agregarPaciente, registrarSesion } from '../../data/almacen';
 
 function Registro() {
+    const navigate = useNavigate();
+
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
     const [rut, setRut] = useState('');
@@ -58,7 +60,6 @@ function Registro() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setError('');
         setMensaje('');
 
         if (
@@ -90,6 +91,13 @@ function Registro() {
             setError('Ingresa una fecha de nacimiento válida.');
             return;
         }
+        
+        const minimo_edad = new Date();
+        minimo_edad.setFullYear(hoy.getFullYear() - 14)
+        if (fechaIngresada > minimo_edad) {
+            setError('Debes tener al menos 14 años para registrarte');
+            return;
+        }
 
         if (!/^9\d{8}$/.test(telefono)) {
             setError('Ingresa un celular válido de 9 dígitos.');
@@ -115,20 +123,36 @@ function Registro() {
             setError('Las contraseñas no coinciden.');
             return;
         }
+        setError('');
 
-        // Simulación de registro: no envía ni almacena datos.
-        setMensaje('¡Formulario validado correctamente! Esta es una demostración sin creación de cuenta.');
-
-        // Limpiar formulario después de la validación
-        setNombre('');
-        setApellido('');
-        setRut('');
-        setFechaNac('');
-        setTelefono('');
-        setEmail('');
-        setPassword('');
-        setConfirmarPassword('');
+        enviar();
     };
+
+    const enviar = () => {
+        const nombreCompleto = `${nombre} ${apellido}`;
+        const pacientes = JSON.parse(localStorage.getItem('pacientes')) || [];
+        const id = pacientes.length + 1;
+
+        const paciente = {
+            id,
+            nombre: nombreCompleto,
+            rut,
+            fechaNac,
+            telefono,
+            correo: email,
+            password,
+            reservas: [],
+            historial: [],
+            foto: ''};
+
+        agregarPaciente(paciente);
+        registrarSesion(paciente);
+
+
+        navigate('/perfil', {
+            state: { paciente }
+        })
+    }
 
     const hoy = new Date();
     const fechaMaxima = [
@@ -143,7 +167,7 @@ function Registro() {
                 <h1>Crear cuenta</h1>
                 <p>Regístrate y comienza tu experiencia en NutriVida 🍃</p>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                     <label htmlFor="nombre">Nombre</label>
                     <input
                         id="nombre"
@@ -238,15 +262,15 @@ function Registro() {
                     />
 
                     {error && (
-                        <p className="registro-error" role="alert">
+                        <div className="alert alert-danger" role="alert">
                             {error}
-                        </p>
+                        </div>
                     )}
 
                     {mensaje && (
-                        <p className="registro-exito" role="status">
+                        <div className="alert alert-success" role="status">
                             {mensaje}
-                        </p>
+                        </div>
                     )}
 
                     <button type="submit" className="btn btn-success">

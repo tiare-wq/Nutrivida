@@ -1,0 +1,46 @@
+.btn-perfil {
+    background-color: transparent;
+    color: green;
+    border: none;
+}
+
+.campo-perfil {
+    display: grid;
+    grid-template-columns: 40% auto;
+    align-items: center;
+    min-height: 60px;
+}
+
+.campo-perfil input {
+    border: none;
+}
+
+.campo-perfil label {
+    display: flex;
+    align-items: center;
+}
+
+.campo-perfil p{
+    margin: 0 0 0 10px;
+}
+
+.foto-perfil {
+    max-width: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.head-perfil {
+    display: flex;
+    align-items: center;
+}
+
+.head-editar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mensaje-bienvenida {
+    margin: 20px;
+}
