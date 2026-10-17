@@ -1,12 +1,26 @@
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  test: {
+    plugins: [react()],
+
+    test: {
         environment: 'jsdom',
-        globals: true,
-        clearMocks: true
-    },
-})
+        globals: false,
+        clearMocks: true,
+        setupFiles: './src/test/setup.js',
+
+        reporters: [
+            'default',
+            'html',
+            'json',
+            'junit'
+        ],
+
+        outputFile: {
+            html: './outputs/reporte.html',
+            json: './outputs/reporte.json',
+            junit: './outputs/reporte-junit.xml'
+        }
+    }
+});
