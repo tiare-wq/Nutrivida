@@ -31,7 +31,7 @@ function Acceso({ children }) {
 function AccesoAdmin({ children }) {
   const location = useLocation();
   const admin = () => localStorage.getItem('isAdmin') === 'true';
-  if (!admin) return <Navigate to="/login-admin" state={{ next: location.pathname }} replace />
+  if (!admin()) return <Navigate to="/login-admin" state={{ next: location.pathname }} replace />
   return children;
 }
 
