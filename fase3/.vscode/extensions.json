@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "vscjava.vscode-java-pack",
+    "vmware.vscode-boot-dev-pack",
+    "ms-vscode.powershell",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-ossdata.vscode-pgsql"
+  ]
+}

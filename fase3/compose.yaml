@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: nutrivida
+      POSTGRES_USER: nutrivida
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD en .env}
+    volumes:
+      - usuarios-db:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U nutrivida -d nutrivida']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  usuarios:
+    build:
+      context: backend
+      args: { SERVICE: usuarios }
+    environment:
+      SPRING_PROFILES_ACTIVE: postgres
+      DB_URL: jdbc:postgresql://postgres:5432/nutrivida
+      DB_USER: nutrivida
+      DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET con 32 caracteres o mas}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?Define ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Define ADMIN_PASSWORD}
+      CLAVE_INICIAL_VALENTINA: ${CLAVE_INICIAL_VALENTINA:-${ADMIN_PASSWORD}}
+      CLAVE_INICIAL_MATIAS: ${CLAVE_INICIAL_MATIAS:-${ADMIN_PASSWORD}}
+      CLAVE_INICIAL_ESTEBAN: ${CLAVE_INICIAL_ESTEBAN:-${ADMIN_PASSWORD}}
+      CLAVE_INICIAL_JUAN: ${CLAVE_INICIAL_JUAN:-${ADMIN_PASSWORD}}
+      CLAVE_INICIAL_CAMILO: ${CLAVE_INICIAL_CAMILO:-${ADMIN_PASSWORD}}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      CARGAR_DATOS_INICIALES: ${CARGAR_DATOS_INICIALES:-false}
+    ports: ['127.0.0.1:${USUARIOS_HOST_PORT:-8081}:8081']
+    depends_on:
+      postgres: { condition: service_healthy }
+  administracion:
+    build:
+      context: backend
+      args: { SERVICE: administracion }
+    environment:
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET}
+      USUARIOS_URL: http://usuarios:8081
+    ports: ['127.0.0.1:${ADMIN_HOST_PORT:-8082}:8082']
+    depends_on: [usuarios]
+  frontend:
+    build: frontend
+    ports: ['127.0.0.1:${FRONTEND_HOST_PORT:-5173}:80']
+    depends_on: [usuarios, administracion]
+volumes:
+  usuarios-db:

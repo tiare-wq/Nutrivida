@@ -1,0 +1,15 @@
+{
+  "properties": [
+    {
+      "name": "app.jwt-secret",
+      "type": "java.lang.String",
+      "description": "HS256 signing secret shared by the application services."
+    },
+    {
+      "name": "app.usuarios-url",
+      "type": "java.lang.String",
+      "defaultValue": "http://localhost:8081",
+      "description": "Base URL of the usuarios-service."
+    }
+  ]
+}

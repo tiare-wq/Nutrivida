@@ -1,0 +1,77 @@
+input {
+    border: 1px solid black;
+}
+
+input,
+textarea {
+    max-width: 600px;
+    border-radius: 12px;
+    padding: 5px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: blue;
+    box-shadow: 0 0 3px blue;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 20px;
+}
+
+.campo > select {
+    padding: 5px;
+}
+
+.formulario {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-dato {
+    width: 100%;
+    min-width: 300px;
+}
+
+.form-radio {
+    display: flex;
+}
+
+.subtitulo-form {
+    font-size: 30px;
+    text-align: center;
+    margin: 10px;
+}
+
+#nombre-servicio {
+    min-width: 300px;
+}
+
+#btn-form {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+    .campo select,
+    .campo input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .form-radio > div {
+        flex-direction: column;
+    }
+
+    .formulario {
+        min-width: 250px;
+    }
+}
