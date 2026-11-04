@@ -93,7 +93,7 @@ javac --version
 
 | Cuenta | Correo |
 | --- | --- |
-| Administración | `admin@nutrivida.cl` (cambiable con `-AdminEmail`) |
+| Administración | `admin@nutrivida.cl` |
 | Profesional | `valentina.rojas@nutrivida.cl`, `matias.fuentes@nutrivida.cl` |
 | Paciente | `esteban.zavala@nutrivida.cl` (129 kg), `juan.lopez@nutrivida.cl`, `camilo.calderon@nutrivida.cl` |
 
