@@ -81,10 +81,15 @@ public class ClinicaService {
                 paciente ->
                     filtro.isBlank() ||
                     paciente.id.toString().equals(filtro) ||
-                    paciente.nombre.toLowerCase(Locale.ROOT).contains(filtro)
+                    paciente.nombre.toLowerCase(Locale.ROOT).contains(filtro) ||
+                    normalizarRut(paciente.rut).contains(normalizarRut(filtro))
             )
             .map(Datos::vista)
             .toList();
+    }
+
+    private String normalizarRut(String rut) {
+        return rut == null ? "" : rut.replaceAll("[.\\-\\s]", "").toUpperCase(Locale.ROOT);
     }
 
     public Usuario pacienteAsignado(Long profesionalId, Long pacienteId) {

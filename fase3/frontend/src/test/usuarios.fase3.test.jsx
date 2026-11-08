@@ -105,6 +105,7 @@ describe('Interfaz fase 3', () => {
             </MemoryRouter>,
         );
         expect(screen.getByLabelText('RUT')).toBeRequired();
+        expect(screen.getByLabelText('RUT')).toHaveAttribute('maxLength', '12');
         expect(screen.getByText(/Edad mínima 14/)).toBeInTheDocument();
     });
     it('una bandera local no permite mostrar administración', () => {

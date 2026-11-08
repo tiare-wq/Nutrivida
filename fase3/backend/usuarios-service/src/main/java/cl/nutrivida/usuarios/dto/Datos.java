@@ -1,5 +1,6 @@
 package cl.nutrivida.usuarios.dto;
 
+import cl.nutrivida.usuarios.constantes.Rut;
 import cl.nutrivida.usuarios.entity.Usuario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -13,7 +14,7 @@ public class Datos {
 
     public record Perfil(
         @NotBlank @Size(min = 3, max = 120) String nombre,
-        @NotBlank String rut,
+        @NotBlank @Size(max = Rut.LARGO_MAXIMO) String rut,
         @NotNull @Past LocalDate fechaNac,
         @NotBlank String telefono,
         @NotBlank @Email @Size(max = 254) String correo
@@ -21,7 +22,7 @@ public class Datos {
 
     public record Registro(
         @NotBlank @Size(min = 3, max = 120) String nombre,
-        @NotBlank String rut,
+        @NotBlank @Size(max = Rut.LARGO_MAXIMO) String rut,
         @NotNull @Past LocalDate fechaNac,
         @NotBlank String telefono,
         @NotBlank @Email @Size(max = 254) String correo,

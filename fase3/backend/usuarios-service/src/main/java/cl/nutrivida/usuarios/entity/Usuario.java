@@ -1,5 +1,6 @@
 package cl.nutrivida.usuarios.entity;
 
+import cl.nutrivida.usuarios.constantes.Rut;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ public class Usuario {
     @Column(nullable = false)
     public String nombre;
 
+    @Column(length = Rut.LARGO_MAXIMO)
     public String rut;
 
     public LocalDate fechaNac;

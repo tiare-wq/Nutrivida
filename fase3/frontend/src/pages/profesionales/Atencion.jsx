@@ -186,11 +186,11 @@ export default function Atencion() {
     return (
         <section className="card-private atencion">
             <h1>Atención de pacientes</h1>
-            <p>Busca por ID o nombre entre los pacientes que tienes asignados.</p>
+            <p>Busca por RUT, ID o nombre entre los pacientes que tienes asignados.</p>
             {error && <p role="alert">{error}</p>}
             {mensaje && <p role="status">{mensaje}</p>}
             <form className="busqueda-pacientes" onSubmit={buscarPacientes}>
-                <label htmlFor="buscar-paciente">ID o nombre del paciente</label>
+                <label htmlFor="buscar-paciente">RUT, ID o nombre del paciente</label>
                 <input
                     id="buscar-paciente"
                     className="form-control"
@@ -208,6 +208,7 @@ export default function Atencion() {
                         <span>
                             ID {paciente.id} · {paciente.nombre}
                         </span>
+                        {paciente.rut && <small>RUT: {paciente.rut}</small>}
                         <button
                             className="btn btn-outline-success"
                             disabled={ocupado}

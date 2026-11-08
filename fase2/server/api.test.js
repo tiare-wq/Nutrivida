@@ -405,3 +405,20 @@ test("cambiar contraseña invalida todas las sesiones y permite el nuevo acceso"
   assert.equal((await request("/api/login", { method: "POST", body: { email: "nuevo@example.test", password: profileCredentials.password } })).status, 401);
   assert.equal((await request("/api/login", { method: "POST", body: { email: "nuevo@example.test", password: "NuevaPrueba2026" } })).status, 200);
 });
+test("los pedidos incluyen categoría y duración en meses para planes", async () => {
+  const login = await request("/api/login", {
+    method: "POST",
+    body: credentials,
+  });
+  const order = await request("/api/orders", {
+    method: "POST",
+    cookie: login.cookie,
+    body: {
+      requestKey: "request-plan-duration-1",
+      items: [{ serviceId: 11, quantity: 1 }],
+    },
+  });
+  assert.equal(order.status, 201);
+  assert.equal(order.body.order.items[0].category, "plan");
+  assert.equal(order.body.order.items[0].durationMonths, 3);
+});

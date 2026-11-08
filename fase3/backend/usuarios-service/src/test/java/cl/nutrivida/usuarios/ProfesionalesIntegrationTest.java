@@ -137,6 +137,14 @@ class ProfesionalesIntegrationTest {
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.length()").value(1));
         mvc.perform(
+            get("/api/profesionales/pacientes")
+                .param("buscar", "12345678-5")
+                .header("Authorization", token)
+        )
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.length()").value(1))
+            .andExpect(jsonPath("$[0].rut").value("12345678-5"));
+        mvc.perform(
             get("/api/profesionales/pacientes/" + pacienteId).header("Authorization", otroToken)
         ).andExpect(status().isForbidden());
         mvc.perform(

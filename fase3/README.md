@@ -6,8 +6,8 @@ Usuarios, pacientes, profesionales, medidas y administración con **React + Spri
 
 | Rol | Funciones |
 | --- | --- |
-| Administración | Nombre, ID y cargo. CRUD de pacientes y profesionales, asignación paciente-profesional, cuentas y permisos. |
-| Profesional | ID, nombre, especialidad, correo y contraseña. Busca por ID o nombre a sus pacientes asignados, ve su informe, edita su información y registra estatura, peso, cintura y cadera. |
+| Administración | Nombre, ID y cargo. CRUD y búsqueda por RUT de pacientes, profesionales, asignación paciente-profesional, cuentas y permisos. |
+| Profesional | ID, nombre, especialidad, correo y contraseña. Busca por RUT, ID o nombre a sus pacientes asignados, ve su informe, edita su información y registra estatura, peso, cintura y cadera. |
 | Paciente | Registro, perfil e informe propio con historial de medidas. |
 
 Seguridad: contraseñas BCrypt, JWT HS256 de 15 minutos, renovación con cookie HttpOnly de 7 días, permisos por rol verificados en el servidor, cambio y restablecimiento de contraseña, y bloqueo del login (429) tras 5 intentos fallidos durante 15 minutos.
@@ -90,6 +90,15 @@ javac --version
    ```
 
    El script pide la clave de PostgreSQL y la del administrador. `-DatosIniciales` crea una vez dos nutricionistas y tres pacientes con su historial de medidas; las cuentas iniciales usan la clave indicada por el script.
+
+3. Para actualizar una base existente, aplica los scripts en este orden antes de iniciar la aplicación:
+
+   ```powershell
+   psql -U nutrivida -d nutrivida -v ON_ERROR_STOP=1 -f .\backend\usuarios-service\src\main\resources\db\actualizar-perfiles.sql
+   psql -U nutrivida -d nutrivida -v ON_ERROR_STOP=1 -f .\backend\usuarios-service\src\main\resources\db\rut-obligatorio-pacientes.sql
+   ```
+
+   El segundo script exige un RUT para cada paciente; confirma que los pacientes existentes tengan RUT antes de aplicarlo.
 
 | Cuenta | Correo |
 | --- | --- |

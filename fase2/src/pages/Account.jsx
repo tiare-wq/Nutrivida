@@ -5,6 +5,42 @@ import { api } from "../api";
 import { money } from "../cart";
 import { Link } from "react-router-dom";
 import Profile from "../components/Profile";
+import { progresoPlan } from "../planProgress";
+
+function PlanProgress({ order, item }) {
+  if (item.category !== "plan" || order.status === "cancelado") return null;
+
+  const progreso = progresoPlan(order.created, item.durationMonths);
+  if (!progreso) return null;
+  const porcentaje = Math.round(
+    (progreso.transcurridos / progreso.total) * 100,
+  );
+
+  return (
+    <div className="mt-2">
+      <p>
+        Llevas {progreso.transcurridos} días de {progreso.total}. Te quedan{" "}
+        {progreso.restantes} días.
+      </p>
+      <div
+        className="progress"
+        role="progressbar"
+        aria-label={`Progreso de ${item.name}`}
+        aria-valuemin="0"
+        aria-valuemax={progreso.total}
+        aria-valuenow={progreso.transcurridos}
+      >
+        <div
+          className="progress-bar bg-success"
+          style={{ width: `${porcentaje}%` }}
+        >
+          {porcentaje}%
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function OrderList({ orders, admin = false, onStatus, busy }) {
   return !orders.length ? (
     <p className="empty-state">Todavía no hay pedidos.</p>
@@ -27,6 +63,7 @@ export function OrderList({ orders, admin = false, onStatus, busy }) {
               <li key={i.serviceId}>
                 {i.quantity} × {i.name}{" "}
                 <strong>{money(i.price * i.quantity)}</strong>
+                <PlanProgress order={o} item={i} />
               </li>
             ))}
           </ul>

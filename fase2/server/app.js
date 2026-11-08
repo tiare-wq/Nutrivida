@@ -69,9 +69,19 @@ export function createApp(
         ...o,
         items: db
           .prepare(
-            "SELECT service_id AS serviceId,name,price,quantity FROM order_items WHERE order_id=?",
+            `SELECT oi.service_id AS serviceId,oi.name,oi.price,oi.quantity,s.category
+             FROM order_items oi JOIN services s ON s.id=oi.service_id
+             WHERE oi.order_id=?`,
           )
-          .all(o.id),
+          .all(o.id)
+          .map((item) => {
+            if (item.category !== "plan") return item;
+            const duration = item.name.match(/\((\d+)\s*mes(?:es)?\)/i);
+            return {
+              ...item,
+              durationMonths: duration ? Number(duration[1]) : 1,
+            };
+          }),
       }));
   }
   const reservationList = (user, admin) =>

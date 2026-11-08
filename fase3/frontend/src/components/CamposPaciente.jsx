@@ -1,3 +1,5 @@
+import { RUT_LARGO_MAX } from '../constants/rut';
+
 export default function Campos({ datos, cambiar, password = false }) {
     const campos = [
         ['nombre', 'Nombre completo', 'text'],
@@ -16,7 +18,7 @@ export default function Campos({ datos, cambiar, password = false }) {
                 type={type}
                 value={datos[key] || ''}
                 required
-                maxLength={key === 'password' ? 72 : 254}
+                maxLength={key === 'password' ? 72 : key === 'rut' ? RUT_LARGO_MAX : 254}
                 minLength={key === 'password' ? 8 : undefined}
                 onChange={(e) => cambiar({ ...datos, [key]: e.target.value })}
             />

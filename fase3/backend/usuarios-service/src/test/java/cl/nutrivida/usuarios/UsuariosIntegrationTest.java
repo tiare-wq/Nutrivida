@@ -178,6 +178,11 @@ class UsuariosIntegrationTest {
         mvc.perform(
             post("/api/auth/registro")
                 .contentType("application/json")
+                .content(registro.replace("12.345.678-5", "12345678901-2"))
+        ).andExpect(status().isBadRequest());
+        mvc.perform(
+            post("/api/auth/registro")
+                .contentType("application/json")
                 .content(registro.replace("12.345.678-5", "12.345.678-9"))
         ).andExpect(status().isBadRequest());
         mvc.perform(

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { solicitar } from '../../api/usuarios';
 import Campos from '../../components/CamposPaciente';
+import { normalizarRut, RUT_LARGO_MAX } from '../../constants/rut';
 
 const vacio = { nombre: '', rut: '', fechaNac: '', telefono: '', correo: '' };
 
 export default function AdministrarPacientes() {
     const [lista, setLista] = useState([]);
     const [datos, setDatos] = useState({ ...vacio, password: '' });
+    const [buscarRut, setBuscarRut] = useState('');
     const [id, setId] = useState(null);
     const [error, setError] = useState('');
     const [mensaje, setMensaje] = useState('');
@@ -73,11 +75,26 @@ export default function AdministrarPacientes() {
             setOcupado(false);
         }
     }
+    const filtroRut = normalizarRut(buscarRut);
+    const pacientesFiltrados = filtroRut
+        ? lista.filter((paciente) => normalizarRut(paciente.rut).includes(filtroRut))
+        : lista;
     return (
         <section className="card-private">
             <h1>Administración de pacientes</h1>
             {error && <p role="alert">{error}</p>}
             {mensaje && <p role="status">{mensaje}</p>}
+            <div className="mb-3">
+                <label htmlFor="buscar-paciente-rut">Buscar paciente por RUT</label>
+                <input
+                    id="buscar-paciente-rut"
+                    className="form-control"
+                    value={buscarRut}
+                    onChange={(evento) => setBuscarRut(evento.target.value)}
+                    maxLength={RUT_LARGO_MAX}
+                    placeholder="RUT con o sin puntos y guion"
+                />
+            </div>
             <div className="table-responsive">
                 <table className="table">
                     <thead>
@@ -89,7 +106,7 @@ export default function AdministrarPacientes() {
                         </tr>
                     </thead>
                     <tbody>
-                        {lista.map((p) => (
+                        {pacientesFiltrados.map((p) => (
                             <tr key={p.id}>
                                 <td>{p.nombre}</td>
                                 <td>{p.rut}</td>
@@ -115,6 +132,11 @@ export default function AdministrarPacientes() {
                                 </td>
                             </tr>
                         ))}
+                        {pacientesFiltrados.length === 0 && (
+                            <tr>
+                                <td colSpan="4">No hay pacientes con ese RUT.</td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>

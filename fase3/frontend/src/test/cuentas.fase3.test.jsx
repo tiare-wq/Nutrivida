@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import Atencion from '../pages/profesionales/Atencion';
+import AdministrarPacientes from '../pages/usuarios/AdministrarPacientes';
 import CambiarPassword from '../components/CambiarPassword';
 import { actual, ingresar } from '../api/usuarios';
 
@@ -60,6 +61,7 @@ describe('Mediciones: editar y eliminar', () => {
         fireEvent.change(screen.getByLabelText('Peso en kilogramos'), {
             target: { value: '127.5' },
         });
+
         fireEvent.click(screen.getByRole('button', { name: 'Guardar cambios de la medición' }));
 
         expect(await screen.findByText('Medición actualizada correctamente.')).toBeInTheDocument();
@@ -87,6 +89,34 @@ describe('Mediciones: editar y eliminar', () => {
         expect(await screen.findByText('Medición eliminada correctamente.')).toBeInTheDocument();
         expect(fetch.mock.calls[2][0]).toBe('/api/profesionales/pacientes/2/mediciones/7');
         expect(fetch.mock.calls[2][1].method).toBe('DELETE');
+    });
+});
+
+describe('Búsqueda de pacientes por RUT en administración', () => {
+    it('filtra pacientes con RUT formateado o sin formato', async () => {
+        vi.stubGlobal(
+            'fetch',
+            vi.fn().mockResolvedValue(
+                respuesta([
+                    {
+                        id: 2,
+                        nombre: 'Esteban Zavala',
+                        rut: '20456789-1',
+                        correo: 'esteban@test.cl',
+                    },
+                    { id: 3, nombre: 'Ana Pérez', rut: '12345678-5', correo: 'ana@test.cl' },
+                ]),
+            ),
+        );
+        render(<AdministrarPacientes />);
+
+        expect(await screen.findByText('esteban@test.cl')).toBeInTheDocument();
+        fireEvent.change(screen.getByLabelText('Buscar paciente por RUT'), {
+            target: { value: '12.345.678-5' },
+        });
+
+        expect(screen.getByText('ana@test.cl')).toBeInTheDocument();
+        expect(screen.queryByText('esteban@test.cl')).not.toBeInTheDocument();
     });
 });
 

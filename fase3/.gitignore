@@ -5,5 +5,7 @@
 **/dist/
 **/target/
 **/data/
+!frontend/src/data/
+!frontend/src/data/*.js
 **/coverage/
 **/.vitest/

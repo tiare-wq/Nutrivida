@@ -14,23 +14,26 @@ function respuesta(datos) {
 }
 
 describe('Profesionales y medidas', () => {
-    it('permite buscar pacientes por nombre mediante la API', async () => {
+    it('permite buscar pacientes por RUT mediante la API', async () => {
         const fetch = vi
             .fn()
-            .mockResolvedValueOnce(respuesta([{ id: 2, nombre: 'Esteban Zavala' }]))
+            .mockResolvedValueOnce(
+                respuesta([{ id: 2, nombre: 'Esteban Zavala', rut: '20456789-1' }]),
+            )
             .mockResolvedValueOnce(respuesta([]));
         vi.stubGlobal('fetch', fetch);
         render(<Atencion />);
 
         expect(await screen.findByText('ID 2 · Esteban Zavala')).toBeInTheDocument();
-        fireEvent.change(screen.getByLabelText('ID o nombre del paciente'), {
-            target: { value: 'Nombre con espacio' },
+        expect(screen.getByText('RUT: 20456789-1')).toBeInTheDocument();
+        fireEvent.change(screen.getByLabelText('RUT, ID o nombre del paciente'), {
+            target: { value: '20.456.789-1' },
         });
         fireEvent.click(screen.getByText('Buscar pacientes'));
 
         await waitFor(() =>
             expect(fetch.mock.calls[1][0]).toBe(
-                '/api/profesionales/pacientes?buscar=Nombre%20con%20espacio',
+                '/api/profesionales/pacientes?buscar=20.456.789-1',
             ),
         );
         expect(
