@@ -43,6 +43,22 @@ export function leerTalleres() {
     }
 }
 
+export function buscarConsultaPorId(id) {
+    return leerConsultas().filter( item => item.id === id );
+}
+
+export function buscarEvaluacionPorId(id) {
+    return leerEvaluaciones().filter( item => item.id === id );
+}
+
+export function buscarPlanesPorId(id) {
+    return leerPlanes().filter( item => item.id == id );
+}
+
+export function buscarTallerPorId(id) {
+    return leerTalleres().filter( item => item.id == id );
+}
+
 export function agregarConsulta(nuevaConsulta) {
     const consultas = [...leerConsultas(), nuevaConsulta];
     localStorage.setItem('consultas', JSON.stringify(consultas));

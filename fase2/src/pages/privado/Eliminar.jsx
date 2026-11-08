@@ -52,7 +52,7 @@ function Eliminar() {
             </div>
 
             <div className="campo">
-                <label htmlFor="id-servicio">Nombre del servicio</label>
+                <label htmlFor="id-servicio">ID del servicio</label>
                 <input id="id-servicio" type="text"
                 onChange={item => setId(item.target.value)}></input>
             </div>
