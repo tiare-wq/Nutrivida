@@ -11,25 +11,26 @@ import {
     AdministrarPacientes,
 } from './pages/Usuarios';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Agregar from './pages/privado/Agregar';
-import Confirmacion from './pages/publico/Confirmacion';
-import Consultas from './pages/publico/Consultas';
-import Eliminar from './pages/privado/Eliminar';
-import Evaluaciones from './pages/publico/Evaluaciones';
-import Inicio from './pages/publico/Inicio';
+import Agregar from './pages/accesoPrivado/Agregar';
+import Confirmacion from './pages/accesoPublico/Confirmacion';
+import Consultas from './pages/accesoPublico/Consultas';
+import Eliminar from './pages/accesoPrivado/Eliminar';
+import Evaluaciones from './pages/accesoPublico/Evaluaciones';
+import Inicio from './pages/accesoPublico/Inicio';
 
-import Planes from './pages/publico/Planes';
+import Planes from './pages/accesoPublico/Planes';
 import PrivateLayout from './layouts/PrivateLayout';
 import PublicLayout from './layouts/PublicLayout';
-import Reserva from './pages/publico/Reserva';
-import Talleres from './pages/publico/Talleres';
-import MisReservas from './pages/privado/MisReservas';
-import MisPlanes from './pages/privado/MisPlanes';
-import Carrito from './pages/publico/Carrito';
+import ReservaInvitado from './pages/accesoPublico/ReservaInvitado.jsx';
+import ReservaPaciente from './pages/accesoPublico/ReservaPaciente.jsx';
+import Talleres from './pages/accesoPublico/Talleres';
+import MisReservas from './pages/accesoPrivado/MisReservas';
+import MisPlanes from './pages/accesoPrivado/MisPlanes';
+import Carrito from './pages/accesoPublico/Carrito';
 
 import ScrollTop from './routes/ScrollTop';
 
-import Ver from './pages/privado/Ver';
+import Ver from './pages/accesoPrivado/Ver';
 
 function Acceso({ children }) {
     return <Protegida rol="PACIENTE">{children}</Protegida>;
@@ -54,7 +55,8 @@ function App() {
                     <Route path="/login-admin" element={<LoginUsuarios admin />} />
                     <Route path="/planes" element={<Planes />} />
                     <Route path="/registro" element={<RegistroUsuarios />} />
-                    <Route path="/reservas" element={<Reserva />} />
+                    <Route path="/reservas/invitado" element={<ReservaInvitado />} />
+                    <Route path="/reservas" element={<ReservaPaciente />} />
                     <Route path="/talleres" element={<Talleres />} />
                 </Route>
 

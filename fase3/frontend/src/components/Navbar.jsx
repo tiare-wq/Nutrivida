@@ -1,6 +1,22 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { pacienteActual } from '../data/almacen.js';
 
 function Navbar() {
+    const [paciente, setPaciente] = useState(() => pacienteActual());
+
+    useEffect(() => {
+        function actualizarPaciente() {
+            setPaciente(pacienteActual());
+        }
+
+        window.addEventListener('nutrivida:actualizar', actualizarPaciente);
+
+        return () => {
+            window.removeEventListener('nutrivida:actualizar', actualizarPaciente);
+        };
+    }, []);
+
     return (
         <div>
             {/* MENÚ HAMBURGUESA: PANTALLAS < SM */}
@@ -111,7 +127,7 @@ function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" to="/reservas">
+                    <Link className="nav-link" to={(paciente) ? "/reservas" : "/reservas/invitado"} >
                         Reservar
                     </Link>
                 </li>

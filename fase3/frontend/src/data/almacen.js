@@ -5,6 +5,11 @@ const LIMITE_ANUAL = 10;
 const HORAS = ['10:00', '11:00', '12:00'];
 const CLAVE_RESERVAS = 'nutrivida-reservas';
 
+export const TipoPaciente = Object.freeze({
+    INVITADO: 'INVITADO',
+    SESION_INICIADA: 'SESION_INICIADA',
+});
+
 function avisarCambio() {
     window.dispatchEvent(new Event('nutrivida:actualizar'));
 }
@@ -197,7 +202,12 @@ export function guardarReserva(reserva) {
     ) {
         return null;
     }
-    const nueva = { ...reserva, id: Date.now(), pacienteId: paciente.id };
+    const nueva = {
+        ...reserva,
+        id: Date.now(),
+        pacienteId: paciente.id,
+        tipoPaciente: TipoPaciente.SESION_INICIADA,
+    };
     const reservas = leerJson(CLAVE_RESERVAS, []);
     localStorage.setItem(
         CLAVE_RESERVAS,
@@ -207,5 +217,25 @@ export function guardarReserva(reserva) {
         ...leerDatosPaciente(paciente.id),
         reservas: [...paciente.reservas, nueva],
     });
+    return nueva;
+}
+
+export function guardarReservaInvitado(reserva) {
+    if (
+        !HORAS.includes(reserva.hora) ||
+        horaOcupada(reserva.profesional, reserva.fecha, reserva.hora)
+    ) {
+        return null;
+    }
+    const nueva = {
+        ...reserva,
+        id: Date.now(),
+        tipoPaciente: TipoPaciente.INVITADO
+    };
+    const reservas = leerJson(CLAVE_RESERVAS, []);
+    localStorage.setItem(
+        CLAVE_RESERVAS,
+        JSON.stringify([...(Array.isArray(reservas) ? reservas : []), nueva]),
+    );
     return nueva;
 }
