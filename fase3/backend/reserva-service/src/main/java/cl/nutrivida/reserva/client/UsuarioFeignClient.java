@@ -6,18 +6,20 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Optional;
+
 @FeignClient(name = "usuarios-service")
 public interface UsuarioFeignClient {
 
     @GetMapping("/api/pacientes/paciente/{id}")
-    PacienteClient obtenerPaciente(@PathVariable Long id);
+    PacienteClient obtenerPacientePorId(@PathVariable Long id);
 
     @GetMapping("/api/pacientes/paciente/{run}")
-    Long obtenerPacienteId(@PathVariable String run);
+    Long obtenerPacientePorRun(@PathVariable String run);
 
     @GetMapping("api/profesionales/profesional/{id}")
-    ProfesionalClient obtenerProfesional(@PathVariable Long id);
+    ProfesionalClient obtenerProfesionalPorId(@PathVariable Long id);
 
     @GetMapping("api/profesionales/profesional/{run}")
-    Long obtenerProfesionalId(@PathVariable String run);
+    Long obtenerProfesionalPorRun(@PathVariable String run);
 }

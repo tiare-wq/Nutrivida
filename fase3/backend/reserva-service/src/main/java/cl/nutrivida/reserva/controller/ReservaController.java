@@ -1,6 +1,7 @@
 package cl.nutrivida.reserva.controller;
 
 import cl.nutrivida.reserva.dto.ReservaDto;
+import cl.nutrivida.reserva.entity.TipoPaciente;
 import cl.nutrivida.reserva.request.ReagendarRequest;
 import cl.nutrivida.reserva.service.ReservaService;
 import jakarta.validation.Valid;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -42,7 +45,7 @@ public class ReservaController {
         return ResponseEntity.ok(resultado);
     }
 
-    @GetMapping("/reserva/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ReservaDto> obtenerReservaPorId(@PathVariable Long id) {
         ReservaDto resultado = reservaService.obtenerReservaPorId(id);
         return ResponseEntity.ok(resultado);
@@ -50,13 +53,15 @@ public class ReservaController {
 
     @PostMapping
     public ResponseEntity<ReservaDto> agregarReserva(
-        @Valid ReservaDto reserva
+        @AuthenticationPrincipal Jwt token,
+        @Valid @RequestBody ReservaDto reserva
     ) {
-        ReservaDto resultado = reservaService.agregarReserva(reserva);
+        Long pacienteID = Long.parseLong(token.getSubject());
+        ReservaDto resultado = reservaService.agregarReserva(reserva, pacienteID);
         return ResponseEntity.ok(resultado);
     }
 
-    @PutMapping("/reserva/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ReservaDto> reagendarCita(
         @PathVariable Long id,
         @Valid @RequestBody ReagendarRequest request

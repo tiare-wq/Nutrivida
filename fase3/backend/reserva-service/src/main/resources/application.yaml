@@ -1,3 +1,13 @@
+port: 8083
+
 spring:
   application:
     name: reserva
+  environment:
+    POSTGRE_USER:
+
+reserva:
+  anticipacion-maxima-meses: 6
+  horario:
+    apertura: "08:00"
+    cierre: "21:00"

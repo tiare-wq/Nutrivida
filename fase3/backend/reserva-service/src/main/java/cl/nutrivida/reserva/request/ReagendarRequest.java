@@ -6,8 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -15,8 +14,5 @@ import java.time.LocalTime;
 public class ReagendarRequest {
     @NotNull(message = "Ingrese una fecha")
     @FutureOrPresent(message = "La fecha no puede ser anterior a la actual")
-    private LocalDate fecha;
-
-    @NotNull(message = "Ingrese una hora")
-    private LocalTime hora;
+    private LocalDateTime fecha;
 }
