@@ -1,8 +1,7 @@
 package cl.nutrivida.administracion.controller;
 
-import cl.nutrivida.administracion.service.UsuariosGateway;
+import cl.nutrivida.administracion.client.UsuariosClient;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @SecurityRequirement(name = "bearerAuth")
 public class CuentasController {
 
-    private final UsuariosGateway gateway;
+    private final UsuariosClient usuariosClient;
 
-    public CuentasController(UsuariosGateway gateway) {
-        this.gateway = gateway;
+    public CuentasController(UsuariosClient usuariosClient) {
+        this.usuariosClient = usuariosClient;
     }
 
     @PutMapping("/{id}/administracion")
@@ -30,26 +29,12 @@ public class CuentasController {
         @PathVariable Long id,
         @RequestBody String cuerpo
     ) {
-        return gateway.enviar(
-            HttpMethod.PUT,
-            "/api/admin/usuarios/" + id + "/administracion",
-            authorization,
-            cuerpo
-        );
-    }
-
-    private ResponseEntity<String> enviar(
-        HttpMethod metodo,
-        String ruta,
-        String authorization,
-        String cuerpo
-    ) {
-        return gateway.enviar(metodo, "/api/admin/usuarios" + ruta, authorization, cuerpo);
+        return usuariosClient.editarAdministrador(authorization, id, cuerpo);
     }
 
     @GetMapping
     public ResponseEntity<String> lista(@RequestHeader("Authorization") String authorization) {
-        return enviar(HttpMethod.GET, "", authorization, null);
+        return usuariosClient.listarUsuarios(authorization);
     }
 
     @PatchMapping("/{id}/permisos")
@@ -58,6 +43,6 @@ public class CuentasController {
         @PathVariable Long id,
         @RequestBody String cuerpo
     ) {
-        return enviar(HttpMethod.PATCH, "/" + id + "/permisos", authorization, cuerpo);
+        return usuariosClient.actualizarPermisos(authorization, id, cuerpo);
     }
 }

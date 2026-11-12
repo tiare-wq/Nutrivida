@@ -1,8 +1,7 @@
 package cl.nutrivida.administracion.controller;
 
-import cl.nutrivida.administracion.service.UsuariosGateway;
+import cl.nutrivida.administracion.client.UsuariosClient;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,24 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @SecurityRequirement(name = "bearerAuth")
 public class AdminController {
 
-    private final UsuariosGateway gateway;
+    private final UsuariosClient usuariosClient;
 
-    public AdminController(UsuariosGateway gateway) {
-        this.gateway = gateway;
-    }
-
-    private ResponseEntity<String> enviar(
-        HttpMethod metodo,
-        String ruta,
-        String authorization,
-        String cuerpo
-    ) {
-        return gateway.enviar(metodo, "/api/admin/pacientes" + ruta, authorization, cuerpo);
+    public AdminController(UsuariosClient usuariosClient) {
+        this.usuariosClient = usuariosClient;
     }
 
     @GetMapping
     public ResponseEntity<String> lista(@RequestHeader("Authorization") String authorization) {
-        return enviar(HttpMethod.GET, "", authorization, null);
+        return usuariosClient.listarPacientes(authorization);
     }
 
     @GetMapping("/{id}")
@@ -44,7 +34,7 @@ public class AdminController {
         @RequestHeader("Authorization") String authorization,
         @PathVariable Long id
     ) {
-        return enviar(HttpMethod.GET, "/" + id, authorization, null);
+        return usuariosClient.verPaciente(authorization, id);
     }
 
     @PostMapping
@@ -52,7 +42,7 @@ public class AdminController {
         @RequestHeader("Authorization") String authorization,
         @RequestBody String cuerpo
     ) {
-        return enviar(HttpMethod.POST, "", authorization, cuerpo);
+        return usuariosClient.crearPaciente(authorization, cuerpo);
     }
 
     @PutMapping("/{id}")
@@ -61,7 +51,7 @@ public class AdminController {
         @PathVariable Long id,
         @RequestBody String cuerpo
     ) {
-        return enviar(HttpMethod.PUT, "/" + id, authorization, cuerpo);
+        return usuariosClient.editarPaciente(authorization, id, cuerpo);
     }
 
     @DeleteMapping("/{id}")
@@ -69,6 +59,6 @@ public class AdminController {
         @RequestHeader("Authorization") String authorization,
         @PathVariable Long id
     ) {
-        return enviar(HttpMethod.DELETE, "/" + id, authorization, null);
+        return usuariosClient.eliminarPaciente(authorization, id);
     }
 }

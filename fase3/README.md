@@ -6,8 +6,8 @@ Usuarios, pacientes, profesionales, medidas y administración con **React + Spri
 
 | Rol | Funciones |
 | --- | --- |
-| Administración | Nombre, ID y cargo. CRUD y búsqueda por RUT de pacientes, profesionales, asignación paciente-profesional, cuentas y permisos. |
-| Profesional | ID, nombre, especialidad, correo y contraseña. Busca por RUT, ID o nombre a sus pacientes asignados, ve su informe, edita su información y registra estatura, peso, cintura y cadera. |
+| Administración | Nombre, ID y cargo. CRUD de pacientes y profesionales, asignación paciente-profesional, cuentas y permisos. |
+| Profesional | ID, nombre, especialidad, correo y contraseña. Busca por ID o nombre a sus pacientes asignados, ve su informe, edita su información y registra estatura, peso, cintura y cadera. |
 | Paciente | Registro, perfil e informe propio con historial de medidas. |
 
 Seguridad: contraseñas BCrypt, JWT HS256 de 15 minutos, renovación con cookie HttpOnly de 7 días, permisos por rol verificados en el servidor, cambio y restablecimiento de contraseña, y bloqueo del login (429) tras 5 intentos fallidos durante 15 minutos.
@@ -33,7 +33,13 @@ Las clases Java están organizadas por capa. `usuarios-service` tiene paquetes
 y `UsuariosService.java` en `usuarios-service/.../usuarios/service/`. Sus DTO
 se agrupan en `Datos.java` y `DatosClinicos.java`. `administracion-service`
 tiene `controller`, `service`, `config` y `exception`, ya que delega las operaciones al
-servicio de usuarios y no mantiene entidades ni repositorios propios.
+servicio de usuarios y no mantiene entidades ni repositorios propios. La
+comunicación entre ambos se declara en `administracion-service/.../client/UsuariosClient.java`
+con OpenFeign: cada método identifica la ruta, el verbo HTTP, el encabezado
+de autorización y si envía un cuerpo JSON. Se conservan los cuerpos y respuestas
+JSON como texto para no cambiar el contrato HTTP existente; los errores del
+servicio de usuarios conservan su estado y respuesta, y una caída se devuelve
+como HTTP 503.
 
 ## Documentación (empieza aquí)
 
@@ -47,17 +53,17 @@ servicio de usuarios y no mantiene entidades ni repositorios propios.
 
 ## Requisitos
 
-Java JDK 21 LTS, Maven 3.9, Node.js 24 LTS y PostgreSQL en ejecución.
+Java JDK 25 LTS, Maven 3.9, Node.js 24 LTS y PostgreSQL en ejecución.
 
-Los scripts de Windows seleccionan un **JDK 21 completo** (con `java` y `javac`)
+Los scripts de Windows seleccionan un **JDK 25 completo** (con `java` y `javac`)
 para la sesión actual. Buscan primero en `JAVA_HOME`, después en
-`.local/tools/jdk-21*`, en las instalaciones de Java de `Program Files`, en
+`.local/tools/jdk-25*`, en las instalaciones de Java de `Program Files`, en
 `../../herramientas` y en el `PATH`. No cambian la configuración global de Windows.
 
-Puedes instalar [Eclipse Temurin JDK 21](https://adoptium.net/temurin/releases/?version=21)
+Puedes instalar [Eclipse Temurin JDK 25](https://adoptium.net/temurin/releases/?version=25)
 y configurar `JAVA_HOME`, o extraer su ZIP portable de Windows en
-`.local/tools/`, conservando la carpeta `jdk-21...` y su subcarpeta `bin`.
-La carpeta `.local` está excluida de Git. Para seleccionar Java 21 antes de
+`.local/tools/`, conservando la carpeta `jdk-25...` y su subcarpeta `bin`.
+La carpeta `.local` está excluida de Git. Para seleccionar Java 25 antes de
 ejecutar Maven manualmente desde esta terminal:
 
 ```powershell
@@ -90,15 +96,6 @@ javac --version
    ```
 
    El script pide la clave de PostgreSQL y la del administrador. `-DatosIniciales` crea una vez dos nutricionistas y tres pacientes con su historial de medidas; las cuentas iniciales usan la clave indicada por el script.
-
-3. Para actualizar una base existente, aplica los scripts en este orden antes de iniciar la aplicación:
-
-   ```powershell
-   psql -U nutrivida -d nutrivida -v ON_ERROR_STOP=1 -f .\backend\usuarios-service\src\main\resources\db\actualizar-perfiles.sql
-   psql -U nutrivida -d nutrivida -v ON_ERROR_STOP=1 -f .\backend\usuarios-service\src\main\resources\db\rut-obligatorio-pacientes.sql
-   ```
-
-   El segundo script exige un RUT para cada paciente; confirma que los pacientes existentes tengan RUT antes de aplicarlo.
 
 | Cuenta | Correo |
 | --- | --- |
@@ -205,7 +202,7 @@ npm run build
 npm test
 ```
 
-`Verificar-Backend.ps1` selecciona Java 21 y ejecuta `mvn -f backend/pom.xml clean verify`.
+`Verificar-Backend.ps1` selecciona Java 25 y ejecuta `mvn -f backend/pom.xml clean verify`.
 También se usa en la tarea **Backend: compilar y probar** de Visual Studio Code.
 Las pruebas de Java usan H2 en memoria; la ejecución normal usa PostgreSQL.
 

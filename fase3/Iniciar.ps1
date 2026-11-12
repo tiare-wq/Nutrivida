@@ -110,7 +110,7 @@ else {
 }
 
 if (-not (Test-Path $mavenExecutable)) {
-    throw 'Instala Maven 3.9 y Java 21. Configura JAVA_HOME según README.md.'
+    throw 'Instala Maven 3.9 y Java 25. Configura JAVA_HOME según README.md.'
 }
 
 $secretFile = Join-Path $localDirectory 'jwt-secret.txt'

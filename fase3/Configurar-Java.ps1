@@ -1,7 +1,7 @@
 # Cargar con: . .\Configurar-Java.ps1
 # La seleccion solo afecta a esta sesion y sus procesos hijos.
 
-function Test-NutriVidaJdk21 {
+function Test-NutriVidaJdk25 {
     param ([string]$Directory)
 
     if (-not $Directory) {
@@ -23,8 +23,8 @@ function Test-NutriVidaJdk21 {
         $compilerSucceeded = $LASTEXITCODE -eq 0
 
         return $runtimeSucceeded -and $compilerSucceeded `
-            -and $runtimeVersion -match '(?m)^(?:openjdk|java) 21(?:[.\s+"-]|$)' `
-            -and $compilerVersion -match '(?m)^javac 21(?:[.\s+"-]|$)'
+            -and $runtimeVersion -match '(?m)^(?:openjdk|java) 25(?:[.\s+"-]|$)' `
+            -and $compilerVersion -match '(?m)^javac 25(?:[.\s+"-]|$)'
     }
     catch {
         return $false
@@ -50,7 +50,7 @@ $nutriVidaJavaSearchDirectories += Join-Path $PSScriptRoot '..\..\herramientas'
 
 foreach ($searchDirectory in $nutriVidaJavaSearchDirectories) {
     $installedJdks = Get-ChildItem -LiteralPath $searchDirectory -Directory `
-        -Filter 'jdk-21*' -ErrorAction SilentlyContinue |
+        -Filter 'jdk-25*' -ErrorAction SilentlyContinue |
         Sort-Object Name -Descending
 
     foreach ($installedJdk in $installedJdks) {
@@ -69,14 +69,14 @@ if ($nutriVidaJavaOnPath) {
 $nutriVidaSelectedJdk = $null
 
 foreach ($candidateDirectory in $nutriVidaJavaCandidates) {
-    if (Test-NutriVidaJdk21 -Directory $candidateDirectory) {
+    if (Test-NutriVidaJdk25 -Directory $candidateDirectory) {
         $nutriVidaSelectedJdk = (Resolve-Path -LiteralPath $candidateDirectory).Path
         break
     }
 }
 
 if (-not $nutriVidaSelectedJdk) {
-    throw 'Se necesita un JDK 21 completo (java y javac). Instala Java 21, configura JAVA_HOME o extrae el JDK portable en .local\tools\jdk-21*. Revisa README.md.'
+    throw 'Se necesita un JDK 25 completo (java y javac). Instala Java 25, configura JAVA_HOME o extrae el JDK portable en .local\tools\jdk-25*. Revisa README.md.'
 }
 
 $env:JAVA_HOME = $nutriVidaSelectedJdk

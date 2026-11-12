@@ -1,8 +1,7 @@
 package cl.nutrivida.administracion.controller;
 
-import cl.nutrivida.administracion.service.UsuariosGateway;
+import cl.nutrivida.administracion.client.UsuariosClient;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @SecurityRequirement(name = "bearerAuth")
 public class ProfesionalesController {
 
-    private final UsuariosGateway gateway;
+    private final UsuariosClient usuariosClient;
 
-    public ProfesionalesController(UsuariosGateway gateway) {
-        this.gateway = gateway;
+    public ProfesionalesController(UsuariosClient usuariosClient) {
+        this.usuariosClient = usuariosClient;
     }
 
     @GetMapping("/profesionales")
     public ResponseEntity<String> listar(@RequestHeader("Authorization") String authorization) {
-        return gateway.enviar(HttpMethod.GET, "/api/admin/profesionales", authorization, null);
+        return usuariosClient.listarProfesionales(authorization);
     }
 
     @GetMapping("/profesionales/{id}")
@@ -35,12 +34,7 @@ public class ProfesionalesController {
         @RequestHeader("Authorization") String authorization,
         @PathVariable Long id
     ) {
-        return gateway.enviar(
-            HttpMethod.GET,
-            "/api/admin/profesionales/" + id,
-            authorization,
-            null
-        );
+        return usuariosClient.verProfesional(authorization, id);
     }
 
     @PostMapping("/profesionales")
@@ -48,7 +42,7 @@ public class ProfesionalesController {
         @RequestHeader("Authorization") String authorization,
         @RequestBody String cuerpo
     ) {
-        return gateway.enviar(HttpMethod.POST, "/api/admin/profesionales", authorization, cuerpo);
+        return usuariosClient.crearProfesional(authorization, cuerpo);
     }
 
     @PutMapping("/profesionales/{id}")
@@ -57,12 +51,7 @@ public class ProfesionalesController {
         @PathVariable Long id,
         @RequestBody String cuerpo
     ) {
-        return gateway.enviar(
-            HttpMethod.PUT,
-            "/api/admin/profesionales/" + id,
-            authorization,
-            cuerpo
-        );
+        return usuariosClient.editarProfesional(authorization, id, cuerpo);
     }
 
     @DeleteMapping("/profesionales/{id}")
@@ -70,12 +59,7 @@ public class ProfesionalesController {
         @RequestHeader("Authorization") String authorization,
         @PathVariable Long id
     ) {
-        return gateway.enviar(
-            HttpMethod.DELETE,
-            "/api/admin/profesionales/" + id,
-            authorization,
-            null
-        );
+        return usuariosClient.desactivarProfesional(authorization, id);
     }
 
     @GetMapping("/pacientes/{id}/profesional")
@@ -83,12 +67,7 @@ public class ProfesionalesController {
         @RequestHeader("Authorization") String authorization,
         @PathVariable Long id
     ) {
-        return gateway.enviar(
-            HttpMethod.GET,
-            "/api/admin/pacientes/" + id + "/profesional",
-            authorization,
-            null
-        );
+        return usuariosClient.consultarAsignacion(authorization, id);
     }
 
     @PutMapping("/pacientes/{id}/profesional")
@@ -97,11 +76,6 @@ public class ProfesionalesController {
         @PathVariable Long id,
         @RequestBody String cuerpo
     ) {
-        return gateway.enviar(
-            HttpMethod.PUT,
-            "/api/admin/pacientes/" + id + "/profesional",
-            authorization,
-            cuerpo
-        );
+        return usuariosClient.asignarProfesional(authorization, id, cuerpo);
     }
 }

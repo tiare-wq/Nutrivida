@@ -31,7 +31,7 @@ try {
     Push-Location $PSScriptRoot
 
     try {
-        Write-Host "Verificando el backend con Java 21: $env:JAVA_HOME"
+        Write-Host "Verificando el backend con Java 25: $env:JAVA_HOME"
         & $mavenExecutable @mavenArguments
         $verificationExitCode = $LASTEXITCODE
     }
