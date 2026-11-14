@@ -10,7 +10,11 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD:fase3/frontend/src/css/styles.css
 
+=======
+    
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/styles.css
     color: rgb(33, 211, 99);
     text-decoration: none;
 
@@ -25,7 +29,11 @@ a img {
 
 body {
     background-color: rgba(227, 241, 198, 0.082);
+<<<<<<< HEAD:fase3/frontend/src/css/styles.css
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+=======
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/styles.css
 
     min-width: 315px;
 }
@@ -159,7 +167,11 @@ label {
     width: 100%;
     min-height: 600px;
 
+<<<<<<< HEAD:fase3/frontend/src/css/styles.css
     background-image: url('/img/nutricion.png');
+=======
+    background-image: url("../../img/nutricion.png");
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/styles.css
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -336,7 +348,11 @@ label {
     .oferta {
         padding: 5px;
     }
+<<<<<<< HEAD:fase3/frontend/src/css/styles.css
 
+=======
+    
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/styles.css
     .titulo h1 {
         font-size: 20px;
 

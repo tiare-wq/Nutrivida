@@ -20,7 +20,11 @@
     align-items: center;
 }
 
+<<<<<<< HEAD:fase3/frontend/src/css/perfil.css
 .campo-perfil p {
+=======
+.campo-perfil p{
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/perfil.css
     margin: 0 0 0 10px;
 }
 
@@ -43,4 +47,8 @@
 
 .mensaje-bienvenida {
     margin: 20px;
+<<<<<<< HEAD:fase3/frontend/src/css/perfil.css
 }
+=======
+}
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/perfil.css

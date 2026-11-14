@@ -11,12 +11,18 @@
     "server": "node server/index.js",
     "start": "node server/index.js",
     "build": "vite build",
+<<<<<<< HEAD
     "preview": "vite preview --host 127.0.0.1",
     "admin": "node server/admin.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:api": "node --test server/api.test.js"
+=======
+    "lint": "oxlint",
+    "test": "vitest",
+    "preview": "vite preview"
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
@@ -27,6 +33,7 @@
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -35,5 +42,19 @@
     "jsdom": "^26.1.0",
     "vite": "^8.3.0",
     "vitest": "^5.0.3"
+=======
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "@vitest/coverage-v8": "^5.0.5",
+    "@vitest/ui": "^5.0.5",
+    "jsdom": "^30.1.3",
+    "oxlint": "^1.81.0",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.5"
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2
   }
 }

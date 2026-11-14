@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="1" failures="1" errors="0" time="0">
+    <testsuite name="src/test/carrito.test.jsx" timestamp="2026-10-17T14:56:37.797Z" hostname="Titi🐦" tests="1" failures="1" errors="0" skipped="0" time="0">
+        <testcase classname="src/test/carrito.test.jsx" name="src/test/carrito.test.jsx" time="0">
+            <failure message="test is not defined" type="ReferenceError">
+ReferenceError: test is not defined
+ ❯ src/test/carrito.test.jsx:55:5
+            </failure>
+        </testcase>
+    </testsuite>
+</testsuites>

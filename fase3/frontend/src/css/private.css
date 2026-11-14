@@ -6,8 +6,12 @@
     padding: 20px;
 }
 
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
 .card-private th,
 td {
+=======
+.card-private th, td {
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
     padding: 10px;
 }
 
@@ -23,7 +27,11 @@ td {
 }
 
 .fondo-principal {
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
     background-image: url('/img/fondoHojas.png');
+=======
+    background-image: url("../../img/fondoHojas.png");
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
     width: 100%;
     border-radius: 10px;
 
@@ -35,11 +43,19 @@ td {
 }
 
 .nav-private {
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
     background-image: url('/img/navbarHojas.png');
     width: 100%;
 
     color: rgb(33, 211, 99);
 
+=======
+    background-image: url("../../img/navbarHojas.png");
+    width: 100%;
+
+    color: rgb(33, 211, 99);
+    
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
     white-space: nowrap;
     padding: 20px;
 }
@@ -70,7 +86,11 @@ td {
 }
 
 .tabla-ver thead {
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
     background-color: #a8bfa5;
+=======
+    background-color: #A8BFA5;
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
 }
 
 .tabla-ver tr {
@@ -78,11 +98,19 @@ td {
 }
 
 .tabla-ver tr:nth-child(even) {
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
     background-color: #a8bfa5;
+=======
+  background-color: #A8BFA5;
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
 }
 
 @media screen and (max-width: 860px) {
     .private {
         grid-template-columns: 1fr;
     }
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
 }
+=======
+}
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css

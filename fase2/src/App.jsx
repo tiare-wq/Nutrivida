@@ -44,6 +44,37 @@ function Shell() {
   const { user, items, notice, setNotice, logout, loading, error, refresh } =
     useApp();
   return (
+    <BrowserRouter>
+      <ScrollTop />
+      <Routes>
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Navigate to="/inicio" replace />} />
+          <Route path="/carrito" element={<Carrito />} />
+          <Route path="/consultas" element={<Consultas />} />
+          <Route path="/confirmacion-reserva" element={<Confirmacion />} />
+          <Route path="/evaluaciones" element={<Evaluaciones />} />
+          <Route path="/inicio" element={<Inicio />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/login-admin" element={<LoginAdmin />} />
+          <Route path="/planes" element={<Planes />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/reservas" element={<Reserva />} />
+          <Route path="/talleres" element={<Talleres />} />
+        </Route>
+
+        <Route element={<Acceso><PrivateLayout /></Acceso>}>
+          <Route path="mis-reservas" element={<MisReservas />} />
+          <Route path="mis-planes" element={<MisPlanes />} />
+          <Route path="perfil" element={<PerfilPaciente />} />
+        </Route>
+        <Route element={<AccesoAdmin><PrivateLayout /></AccesoAdmin>}>
+          <Route path="admin/agregar" element={<Agregar />} />
+          <Route path="admin/eliminar" element={<Eliminar />} />
+          <Route path="admin/ver-todo" element={<Ver />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/inicio" replace />} />
+      </Routes>
+
     <>
       <ScrollTop />
       <a className="skip-link" href="#contenido">

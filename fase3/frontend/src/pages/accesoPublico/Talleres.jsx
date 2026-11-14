@@ -3,9 +3,27 @@ import Servicio from '../../components/Servicio';
 import { leerTalleres } from '../../data/servicios';
 
 function Talleres() {
+<<<<<<< HEAD:fase3/frontend/src/pages/accesoPublico/Talleres.jsx
     const [listaTalleres, setListaTalleres] = useState(() => {
         return leerTalleres();
     });
+=======
+  const [listaTalleres, setListaTalleres] = useState(() => {
+          return leerTalleres();
+      });
+  
+      useEffect(() => {
+          const actualizar = () => {
+              setListaTalleres(leerTalleres());
+          };
+  
+          window.addEventListener('servicios:actualizar', actualizar);
+  
+          return () => {
+              window.removeEventListener('servicios:actualizar', actualizar);
+          };
+      }, []);
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/pages/publico/Talleres.jsx
 
     useEffect(() => {
         const actualizar = () => {
@@ -23,8 +41,14 @@ function Talleres() {
         <main className="container">
             <div className="container-fluid justify-content-center h-100 row min-vh-100">
                 <h1 className="titulo-servicio">Talleres Grupales</h1>
+<<<<<<< HEAD:fase3/frontend/src/pages/accesoPublico/Talleres.jsx
 
                 {listaTalleres.map((servicio) => (
+=======
+                
+                {listaTalleres.map((servicio) =>
+                (
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/pages/publico/Talleres.jsx
                     <Servicio
                         key={servicio.id}
                         id={servicio.id}
