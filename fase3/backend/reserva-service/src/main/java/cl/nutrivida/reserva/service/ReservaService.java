@@ -1,11 +1,12 @@
 package cl.nutrivida.reserva.service;
 
 import cl.nutrivida.reserva.entity.TipoPaciente;
+import cl.nutrivida.reserva.exception.PermisosInsuficientesException;
 import cl.nutrivida.reserva.request.ReagendarRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import cl.nutrivida.reserva.client.ServicioFeignClient;
+//import cl.nutrivida.reserva.client.ServicioFeignClient;
 import cl.nutrivida.reserva.client.UsuarioFeignClient;
 import cl.nutrivida.reserva.client.model.PacienteClient;
 import cl.nutrivida.reserva.client.model.ProfesionalClient;
@@ -32,7 +33,7 @@ public class ReservaService {
 
     private final ReservaMapper reservaMapper;
     private final ReservaRepository reservaRepository;
-    private final ServicioFeignClient servicioFeignClient;
+    //private final ServicioFeignClient servicioFeignClient;
     private final UsuarioFeignClient usuarioFeignClient;
 
     @Value("${reserva.anticipacion-maxima-meses}")
@@ -62,8 +63,8 @@ public class ReservaService {
 
         // Inicia validación y obtención de datos con ms
         log.debug("Validar si se encuentra el servicio");
-        if (!servicioFeignClient.findServicioByName(dto.getNombreServicio()))
-            throw new ResourceNotFoundException("No se encuentra el servicio con el nombre: " + dto.getNombreServicio());
+        /*if (!servicioFeignClient.findServicioByName(dto.getNombreServicio()))
+            throw new ResourceNotFoundException("No se encuentra el servicio con el nombre: " + dto.getNombreServicio());*/
 
         log.debug("Obtener id de paciente {}", dto.getRunPaciente());
 
@@ -91,7 +92,14 @@ public class ReservaService {
         return convertirReservaADto(entity);
     }
 
-    public Page<ReservaDto> obtenerTodasLasReservasPaciente(Long id, Pageable pageable) {
+    public Page<ReservaDto> obtenerTodasLasReservasPaciente(Long idPaciente, Long idActual, Pageable pageable) {
+        if (!idPaciente.equals(idActual))
+            throw new PermisosInsuficientesException("No tiene permisos suficientes para ver las reservas de este paciente.");
+        return reservaRepository.findAllByIdPaciente(idPaciente, pageable)
+            .map(this::convertirReservaADto);
+    }
+
+    public Page<ReservaDto> obtenerTodasLasReservasPacienteDeProfesional(Long id, Pageable pageable) {
         return reservaRepository.findAllByIdPaciente(id, pageable)
             .map(this::convertirReservaADto);
     }

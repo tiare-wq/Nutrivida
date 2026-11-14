@@ -1,7 +1,6 @@
 package cl.nutrivida.reserva.controller;
 
 import cl.nutrivida.reserva.dto.ReservaDto;
-import cl.nutrivida.reserva.entity.TipoPaciente;
 import cl.nutrivida.reserva.request.ReagendarRequest;
 import cl.nutrivida.reserva.service.ReservaService;
 import jakarta.validation.Valid;
@@ -34,14 +33,28 @@ public class ReservaController {
         return ResponseEntity.ok(resultado);
     }
 
-    @GetMapping("/paciente/{id}")
+    @GetMapping("/me/{id}")
     public ResponseEntity<Page<ReservaDto>> mostrarTodasLasReservasPaciente(
+        @AuthenticationPrincipal Jwt token,
         @PathVariable Long id,
          @PageableDefault (size = 10, sort = {"fecha", "hora"}) @ParameterObject Pageable pageable
     ) {
         log.info("Inicia búsqueda de todas las reservas asociadas a un cliente");
 
-        Page<ReservaDto> resultado = reservaService.obtenerTodasLasReservasPaciente(id, pageable);
+        Long idActual = Long.parseLong(token.getId());
+
+        Page<ReservaDto> resultado = reservaService.obtenerTodasLasReservasPaciente(id, idActual, pageable);
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/paciente/{id}")
+    public ResponseEntity<Page<ReservaDto>> mostrarTodasLasReservasPacienteDeProfesional(
+        @PathVariable Long id,
+        @PageableDefault (size = 10, sort = {"fecha", "hora"}) @ParameterObject Pageable pageable
+    ) {
+        log.info("Inicia búsqueda de todas las reservas asociadas a un cliente");
+
+        Page<ReservaDto> resultado = reservaService.obtenerTodasLasReservasPacienteDeProfesional(id, pageable);
         return ResponseEntity.ok(resultado);
     }
 
@@ -69,5 +82,14 @@ public class ReservaController {
 
         ReservaDto resultado = reservaService.reagendar(id, request);
         return ResponseEntity.ok(resultado);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ReservaDto> eliminarReserva(
+        @PathVariable Long id,
+        @Valid @RequestBody ReagendarRequest request
+    ) {
+        reservaService.eliminarReserva(id);
+        return ResponseEntity.ok().build();
     }
 }

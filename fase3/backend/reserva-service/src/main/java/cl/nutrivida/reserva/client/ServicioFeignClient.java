@@ -1,3 +1,4 @@
+/*
 package cl.nutrivida.reserva.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -10,3 +11,4 @@ public interface ServicioFeignClient {
     @GetMapping("api/servicios/servicio/{nombre}")
     Boolean findServicioByName(@RequestParam String nombre);
 }
+*/

@@ -55,6 +55,7 @@ public class SecurityConfig {
         HttpSecurity http) throws Exception {
 
         return http
+            .csrf(csrf -> csrf.disable())
             // API sin sesiones HTTP tradicionales
             .sessionManagement(session ->
                 session.sessionCreationPolicy(
@@ -84,7 +85,6 @@ public class SecurityConfig {
             .oauth2ResourceServer(oauth ->
                 oauth.jwt(Customizer.withDefaults())
             )
-
             .build();
     }
 }

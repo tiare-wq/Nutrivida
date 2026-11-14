@@ -5,7 +5,9 @@ import consultas from '../../data/consultas';
 import evaluaciones from '../../data/evaluaciones';
 import planes from '../../data/planes';
 import talleres from '../../data/talleres';
-import { fechaClave, guardarReserva, horaOcupada, pacienteActual, TipoPaciente } from '../../data/almacen';
+import { useSesion } from '../../context/sesion';
+import { fechaClave, horaOcupada, TipoPaciente } from '../../data/almacen';
+import { crearReserva } from '../../service/reservaService';
 
 const categorias = [
     ['consultas', 'Consulta'],
@@ -25,7 +27,9 @@ const horas = ['10:00', '11:00', '12:00'];
 function ReservaPaciente() {
     const location = useLocation();
     const navigate = useNavigate();
-    const paciente = pacienteActual();
+    
+    const { usuario } = useSesion();
+
     const [atencion, setAtencion] = useState(location.state?.atencion ?? '');
     const [servicio, setServicio] = useState(String(location.state?.servicio ?? ''));
     const [profesional, setProfesional] = useState('');
@@ -47,22 +51,21 @@ function ReservaPaciente() {
     });
 
     useEffect(() => {
-        if (!paciente) {
+        if (!usuario) {
             navigate('/login', { state: { next: '/reservas', reserva: { atencion, servicio } } });
-        }}, [paciente]);
+        }}, []);
 
-    function enviar(event) {
+    async function enviar(event) {
         event.preventDefault();
         if (!elegido || !profesional || !hora || fecha < hoy || fecha > limite) {
             setError('Selecciona un servicio, profesional, fecha y hora válidos.');
             return;
         }
-        const reserva = guardarReserva({
+        const reserva = await crearReserva({
             servicio: elegido.nombre,
             profesional,
             precio: elegido.precio,
-            fecha: fechaClave(fecha),
-            hora,
+            fechaHora: `${fechaClave(fecha)}T${hora}`,
             tipoPaciente: TipoPaciente.SESION_INICIADA
         });
         if (!reserva) {
@@ -77,7 +80,7 @@ function ReservaPaciente() {
             <div className="d-flex justify-content-center align-items-center page min-vh-100">
                 <form className="border rounded p-4 shadow bg-white formulario" onSubmit={enviar}>
                     <h1 className="subtitulo-form">Reserva tu atención</h1>
-                    {paciente && <p>Paciente: {paciente.nombre}</p>}
+                    {usuario && <p>Paciente: {usuario.nombre}</p>}
                     <div className="campo">
                         <label htmlFor="atencion-select">Tipo de atención</label>
                         <select
@@ -181,7 +184,7 @@ function ReservaPaciente() {
                         </p>
                     )}
                     <button type="submit" id="btn-form" className="btn-nutrivida">
-                        {paciente ? 'Confirmar reserva' : 'Inicia sesión para reservar'}
+                        {usuario ? 'Confirmar reserva' : 'Inicia sesión para reservar'}
                     </button>
                 </form>
             </div>

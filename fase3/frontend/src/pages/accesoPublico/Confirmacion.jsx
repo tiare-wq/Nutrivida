@@ -22,7 +22,7 @@ function Confirmacion() {
                     </div>
                     <p>Tu atención quedó guardada en este navegador.</p>
                     <p>
-                        {reserva.fecha.split('-').reverse().join('-')} a las {reserva.hora} horas.
+                        {reserva.fecha.split('-').reverse().join('-')}
                     </p>
                     <p>Servicio: {reserva.servicio}</p>
                     <p>Profesional: {reserva.profesional}</p>
