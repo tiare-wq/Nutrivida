@@ -1,6 +1,7 @@
 package cl.nutrivida.reserva.service;
 
 import cl.nutrivida.reserva.entity.TipoPaciente;
+import cl.nutrivida.reserva.exception.PermisosInsuficientesException;
 import cl.nutrivida.reserva.request.ReagendarRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -91,7 +92,14 @@ public class ReservaService {
         return convertirReservaADto(entity);
     }
 
-    public Page<ReservaDto> obtenerTodasLasReservasPaciente(Long id, Pageable pageable) {
+    public Page<ReservaDto> obtenerTodasLasReservasPaciente(Long idPaciente, Long idActual, Pageable pageable) {
+        if (!idPaciente.equals(idActual))
+            throw new PermisosInsuficientesException("No tiene permisos suficientes para ver las reservas de este paciente.");
+        return reservaRepository.findAllByIdPaciente(idPaciente, pageable)
+            .map(this::convertirReservaADto);
+    }
+
+    public Page<ReservaDto> obtenerTodasLasReservasPacienteDeProfesional(Long id, Pageable pageable) {
         return reservaRepository.findAllByIdPaciente(id, pageable)
             .map(this::convertirReservaADto);
     }
