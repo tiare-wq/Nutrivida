@@ -42,6 +42,7 @@ export async function solicitar(path, { method = 'GET', body, reintentar = true 
     }
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
+        console.log(data.message)
         throw new Error(data.message || `Solicitud rechazada (${response.status})`);
     }
     return data;

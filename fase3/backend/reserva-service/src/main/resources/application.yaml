@@ -1,13 +1,34 @@
-port: 8083
+server:
+  port: 8083
+  error:
+    include-message: never
+    include-stacktrace: never
 
 spring:
   application:
     name: reserva
-  environment:
-    POSTGRE_USER:
+  profiles:
+    default: postgres
+
+  datasource:
+    url: jdbc:postgresql://${DB_URL}:5432/postgres
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
 
 reserva:
   anticipacion-maxima-meses: 6
   horario:
     apertura: "08:00"
     cierre: "21:00"
+
+app:
+  jwt-secret: ${JWT_SECRET}

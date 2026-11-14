@@ -5,7 +5,8 @@ import consultas from '../../data/consultas';
 import evaluaciones from '../../data/evaluaciones';
 import planes from '../../data/planes';
 import talleres from '../../data/talleres';
-import { fechaClave, guardarReservaInvitado, horaOcupada, TipoPaciente } from '../../data/almacen';
+import { fechaClave, horaOcupada, TipoPaciente } from '../../data/almacen';
+import { crearReserva } from '../../service/reservaService';
 
 const categorias = [
     ['consultas', 'Consulta'],
@@ -51,7 +52,7 @@ function ReservaInvitado() {
 
     const runPattern = /^[0-9]\d{7,8}-[0-9kK]$/;
 
-    function enviar(event) {
+    async function enviar(event) {
         event.preventDefault();
         if (!elegido || !profesional || !hora || fecha < hoy || fecha > limite) {
             setError('Selecciona un servicio, profesional, fecha y hora válidos.');
@@ -73,12 +74,11 @@ function ReservaInvitado() {
             setError('Ingrese un RUN válido');
             return;
         }
-        const reserva = guardarReservaInvitado({
+        const reserva = await crearReserva({
             servicio: elegido.nombre,
             profesional,
             precio: elegido.precio,
-            fecha: fechaClave(fecha),
-            hora,
+            fechaHora: `${fechaClave(fecha)}T${hora}`,
             nombre,
             run,
             email,
@@ -276,4 +276,4 @@ function ReservaInvitado() {
     );
 }
 
-export default ReservaPaciente;
+export default ReservaInvitado;
