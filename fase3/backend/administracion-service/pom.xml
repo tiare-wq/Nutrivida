@@ -8,6 +8,12 @@
     </parent>
     <artifactId>administracion-service</artifactId>
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- Persistencia de datos -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

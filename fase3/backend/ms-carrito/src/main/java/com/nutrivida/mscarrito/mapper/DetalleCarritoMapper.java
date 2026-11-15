@@ -18,8 +18,8 @@ public class DetalleCarritoMapper {
     public List<DetalleCarritoDTO> convertirListaDTO(List<DetalleCarrito> detalles){
         List<DetalleCarritoDTO> lista = new ArrayList<>();
         for (DetalleCarrito detalle : detalles) {
-            convertirDTO(detalle);
-            lista.add(detalle);
+            DetalleCarritoDTO dto = convertirDTO(detalle);
+            lista.add(dto);
         }
         return lista;
     }
