@@ -1,5 +1,5 @@
 package cl.nutrivida.administracion.config;
-
+import org.springframework.http.HttpMethod;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import javax.crypto.spec.SecretKeySpec;
@@ -43,30 +43,42 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain security(HttpSecurity http) throws Exception {
-        var roles = new JwtGrantedAuthoritiesConverter();
-        roles.setAuthoritiesClaimName("roles");
-        roles.setAuthorityPrefix("ROLE_");
-        var converter = new JwtAuthenticationConverter();
-        converter.setJwtGrantedAuthoritiesConverter(roles);
-        return http
-            .csrf(c -> c.disable())
-            .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(a ->
-                a
-                    .requestMatchers(
-                        "/swagger-ui/**",
-                        "/swagger-ui.html",
-                        "/v3/api-docs/**",
-                        "/api/health"
-                    )
-                    .permitAll()
-                    .requestMatchers("/api/admin/**")
-                    .hasRole("ADMIN")
-                    .anyRequest()
-                    .authenticated()
-            )
-            .oauth2ResourceServer(o -> o.jwt(j -> j.jwtAuthenticationConverter(converter)))
-            .build();
-    }
+SecurityFilterChain security(HttpSecurity http) throws Exception {
+
+    var roles = new JwtGrantedAuthoritiesConverter();
+    roles.setAuthoritiesClaimName("roles");
+    roles.setAuthorityPrefix("ROLE_");
+
+    var converter = new JwtAuthenticationConverter();
+    converter.setJwtGrantedAuthoritiesConverter(roles);
+
+    return http
+        .csrf(c -> c.disable())
+        .sessionManagement(s ->
+            s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        )
+        .authorizeHttpRequests(a -> a
+            .requestMatchers(
+                "/swagger-ui/**",
+                "/swagger-ui.html",
+                "/v3/api-docs/**",
+                "/api/health"
+            ).permitAll()
+
+            // Permitir consultar planes sin JWT
+            .requestMatchers(
+                HttpMethod.GET,
+                "/api/v1/planes/**"
+            ).permitAll()
+
+            // Mantener protegidas las rutas administrativas
+            .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
+            .anyRequest().authenticated()
+        )
+        .oauth2ResourceServer(o ->
+            o.jwt(j -> j.jwtAuthenticationConverter(converter))
+        )
+        .build();
+}
 }
