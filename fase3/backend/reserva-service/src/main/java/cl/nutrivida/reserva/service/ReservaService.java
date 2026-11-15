@@ -19,8 +19,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -35,6 +39,7 @@ public class ReservaService {
     private final ReservaRepository reservaRepository;
     //private final ServicioFeignClient servicioFeignClient;
     private final UsuarioFeignClient usuarioFeignClient;
+    private final JavaMailSender emailSender;
 
     @Value("${reserva.anticipacion-maxima-meses}")
     private Integer anticipacionMaximaMeses;
@@ -45,11 +50,12 @@ public class ReservaService {
     @Value("${reserva.horario.cierre}")
     private LocalTime cierre;
 
+    private NumberFormat moneda = NumberFormat.getCurrencyInstance();
     // ---------------------------------
     // CREATE
     // ---------------------------------
 
-    public ReservaDto agregarReserva(ReservaDto dto, Long pacienteID) {
+    public ReservaDto agregarReserva(ReservaDto dto, String correo, Long pacienteID) {
 
         LocalDateTime hoy = LocalDateTime.now();
 
@@ -61,22 +67,32 @@ public class ReservaService {
         if (dto.getFecha().toLocalTime().isBefore(apertura) || dto.getFecha().toLocalTime().isAfter(cierre))
             throw new IllegalArgumentException("La hora seleccionada está fuera del horario de atención");
 
+        if (horaOcupada(dto.getFecha()))
+            throw new IllegalArgumentException("La hora seleccionada está ocupada. Por favor, seleccione otra");
+
         // Inicia validación y obtención de datos con ms
         log.debug("Validar si se encuentra el servicio");
         /*if (!servicioFeignClient.findServicioByName(dto.getNombreServicio()))
             throw new ResourceNotFoundException("No se encuentra el servicio con el nombre: " + dto.getNombreServicio());*/
-
-        log.debug("Obtener id de paciente {}", dto.getRunPaciente());
 
         log.debug("Obtener id de profesional {}", dto.getRunProfesional());
         Long idProfesional = usuarioFeignClient.obtenerProfesionalPorRun(dto.getRunProfesional());
         if (idProfesional == null)
             throw new ResourceNotFoundException("No se encuentra el profesional con el RUN: " + dto.getRunProfesional());
 
+        Long codigo = generarCodigo();
+        dto.setCodigo(codigo);
+
         Reserva nuevaReserva = reservaMapper.toEntity(dto, pacienteID, idProfesional);
+
+        enviarCorreo(nuevaReserva, correo);
 
         log.info("Nueva reserva agregada con éxito {}", nuevaReserva.getId());
         return convertirReservaADto(nuevaReserva);
+    }
+
+    private Boolean horaOcupada(LocalDateTime fecha) {
+        return reservaRepository.existsByFecha(fecha);
     }
 
     // ---------------------------------
@@ -121,6 +137,9 @@ public class ReservaService {
         if (request.getFecha().isBefore(LocalDateTime.now()))
             throw new IllegalArgumentException("Elija una fecha y hora válida");
 
+        if (horaOcupada(dto.getFecha()))
+            throw new IllegalArgumentException("La hora seleccionada está ocupada. Por favor, seleccione otra");
+
         Reserva entity = reservaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No se encuentra la reserva con el id " + id));
 
@@ -159,5 +178,32 @@ public class ReservaService {
             paciente.getRun(),
             profesional.getNombre()
         );
+    }
+
+    // ---------------------------------
+    // ENVIAR MENSAJE DE CONFIRMACIÓN
+    // ---------------------------------
+    @Async
+    private void enviarCorreo(Reserva reserva, String destinatario) {
+        try {
+            SimpleMailMessage mensaje = new SimpleMailMessage();
+            mensaje.setTo(destinatario);
+            mensaje.setSubject("Cita agendada - Nutrivida");
+            mensaje.setText(
+                "¡Tu cita ha sido agendada exitosamente!\n\n" +
+                    "Código: " + reserva.getCodigo() + "\n" +
+                    "Fecha: " + reserva.getFecha().toLocalDate() + "\n" +
+                    "Hora: " + reserva.getFecha().toLocalTime() + " hrs.\n" +
+                    "Servicio: " + reserva.getNombreServicio() + "\n" +
+                    "Valor: $" + moneda.format(reserva.getPrecio())
+            );
+            emailSender.send(mensaje);
+        } catch (Exception e) {
+            new Exception(e);
+        }
+    }
+
+    public Long generarCodigo() {
+        return Math.round(Math.random() * Math.pow(10, 12));
     }
 }

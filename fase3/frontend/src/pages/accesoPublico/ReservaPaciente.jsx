@@ -6,7 +6,7 @@ import evaluaciones from '../../data/evaluaciones';
 import planes from '../../data/planes';
 import talleres from '../../data/talleres';
 import { useSesion } from '../../context/sesion';
-import { fechaClave, horaOcupada, TipoPaciente } from '../../data/almacen';
+import { fechaClave, TipoPaciente } from '../../data/almacen';
 import { crearReserva } from '../../service/reservaService';
 
 const categorias = [
@@ -27,7 +27,7 @@ const horas = ['10:00', '11:00', '12:00'];
 function ReservaPaciente() {
     const location = useLocation();
     const navigate = useNavigate();
-    
+
     const { usuario } = useSesion();
 
     const [atencion, setAtencion] = useState(location.state?.atencion ?? '');

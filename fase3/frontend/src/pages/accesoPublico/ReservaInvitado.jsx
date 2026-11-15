@@ -87,7 +87,7 @@ function ReservaInvitado() {
 
         });
         if (!reserva) {
-            setError('Esa hora ya está reservada. Elige otra disponible.');
+            setError(reserva.message());
             return;
         }
         navigate('/confirmacion-reserva', { state: reserva });

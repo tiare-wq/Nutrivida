@@ -24,11 +24,17 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private Long codigo;
+
     @Column(name = "tipo_atencion", nullable = false)
     private TipoAtencion tipoAtencion;
 
     @Column(name = "nombre_servicio", nullable = false, length = 150)
     private String nombreServicio;
+
+    @Column(nullable = false)
+    private Double precio;
 
     @Column(name = "id_paciente")
     private Long idPaciente;

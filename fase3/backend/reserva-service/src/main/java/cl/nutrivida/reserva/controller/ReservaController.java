@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 @RestController
 @RequestMapping("/api/v1/reservas")
@@ -67,11 +68,12 @@ public class ReservaController {
     @PostMapping
     public ResponseEntity<ReservaDto> agregarReserva(
         @AuthenticationPrincipal Jwt token,
-        @Valid @RequestBody ReservaDto reserva
+        @Valid @RequestBody ReservaDto reserva,
+        @PathVariable String correo
     ) {
         Long pacienteID = Long.parseLong(token.getSubject());
-        ReservaDto resultado = reservaService.agregarReserva(reserva, pacienteID);
-        return ResponseEntity.ok(resultado);
+        ReservaDto resultado = reservaService.agregarReserva(reserva, correo, pacienteID);
+        return ResponseEntity.status(HttpStatus.CREATED).body(resultado);
     }
 
     @PutMapping("/{id}")
@@ -90,6 +92,6 @@ public class ReservaController {
         @Valid @RequestBody ReagendarRequest request
     ) {
         reservaService.eliminarReserva(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.http(HttpStatus.NO_CONTENT).build();
     }
 }

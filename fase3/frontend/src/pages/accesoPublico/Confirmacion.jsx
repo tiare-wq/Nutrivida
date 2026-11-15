@@ -22,7 +22,7 @@ function Confirmacion() {
                     </div>
                     <p>Tu atención quedó guardada en este navegador.</p>
                     <p>
-                        {reserva.fecha.split('-').reverse().join('-')}
+                        {`${reserva.fecha.split('T')[0].split('-').reverse().join('-')} ${reserva.fecha.split('T')[1].slice(0, 5)}`}
                     </p>
                     <p>Servicio: {reserva.servicio}</p>
                     <p>Profesional: {reserva.profesional}</p>

@@ -24,6 +24,19 @@ spring:
       ddl-auto: update
     open-in-view: false
 
+  mail:
+    host: ://gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
 reserva:
   anticipacion-maxima-meses: 6
   horario:
