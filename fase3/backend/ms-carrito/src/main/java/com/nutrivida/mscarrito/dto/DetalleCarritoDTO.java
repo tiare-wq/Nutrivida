@@ -1,0 +1,16 @@
+package com.nutrivida.mscarrito.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data 
+@AllArgsConstructor 
+@NoArgsConstructor 
+
+public class DetalleCarritoDTO {
+    
+    private String idPlan;
+    private int cantidad;
+    
+}
