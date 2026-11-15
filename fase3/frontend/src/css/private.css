@@ -1,0 +1,116 @@
+.card-private {
+    background-color: white;
+    border-radius: 10px;
+
+    margin: 20px;
+    padding: 20px;
+}
+
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
+.card-private th,
+td {
+=======
+.card-private th, td {
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
+    padding: 10px;
+}
+
+.card-private table {
+    width: 100%;
+    margin: 10px;
+}
+
+.fondo {
+    background-color: rgb(217, 228, 214);
+    height: 100vh;
+    padding: 20px;
+}
+
+.fondo-principal {
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
+    background-image: url('/img/fondoHojas.png');
+=======
+    background-image: url("../../img/fondoHojas.png");
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
+    width: 100%;
+    border-radius: 10px;
+
+    padding: 20px;
+}
+
+.form-ver {
+    width: 60%;
+}
+
+.nav-private {
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
+    background-image: url('/img/navbarHojas.png');
+    width: 100%;
+
+    color: rgb(33, 211, 99);
+
+=======
+    background-image: url("../../img/navbarHojas.png");
+    width: 100%;
+
+    color: rgb(33, 211, 99);
+    
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
+    white-space: nowrap;
+    padding: 20px;
+}
+
+.nav-private .nav-link {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: green;
+
+    margin: 0;
+    padding: 5px 0;
+}
+
+.private {
+    display: grid;
+    grid-template-columns: 20% minmax(0, 1fr);
+}
+
+.tabla-ver {
+    width: 60%;
+    min-width: 360px;
+    margin: 20px;
+}
+
+.tabla-ver th {
+    padding: 10px;
+}
+
+.tabla-ver thead {
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
+    background-color: #a8bfa5;
+=======
+    background-color: #A8BFA5;
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
+}
+
+.tabla-ver tr {
+    background-color: rgb(255, 255, 255, 0.6);
+}
+
+.tabla-ver tr:nth-child(even) {
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
+    background-color: #a8bfa5;
+=======
+  background-color: #A8BFA5;
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css
+}
+
+@media screen and (max-width: 860px) {
+    .private {
+        grid-template-columns: 1fr;
+    }
+<<<<<<< HEAD:fase3/frontend/src/css/private.css
+}
+=======
+}
+>>>>>>> f7f2dd95bcca7c96e827981119a58f23a37c22b2:fase2/src/css/private.css

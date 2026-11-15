@@ -20,10 +20,10 @@ function Ver() {
                     <h1 className="subtitulo-form">Ver ofertas de servicios</h1>
 
                     <div className="campo">
-                        <label for="atencion-servicio">Tipo atención</label>
-                        <select id="atencion-servicio" name="atenciones"
+                        <label htmlFor="atencion-servicio">Tipo atención</label>
+                        <select id="atencion-servicio" name="atenciones" defaultValue=""
                         onChange={item => setTpAtencion(item.target.value)}>
-                            <option value="" selected disabled>Seleccione una opción</option>
+                            <option value="" disabled>Seleccione una opción</option>
                             <option value="Consultas">Consulta</option>
                             <option value="Evaluaciones">Evaluación</option>
                             <option value="Planes / Servicios">Planes / Servicios</option>

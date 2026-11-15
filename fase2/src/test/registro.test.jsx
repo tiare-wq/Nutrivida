@@ -1,4 +1,3 @@
-
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
@@ -98,7 +97,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 1
-  it('1. Muestra correctamente el formulario', () => {
+  test('1. Muestra correctamente el formulario', () => {
     mostrarRegistro();
 
     expect(
@@ -111,7 +110,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 2
-  it('2. Valida que todos los campos sean obligatorios', () => {
+  test('2. Valida que todos los campos sean obligatorios', () => {
     mostrarRegistro();
     enviarFormulario();
 
@@ -120,7 +119,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 3
-  it('3. Rechaza nombres demasiado cortos', () => {
+  test('3. Rechaza nombres demasiado cortos', () => {
     mostrarRegistro();
     completarFormulario();
 
@@ -137,7 +136,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 4
-  it('4. Rechaza un RUT inválido', () => {
+  test('4. Rechaza un RUT inválido', () => {
     mostrarRegistro();
     completarFormulario();
 
@@ -152,7 +151,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 5
-  it('5. Rechaza una fecha de nacimiento futura', () => {
+  test('5. Rechaza una fecha de nacimiento futura', () => {
     mostrarRegistro();
     completarFormulario();
 
@@ -170,7 +169,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 6
-  it('6. Rechaza usuarios menores de 14 años', () => {
+  test('6. Rechaza usuarios menores de 14 años', () => {
     mostrarRegistro();
     completarFormulario();
 
@@ -190,7 +189,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 7
-  it('7. Rechaza teléfonos con menos de 9 dígitos', () => {
+  test('7. Rechaza teléfonos con menos de 9 dígitos', () => {
     mostrarRegistro();
     completarFormulario();
 
@@ -207,7 +206,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 8
-  it('8. Rechaza contraseñas demasiado cortas', () => {
+  test('8. Rechaza contraseñas demasiado cortas', () => {
     mostrarRegistro();
     completarFormulario();
 
@@ -227,7 +226,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 9
-  it('9. Rechaza contraseñas que no coinciden', () => {
+  test('9. Rechaza contraseñas que no coinciden', () => {
     mostrarRegistro();
     completarFormulario();
 
@@ -242,7 +241,7 @@ describe('Pruebas unitarias del registro NutriVida', () => {
   });
 
   // TEST 10
-  it('10. Registra al paciente y redirige al perfil', () => {
+  test('10. Registra al paciente y redirige al perfil', () => {
     mostrarRegistro();
     completarFormulario();
     enviarFormulario();

@@ -1,228 +1,271 @@
-
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { MemoryRouter } from 'react-router-dom';
 
 import Carrito from '../pages/publico/Carrito';
+
+import pacientes from '../data/pacientes';
+import planes from '../data/planes';
+
 import {
-  cambiarCantidad,
-  compradosEsteAnio,
-  leerCarrito,
-  pacienteActual,
-  quitarPlan,
-  registrarPedido,
+    cambiarCantidad,
+    compradosEsteAnio,
+    leerCarrito,
+    leerPacientes,
+    pacienteActual,
+    quitarPlan,
+    registrarPedido,
 } from '../data/almacen';
 
-// Simular los planes del proyecto
-vi.mock('../data/planes', () => ({
-  default: [
-    { id: 1, nombre: 'Plan Básico', precio: '15.000' },
-    { id: 2, nombre: 'Plan Premium', precio: '25.000' },
-  ],
-}));
-
-// Simular las funciones de almacenamiento
-vi.mock('../data/almacen', () => ({
-  cambiarCantidad: vi.fn(),
-  compradosEsteAnio: vi.fn(),
-  leerCarrito: vi.fn(),
-  pacienteActual: vi.fn(),
-  quitarPlan: vi.fn(),
-  registrarPedido: vi.fn(),
-}));
-
-const paciente = {
-  id: 1,
-  nombre: 'Camila González',
-};
+const paciente = pacientes[0];
 
 const mostrarCarrito = () => {
-  return render(
-    <MemoryRouter>
-      <Carrito />
-    </MemoryRouter>
-  );
+    return render(
+        <MemoryRouter>
+            <Carrito />
+        </MemoryRouter>
+    );
 };
 
+function guardarCarrito(datos) {
+    localStorage.setItem(
+        `carrito-${paciente.id}`,
+        JSON.stringify(datos)
+    );
+}
+
 describe('Pruebas unitarias del carrito NutriVida', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
 
-    pacienteActual.mockReturnValue(paciente);
-    compradosEsteAnio.mockReturnValue(2);
-    leerCarrito.mockReturnValue([]);
-    cambiarCantidad.mockReturnValue(true);
-    registrarPedido.mockReturnValue({ id: 101 });
-  });
+    beforeEach(() => {
+        localStorage.clear();
 
-  // TEST 1
-  it('1. Solicita iniciar sesión cuando no hay paciente', () => {
-    pacienteActual.mockReturnValue(null);
+        localStorage.setItem(
+            'pacientes',
+            JSON.stringify(pacientes)
+        );
 
-    mostrarCarrito();
-
-    expect(
-      screen.getByText(/Inicia sesión con tu cuenta de paciente/i)
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByRole('link', { name: 'Iniciar sesión' })
-    ).toHaveAttribute('href', '/login');
-  });
-
-  // TEST 2
-  it('2. Muestra el carrito vacío', () => {
-    mostrarCarrito();
-
-    expect(
-      screen.getByText('Aún no tienes planes en el carrito.')
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByRole('link', { name: 'Ver planes' })
-    ).toHaveAttribute('href', '/planes');
-  });
-
-  // TEST 3
-  it('3. Muestra el nombre del paciente y sus planes registrados', () => {
-    mostrarCarrito();
-
-    expect(
-      screen.getByText(/Camila González · 2 de 10 planes registrados/i)
-    ).toBeInTheDocument();
-  });
-
-  // TEST 4
-  it('4. Muestra correctamente los planes agregados', () => {
-    leerCarrito.mockReturnValue([
-      { id: 1, cantidad: 1 },
-      { id: 2, cantidad: 1 },
-    ]);
-
-    mostrarCarrito();
-
-    expect(
-      screen.getByRole('heading', { name: 'Plan Básico' })
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByRole('heading', { name: 'Plan Premium' })
-    ).toBeInTheDocument();
-  });
-
-  // TEST 5
-  it('5. Calcula correctamente el total del carrito', () => {
-    leerCarrito.mockReturnValue([
-      { id: 1, cantidad: 2 },
-      { id: 2, cantidad: 1 },
-    ]);
-
-    mostrarCarrito();
-
-    expect(
-      screen.getByText('Total: $55.000')
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText('3 planes · máximo 10 por año')
-    ).toBeInTheDocument();
-  });
-
-  // TEST 6
-  it('6. Permite actualizar la cantidad de planes', () => {
-    leerCarrito.mockReturnValue([
-      { id: 1, cantidad: 1 },
-    ]);
-
-    cambiarCantidad.mockReturnValue(true);
-
-    mostrarCarrito();
-
-    fireEvent.change(screen.getByLabelText('Cantidad'), {
-      target: { value: '3' },
+        localStorage.setItem(
+            'pacienteId',
+            String(paciente.id)
+        );
     });
 
-    expect(cambiarCantidad).toHaveBeenCalledWith(1, 3);
-    expect(leerCarrito).toHaveBeenCalledWith(1);
-  });
+    // TEST 1
+    test('1. Solicita iniciar sesión cuando no hay paciente', () => {
+        localStorage.removeItem('pacienteId');
 
-  // TEST 7
-  it('7. Muestra error cuando se supera el límite anual', () => {
-    leerCarrito.mockReturnValue([
-      { id: 1, cantidad: 1 },
-    ]);
+        mostrarCarrito();
 
-    cambiarCantidad.mockReturnValue(false);
+        expect(
+            screen.getByText(/Inicia sesión con tu cuenta de paciente/i)
+        ).toBeInTheDocument();
 
-    mostrarCarrito();
+        expect(
+            screen.getByRole('link', { name: 'Iniciar sesión' })
+        ).toHaveAttribute('href', '/login');
 
-    fireEvent.change(screen.getByLabelText('Cantidad'), {
-      target: { value: '11' },
+        expect(pacienteActual()).toBeNull();
     });
 
-    expect(screen.getByRole('alert')).toHaveTextContent(
-      'Puedes elegir hasta 10 planes por año'
-    );
-  });
+    // TEST 2
+    test('2. Muestra el carrito vacío', () => {
+        mostrarCarrito();
 
-  // TEST 8
-  it('8. Permite quitar un plan del carrito', () => {
-    leerCarrito.mockReturnValue([
-      { id: 1, cantidad: 1 },
-    ]);
+        expect(
+            screen.getByText('Aún no tienes planes en el carrito.')
+        ).toBeInTheDocument();
 
-    mostrarCarrito();
+        expect(
+            screen.getByRole('link', { name: 'Ver planes' })
+        ).toHaveAttribute('href', '/planes');
 
-    fireEvent.click(
-      screen.getByRole('button', { name: 'Quitar' })
-    );
+        expect(leerCarrito(paciente.id)).toEqual([]);
+    });
 
-    expect(quitarPlan).toHaveBeenCalledWith(1);
-    expect(leerCarrito).toHaveBeenCalledWith(1);
-  });
+    // TEST 3
+    test('3. Muestra el nombre del paciente y sus planes registrados', () => {
+        mostrarCarrito();
 
-  // TEST 9
-  it('9. Registra correctamente un pedido', () => {
-    leerCarrito.mockReturnValue([
-      { id: 1, cantidad: 1 },
-    ]);
+        expect(
+            screen.getByText(
+                new RegExp(`${paciente.nombre} · ${compradosEsteAnio(paciente)} de 10 planes registrados`, 'i')
+            )
+        ).toBeInTheDocument();
+    });
 
-    registrarPedido.mockReturnValue({ id: 101 });
+    // TEST 4
+    test('4. Muestra correctamente los planes agregados', () => {
+        guardarCarrito([
+            { id: 'P1', cantidad: 1 },
+            { id: 'P2', cantidad: 1 },
+        ]);
 
-    mostrarCarrito();
+        mostrarCarrito();
 
-    fireEvent.click(
-      screen.getByRole('button', { name: 'Registrar pedido' })
-    );
+        expect(
+            screen.getByRole('heading', {
+                name: 'Plan de pérdida de peso (1 mes)'
+            })
+        ).toBeInTheDocument();
 
-    expect(registrarPedido).toHaveBeenCalledTimes(1);
+        expect(
+            screen.getByRole('heading', {
+                name: 'Plan de pérdida de peso (3 meses)'
+            })
+        ).toBeInTheDocument();
 
-    expect(screen.getByRole('status')).toHaveTextContent(
-      'Pedido #101 registrado'
-    );
+        expect(planes.some(plan => plan.id === 'P1')).toBe(true);
+        expect(planes.some(plan => plan.id === 'P2')).toBe(true);
+    });
 
-    expect(
-      screen.getByRole('link', { name: 'Mis planes' })
-    ).toHaveAttribute('href', '/mis-planes');
-  });
+    // TEST 5
+    test('5. Calcula correctamente el total del carrito', () => {
+        guardarCarrito([
+            { id: 'P1', cantidad: 2 },
+            { id: 'P2', cantidad: 1 },
+        ]);
 
-  // TEST 10
-  it('10. Muestra error si no se puede registrar el pedido', () => {
-    leerCarrito.mockReturnValue([
-      { id: 1, cantidad: 1 },
-    ]);
+        mostrarCarrito();
 
-    registrarPedido.mockReturnValue(null);
+        // P1: 65.000 x 2 = 130.000
+        // P2: 170.000 x 1 = 170.000
+        // Total: 300.000
 
-    mostrarCarrito();
+        expect(
+            screen.getByText('Total: $300.000')
+        ).toBeInTheDocument();
 
-    fireEvent.click(
-      screen.getByRole('button', { name: 'Registrar pedido' })
-    );
+        expect(
+            screen.getByText('3 planes · máximo 10 por año')
+        ).toBeInTheDocument();
+    });
 
-    expect(screen.getByRole('alert')).toHaveTextContent(
-      'No se pudo registrar el pedido.'
-    );
-  });
+    // TEST 6
+    test('6. Permite actualizar la cantidad de planes', () => {
+        guardarCarrito([
+            { id: 'P1', cantidad: 1 },
+        ]);
+
+        mostrarCarrito();
+
+        fireEvent.change(screen.getByLabelText('Cantidad'), {
+            target: { value: '3' },
+        });
+
+        expect(cambiarCantidad('P1', 3)).toBe(true);
+
+        expect(leerCarrito(paciente.id)).toEqual([
+            { id: 'P1', cantidad: 3 },
+        ]);
+    });
+
+    // TEST 7
+    test('7. Muestra error cuando se supera el límite anual', () => {
+        guardarCarrito([
+            { id: 'P1', cantidad: 1 },
+        ]);
+
+        mostrarCarrito();
+
+        fireEvent.change(screen.getByLabelText('Cantidad'), {
+            target: { value: '11' },
+        });
+
+        expect(
+            screen.getByRole('alert')
+        ).toHaveTextContent(
+            'Puedes elegir hasta 10 planes por año'
+        );
+
+        expect(cambiarCantidad('P1', 11)).toBe(false);
+    });
+
+    // TEST 8
+    test('8. Permite quitar un plan del carrito', () => {
+        guardarCarrito([
+            { id: 'P1', cantidad: 1 },
+        ]);
+
+        mostrarCarrito();
+
+        fireEvent.click(
+            screen.getByRole('button', { name: 'Quitar' })
+        );
+
+        quitarPlan('P1');
+
+        expect(leerCarrito(paciente.id)).toEqual([]);
+    });
+
+    // TEST 9
+    test('9. Registra correctamente un pedido', () => {
+        guardarCarrito([
+            { id: 'P1', cantidad: 1 },
+        ]);
+
+        mostrarCarrito();
+
+        fireEvent.click(
+            screen.getByRole('button', { name: 'Registrar pedido' })
+        );
+
+        // Comprueba que el carrito quedó vacío.
+        expect(leerCarrito(paciente.id)).toEqual([]);
+
+        // Comprueba que el pedido se guardó en el historial.
+        const pacienteActualizado = leerPacientes()
+            .find(persona => persona.id === paciente.id);
+
+        expect(pacienteActualizado.historial).toHaveLength(1);
+
+        expect(pacienteActualizado.historial[0].planes).toEqual([
+            {
+                id: 'P1',
+                nombre: planes.find(plan => plan.id === 'P1').nombre,
+                precio: planes.find(plan => plan.id === 'P1').precio,
+                cantidad: 1,
+            },
+        ]);
+
+        expect(
+            screen.getByRole('link', { name: 'Mis planes' })
+        ).toHaveAttribute('href', '/mis-planes');
+    });
+
+    // TEST 10
+    test('10. Muestra error si no se puede registrar el pedido', () => {
+        const anio = new Date().getFullYear();
+
+        const pacienteConLimite = {
+            ...paciente,
+            historial: [
+                {
+                    fecha: `${anio}-01-01`,
+                    planes: [
+                        { id: 'P1', cantidad: 10 },
+                    ],
+                },
+            ],
+        };
+
+        localStorage.setItem(
+            'pacientes',
+            JSON.stringify([pacienteConLimite])
+        );
+
+        guardarCarrito([
+            { id: 'P1', cantidad: 1 },
+        ]);
+
+        mostrarCarrito();
+
+        expect(registrarPedido()).toBeNull();
+
+        // El pedido no debe modificar el carrito si se rechaza.
+        expect(leerCarrito(paciente.id)).toEqual([
+            { id: 'P1', cantidad: 1 },
+        ]);
+    });
+
 });

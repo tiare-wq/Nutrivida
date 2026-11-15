@@ -1,0 +1,40 @@
+{
+  "name": "nutrivida",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "test": "vitest run",
+    "preview": "vite preview",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "format": "prettier --config .prettierrc.json --write \"src/**/*.{js,jsx,css}\" \"*.{js,json,html}\" \"../backend/**/*.java\" \"../backend/**/*.xml\" \"../*.yaml\"",
+    "format:check": "prettier --config .prettierrc.json --check \"src/**/*.{js,jsx,css}\" \"*.{js,json,html}\" \"../backend/**/*.java\" \"../backend/**/*.xml\" \"../*.yaml\""
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@prettier/plugin-xml": "3.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "@vitest/coverage-v8": "^5.0.5",
+    "@vitest/ui": "^5.0.5",
+    "jsdom": "^30.1.3",
+    "oxlint": "^1.81.0",
+    "prettier": "3.9.10",
+    "prettier-plugin-java": "2.11.0",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.5"
+  }
+}

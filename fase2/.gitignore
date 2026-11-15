@@ -1,24 +1,16 @@
-# Logs
-logs
+# Dependencias y resultados generados
+**/node_modules/
+**/dist/
+**/coverage/
+**/data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+.env
+.env.*
+!.env.example
+*.pem
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db

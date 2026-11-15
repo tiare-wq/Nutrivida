@@ -1,0 +1,15 @@
+{
+  "properties": [
+    {
+      "name": "app.jwt-secret",
+      "type": "java.lang.String",
+      "description": "HS256 signing secret shared by the application services."
+    },
+    {
+      "name": "app.cookie-secure",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "Marks the refresh-token cookie as secure when HTTPS is enabled."
+    }
+  ]
+}

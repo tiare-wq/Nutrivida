@@ -1,0 +1,10 @@
+services:
+  nutrivida:
+    build: .
+    ports:
+      - "127.0.0.1:4387:4387"
+    volumes:
+      - nutrivida-data:/app/data
+    restart: unless-stopped
+volumes:
+  nutrivida-data:

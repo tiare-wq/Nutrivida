@@ -1,0 +1,244 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Primera consulta nutricional",
+      "category": "consulta",
+      "price": 35000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 50,
+      "modality": "Presencial",
+      "description": "Anamnesis, antropometría completa y diseño del primer plan alimenticio."
+    },
+    {
+      "id": 2,
+      "name": "Control nutricional (seguimiento)",
+      "category": "consulta",
+      "price": 25000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 30,
+      "modality": "Presencial",
+      "description": "Seguimiento de la evolución del paciente, revisión de objetivos y ajustes al plan alimenticio según sus avances."
+    },
+    {
+      "id": 3,
+      "name": "Control nutricional quincenal",
+      "category": "consulta",
+      "price": 22000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 30,
+      "modality": "Presencial",
+      "description": "Consulta de seguimiento realizada cada 15 días para evaluar avances y realizar los ajustes necesarios al plan alimenticio."
+    },
+    {
+      "id": 4,
+      "name": "Teleconsulta nutricional",
+      "category": "consulta",
+      "price": 20000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 30,
+      "modality": "Online",
+      "description": "Atención nutricional a distancia mediante videollamada, permitiendo realizar seguimiento y orientación sin asistir presencialmente a la clínica."
+    },
+    {
+      "id": 5,
+      "name": "Consulta de urgencia / reagendada",
+      "category": "consulta",
+      "price": 28000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 30,
+      "modality": "Presencial",
+      "description": "Atención destinada a resolver situaciones nutricionales urgentes o recuperar una consulta que debió ser reagendada."
+    },
+    {
+      "id": 6,
+      "name": "Antropometría completa",
+      "category": "evaluacion",
+      "price": 18000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 20,
+      "modality": "Presencial",
+      "description": "Evaluación de peso, talla, circunferencias y otros indicadores antropométricos para conocer la composición y evolución corporal."
+    },
+    {
+      "id": 7,
+      "name": "Bioimpedanciometría",
+      "category": "evaluacion",
+      "price": 12000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 15,
+      "modality": "Presencial",
+      "description": "Evaluación de la composición corporal mediante bioimpedancia, permitiendo obtener información sobre diferentes componentes del cuerpo."
+    },
+    {
+      "id": 8,
+      "name": "Encuesta de hábitos alimentarios",
+      "category": "evaluacion",
+      "price": 10000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 20,
+      "modality": "Presencial",
+      "description": "Evaluación de los hábitos y patrones de alimentación del paciente para identificar aspectos que pueden ser considerados en su orientación nutricional."
+    },
+    {
+      "id": 9,
+      "name": "Análisis de exámenes de laboratorio",
+      "category": "evaluacion",
+      "price": 15000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 20,
+      "modality": "Presencial",
+      "description": "Revisión y análisis de resultados de exámenes de laboratorio como apoyo para la evaluación y orientación nutricional."
+    },
+    {
+      "id": 10,
+      "name": "Plan de pérdida de peso (1 mes)",
+      "category": "plan",
+      "price": 65000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 50,
+      "modality": "Presencial",
+      "description": "Atención personalizada de NutriVida, adaptada a tus objetivos de alimentación."
+    },
+    {
+      "id": 11,
+      "name": "Plan de pérdida de peso (3 meses)",
+      "category": "plan",
+      "price": 170000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 50,
+      "modality": "Presencial",
+      "description": "Atención personalizada de NutriVida, adaptada a tus objetivos de alimentación."
+    },
+    {
+      "id": 12,
+      "name": "Plan nutrición deportiva (1 mes)",
+      "category": "plan",
+      "price": 70000,
+      "specialties": [
+        "deportiva"
+      ],
+      "duration": 50,
+      "modality": "Presencial",
+      "description": "Atención personalizada de NutriVida, adaptada a tus objetivos de alimentación."
+    },
+    {
+      "id": 13,
+      "name": "Plan control diabetes / hipertensión",
+      "category": "plan",
+      "price": 70000,
+      "specialties": [
+        "clinica"
+      ],
+      "duration": 50,
+      "modality": "Presencial",
+      "description": "Atención personalizada de NutriVida, adaptada a tus objetivos de alimentación."
+    },
+    {
+      "id": 14,
+      "name": "Plan alimentación vegetariana / vegana",
+      "category": "plan",
+      "price": 75000,
+      "specialties": [
+        "veg"
+      ],
+      "duration": 50,
+      "modality": "Presencial",
+      "description": "Atención personalizada de NutriVida, adaptada a tus objetivos de alimentación."
+    },
+    {
+      "id": 15,
+      "name": "Plan alimentación infantil (2 - 12 años)",
+      "category": "plan",
+      "price": 68000,
+      "specialties": [
+        "veg"
+      ],
+      "duration": 50,
+      "modality": "Presencial",
+      "description": "Atención personalizada de NutriVida, adaptada a tus objetivos de alimentación."
+    },
+    {
+      "id": 16,
+      "name": "Taller de alimentación saludable",
+      "category": "taller",
+      "price": 15000,
+      "specialties": [
+        "deportiva",
+        "veg"
+      ],
+      "duration": 90,
+      "modality": "Presencial (grupal)",
+      "description": "Taller grupal orientado a entregar conocimientos y herramientas prácticas para mantener una alimentación saludable y equilibrada."
+    },
+    {
+      "id": 17,
+      "name": "Taller de cocina nutritiva",
+      "category": "taller",
+      "price": 20000,
+      "specialties": [
+        "deportiva",
+        "veg"
+      ],
+      "duration": 120,
+      "modality": "Presencial (grupal)",
+      "description": "Taller grupal práctico enfocado en la preparación de alimentos y recetas nutritivas, promoviendo hábitos de cocina saludable."
+    },
+    {
+      "id": 18,
+      "name": "Taller nutrición para deportistas",
+      "category": "taller",
+      "price": 18000,
+      "specialties": [
+        "deportiva"
+      ],
+      "duration": 90,
+      "modality": "Presencial (grupal)",
+      "description": "Taller grupal dirigido a deportistas y personas físicamente activas, con orientación sobre alimentación y nutrición aplicada al rendimiento deportivo."
+    }
+  ],
+  "professionals": [
+    {
+      "id": 1,
+      "name": "Carolina Pérez",
+      "specialty": "clinica"
+    },
+    {
+      "id": 2,
+      "name": "Valentina Soto",
+      "specialty": "clinica"
+    },
+    {
+      "id": 3,
+      "name": "Camilo Rojas",
+      "specialty": "deportiva"
+    },
+    {
+      "id": 4,
+      "name": "Daniela Muñoz",
+      "specialty": "veg"
+    }
+  ]
+}

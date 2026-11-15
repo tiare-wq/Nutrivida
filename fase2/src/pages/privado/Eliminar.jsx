@@ -10,7 +10,8 @@ function Eliminar() {
     const [atencion, setAtencion] = useState('');
     const [id, setId] = useState('');
 
-    const confirmacion = () => {
+    const confirmacion = (event) => {
+        event.preventDefault();
         const confirmar = window.confirm('¿Desea confirmar la eliminación?');
 
         if (!confirmar) return;
@@ -39,10 +40,10 @@ function Eliminar() {
             <h1 className="subtitulo-form">Eliminar oferta de servicio</h1>
 
             <div className="campo">
-                <label for="atencion-servicio">Tipo atención</label>
-                <select id="atencion-servicio" name="atenciones"
+                <label htmlFor="atencion-servicio">Tipo atención</label>
+                <select id="atencion-servicio" name="atenciones" defaultValue=""
                 onChange={item => setAtencion(item.target.value)}>
-                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="" disabled>Seleccione una opción</option>
                     <option value="1">Consulta</option>
                     <option value="2">Evaluación</option>
                     <option value="3">Planes / Servicios</option>
@@ -51,7 +52,7 @@ function Eliminar() {
             </div>
 
             <div className="campo">
-                <label for="id-servicio">Nombre del servicio</label>
+                <label htmlFor="id-servicio">Nombre del servicio</label>
                 <input id="id-servicio" type="text"
                 onChange={item => setId(item.target.value)}></input>
             </div>

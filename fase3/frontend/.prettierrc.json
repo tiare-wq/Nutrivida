@@ -1,0 +1,24 @@
+{
+  "printWidth": 100,
+  "tabWidth": 4,
+  "useTabs": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-java", "@prettier/plugin-xml"],
+  "overrides": [
+    {
+      "files": ["*.json", "*.yaml", "*.yml"],
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.xml",
+      "options": {
+        "tabWidth": 4,
+        "xmlWhitespaceSensitivity": "ignore"
+      }
+    }
+  ]
+}

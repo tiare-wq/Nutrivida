@@ -1,0 +1,16 @@
+# Dependencias y resultados generados
+**/node_modules/
+**/dist/
+**/coverage/
+**/data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+.DS_Store
+Thumbs.db

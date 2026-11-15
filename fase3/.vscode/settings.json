@@ -1,0 +1,15 @@
+{
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/target": true,
+    "**/dist": true
+  },
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.import.maven.enabled": true,
+  "editor.formatOnSave": true,
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "python.terminal.useEnvFile": true
+}

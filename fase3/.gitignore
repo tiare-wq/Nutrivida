@@ -1,0 +1,11 @@
+.local/
+.env
+.cuentas-prueba.txt
+**/node_modules/
+**/dist/
+**/target/
+**/data/
+!frontend/src/data/
+!frontend/src/data/*.js
+**/coverage/
+**/.vitest/
