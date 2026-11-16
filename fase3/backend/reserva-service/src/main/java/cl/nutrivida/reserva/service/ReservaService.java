@@ -137,7 +137,7 @@ public class ReservaService {
         if (request.getFecha().isBefore(LocalDateTime.now()))
             throw new IllegalArgumentException("Elija una fecha y hora válida");
 
-        if (horaOcupada(dto.getFecha()))
+        if (horaOcupada(request.getFecha()))
             throw new IllegalArgumentException("La hora seleccionada está ocupada. Por favor, seleccione otra");
 
         Reserva entity = reservaRepository.findById(id)

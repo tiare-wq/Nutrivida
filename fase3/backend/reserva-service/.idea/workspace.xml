@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6454271-eacf-4ade-b7d2-f84d48fdb601" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../administracion-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../administracion-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms-carrito/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ms-carrito/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/ReservaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/ReservaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/controller/ReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/dto/ReservaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/dto/ReservaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/entity/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/entity/Reserva.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/service/ReservaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/nutrivida/reserva/service/ReservaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../usuarios-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../usuarios-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/data/almacen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/data/almacen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

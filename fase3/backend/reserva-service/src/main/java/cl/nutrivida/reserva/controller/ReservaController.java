@@ -42,7 +42,7 @@ public class ReservaController {
     ) {
         log.info("Inicia búsqueda de todas las reservas asociadas a un cliente");
 
-        Long idActual = Long.parseLong(token.getId());
+        Long idActual = Long.parseLong(token.getSubject());
 
         Page<ReservaDto> resultado = reservaService.obtenerTodasLasReservasPaciente(id, idActual, pageable);
         return ResponseEntity.ok(resultado);
@@ -65,7 +65,7 @@ public class ReservaController {
         return ResponseEntity.ok(resultado);
     }
 
-    @PostMapping
+    @PostMapping("/{correo}")
     public ResponseEntity<ReservaDto> agregarReserva(
         @AuthenticationPrincipal Jwt token,
         @Valid @RequestBody ReservaDto reserva,
@@ -92,6 +92,6 @@ public class ReservaController {
         @Valid @RequestBody ReagendarRequest request
     ) {
         reservaService.eliminarReserva(id);
-        return ResponseEntity.http(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

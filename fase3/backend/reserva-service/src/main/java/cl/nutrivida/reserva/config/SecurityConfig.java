@@ -22,7 +22,7 @@ import java.util.Base64;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${jwt.secret}")
+    @Value("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
     private String secretBase64;
 
     @Bean

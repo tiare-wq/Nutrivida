@@ -8,6 +8,8 @@ export default defineConfig({
         proxy: {
             '/api/admin': { target: 'http://localhost:8082', changeOrigin: true },
             '/api': { target: 'http://localhost:8081', changeOrigin: true },
+            '/api/v1/reservas': { target: 'hhtp://localhost:8083', changeOrigin: true},
+            '/api/v1/carritos': { target: 'http://localhost:8084', changeOrigin: true}
         },
     },
     test: {

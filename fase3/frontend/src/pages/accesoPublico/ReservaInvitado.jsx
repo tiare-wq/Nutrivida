@@ -74,6 +74,7 @@ function ReservaInvitado() {
             setError('Ingrese un RUN válido');
             return;
         }
+        setError('');
         const reserva = await crearReserva({
             servicio: elegido.nombre,
             profesional,
@@ -85,7 +86,7 @@ function ReservaInvitado() {
             telefono,
             tipoPaciente: TipoPaciente.INVITADO
 
-        });
+        }, email);
         if (!reserva) {
             setError(reserva.message());
             return;

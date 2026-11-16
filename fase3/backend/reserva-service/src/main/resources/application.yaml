@@ -37,6 +37,12 @@ spring:
             enable: true
             required: true
 
+logging:
+  level:
+    root: INFO
+    com:
+      nutrivida: DEBUG
+
 reserva:
   anticipacion-maxima-meses: 6
   horario:
@@ -44,4 +50,4 @@ reserva:
     cierre: "21:00"
 
 app:
-  jwt-secret: ${JWT_SECRET}
+  jwt-secret: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30
