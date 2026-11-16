@@ -21,5 +21,6 @@
         <module>usuarios-service</module>
         <module>administracion-service</module>
         <module>ms-carrito</module>
+        <module>ms-planes</module>
     </modules>
 </project>
