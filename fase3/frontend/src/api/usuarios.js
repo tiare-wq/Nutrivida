@@ -15,7 +15,12 @@ export const actual = () => usuario;
 export async function renovar() {
     if (!renovando) {
         renovando = fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' })
-            .then(async (r) => (r.ok ? guardar(await r.json()) : guardar(null)))
+            .then(async (r) => {
+                if (r.status === 204 || !r.ok) {
+                    return guardar(null);
+                }
+                return guardar(await r.json());
+            })
             .finally(() => {
                 renovando = null;
             });
@@ -42,7 +47,6 @@ export async function solicitar(path, { method = 'GET', body, reintentar = true 
     }
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
-        console.log(data.message)
         throw new Error(data.message || `Solicitud rechazada (${response.status})`);
     }
     return data;
