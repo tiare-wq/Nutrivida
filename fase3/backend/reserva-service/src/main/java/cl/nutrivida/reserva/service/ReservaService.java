@@ -1,12 +1,10 @@
 package cl.nutrivida.reserva.service;
 
-import cl.nutrivida.reserva.entity.TipoPaciente;
 import cl.nutrivida.reserva.exception.PermisosInsuficientesException;
 import cl.nutrivida.reserva.request.ReagendarRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-//import cl.nutrivida.reserva.client.ServicioFeignClient;
 import cl.nutrivida.reserva.client.UsuarioFeignClient;
 import cl.nutrivida.reserva.client.model.PacienteClient;
 import cl.nutrivida.reserva.client.model.ProfesionalClient;

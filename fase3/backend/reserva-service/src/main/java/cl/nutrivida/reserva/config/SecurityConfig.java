@@ -22,7 +22,7 @@ import java.util.Base64;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${jwt.secret-key")
+    @Value("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
     private String secretBase64;
 
     @Bean
@@ -30,17 +30,14 @@ public class SecurityConfig {
 
         byte[] keyBytes = Base64.getDecoder()
             .decode(secretBase64);
-
         SecretKey secretKey = new SecretKeySpec(
             keyBytes,
             "HmacSHA256"
         );
-
         NimbusJwtDecoder decoder =
             NimbusJwtDecoder.withSecretKey(secretKey)
                 .macAlgorithm(MacAlgorithm.HS256)
                 .build();
-
         decoder.setJwtValidator(
             JwtValidators.createDefaultWithIssuer(
                 "nutrivida-usuarios"
@@ -62,7 +59,6 @@ public class SecurityConfig {
                     SessionCreationPolicy.STATELESS
                 )
             )
-
             // Configuración de autorización
             .authorizeHttpRequests(auth -> auth
 
@@ -80,7 +76,6 @@ public class SecurityConfig {
                 // Cualquier otra ruta requiere autenticación
                 .anyRequest().authenticated()
             )
-
             // Validación de JWT
             .oauth2ResourceServer(oauth ->
                 oauth.jwt(Customizer.withDefaults())

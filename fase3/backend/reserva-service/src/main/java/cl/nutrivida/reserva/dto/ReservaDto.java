@@ -1,16 +1,13 @@
 package cl.nutrivida.reserva.dto;
 
 import cl.nutrivida.reserva.entity.TipoPaciente;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import cl.nutrivida.reserva.entity.TipoAtencion;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @AllArgsConstructor
 @Data

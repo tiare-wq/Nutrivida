@@ -62,16 +62,8 @@
         </dependency>
 
         <dependency>
-            <groupId>me.paulschwarz</groupId>
-            <artifactId>springboot4-dotenv</artifactId>
-            <version>5.1.0</version>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
-            <version>4.2.0-M2</version>
             <scope>compile</scope>
         </dependency>
 
@@ -112,7 +104,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version> <!-- Revisa si hay una versión más reciente -->
+            <version>1.18.48</version> <!-- Revisa si hay una versión más reciente -->
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -167,27 +159,29 @@
                     <release>${java.version}</release>
 
                     <annotationProcessorPaths>
-                        <!-- MapStruct -->
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>${org.mapstruct.version}</version>
-                        </path>
 
-                        <!-- Lombok -->
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>1.18.30</version>
-                        </path>
+                    <!-- 1. Lombok -->
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>1.18.48</version>
+                    </path>
 
-                        <!-- Integración Lombok + MapStruct -->
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok-mapstruct-binding</artifactId>
-                            <version>0.2.0</version>
-                        </path>
-                    </annotationProcessorPaths>
+                    <!-- 2. Integración Lombok + MapStruct -->
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-mapstruct-binding</artifactId>
+                        <version>0.2.0</version>
+                    </path>
+
+                    <!-- 3. MapStruct -->
+                    <path>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>${org.mapstruct.version}</version>
+                    </path>
+
+                </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
