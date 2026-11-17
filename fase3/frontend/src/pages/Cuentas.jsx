@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { solicitar, renovar } from '../api/usuarios';
+import { solicitar, renovar } from '../service/usuarioService';
 import { useSesion } from '../context/sesion';
 import CambiarPassword from '../components/CambiarPassword';
 

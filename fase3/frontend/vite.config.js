@@ -6,11 +6,23 @@ export default defineConfig({
         port: 5173,
         strictPort: true,
         proxy: {
-            '/api/admin': { target: 'http://localhost:8082', changeOrigin: true },
-            '/api': { target: 'http://localhost:8081', changeOrigin: true },
-            '/api/v1/reservas': { target: 'hhtp://localhost:8083', changeOrigin: true},
-            '/api/v1/carritos': { target: 'http://localhost:8084', changeOrigin: true}
-        },
+            '/api/v1/admin': {
+                target: 'http://localhost:8082',
+                changeOrigin: true
+            },
+            '/api/v1/reservas': {
+                target: 'http://localhost:8083',
+                changeOrigin: true
+            },
+            '/api/v1/carrito': {
+                target: 'http://localhost:8084',
+                changeOrigin: true
+            },
+            '/api/v1': {
+                target: 'http://localhost:8081',
+                changeOrigin: true
+            }
+        }
     },
     test: {
         environment: 'jsdom',

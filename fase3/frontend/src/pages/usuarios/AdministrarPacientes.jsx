@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { solicitar } from '../../api/usuarios';
+import { solicitar } from '../../service/usuarioService';
 import Campos from '../../components/CamposPaciente';
 import { normalizarRut, RUT_LARGO_MAX } from '../../constants/rut';
 

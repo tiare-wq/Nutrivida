@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ingresar } from '../../api/usuarios';
+import { ingresar } from '../../service/usuarioService';
 
 export default function LoginUsuarios({ admin = false, profesional = false }) {
     const [correo, setCorreo] = useState('');

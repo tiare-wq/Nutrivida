@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { solicitar } from '../../api/usuarios';
+import { solicitar } from '../../service/usuarioService';
 
 export default function Asignaciones() {
     const [pacientes, setPacientes] = useState([]);

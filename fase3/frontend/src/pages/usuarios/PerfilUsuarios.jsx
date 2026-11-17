@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { editarPerfil, solicitar, salir } from '../../api/usuarios';
+import { editarPerfil, solicitar, salir } from '../../service/usuarioService';
 import { useSesion } from '../../context/sesion';
 import Campos from '../../components/CamposPaciente';
 import CambiarPassword from '../../components/CambiarPassword';

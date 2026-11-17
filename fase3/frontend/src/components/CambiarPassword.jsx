@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { salir, solicitar } from '../api/usuarios';
+import { salir, solicitar } from '../service/usuarioService';
 
 export default function CambiarPassword() {
     const [actual, setActual] = useState('');

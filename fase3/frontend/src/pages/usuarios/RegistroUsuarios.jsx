@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registrar } from '../../api/usuarios';
+import { registrar } from '../../service/usuarioService';
 import Campos from '../../components/CamposPaciente';
 import '../../css/registro.css';
 

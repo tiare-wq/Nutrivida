@@ -16,7 +16,7 @@ import com.nutrivida.mscarrito.dto.DetalleCarritoDTO;
 import com.nutrivida.mscarrito.service.CarritoService;
 
 @RestController 
-@RequestMapping("/api/v1/carritos")
+@RequestMapping("/api/v1/carrito")
 public class CarritoController {
     
     private final CarritoService carritoService;

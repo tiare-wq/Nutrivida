@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { solicitar } from '../../api/usuarios';
+import { solicitar } from '../../service/usuarioService';
 import CamposPaciente from '../../components/CamposPaciente';
 import CambiarPassword from '../../components/CambiarPassword';
 import HistorialMediciones from '../../components/HistorialMediciones';

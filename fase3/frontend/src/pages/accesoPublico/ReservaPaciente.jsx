@@ -33,7 +33,7 @@ function ReservaPaciente() {
     const [atencion, setAtencion] = useState(location.state?.atencion ?? '');
     const [servicio, setServicio] = useState(String(location.state?.servicio ?? ''));
     const [profesional, setProfesional] = useState('');
-    const [fecha, setFecha] = useState(() => new Date());
+    const [fechaSelec, setFecha] = useState(() => new Date());
     const [hora, setHora] = useState('');
     const [error, setError] = useState('');
 
@@ -57,7 +57,7 @@ function ReservaPaciente() {
 
     async function enviar(event) {
         event.preventDefault();
-        if (!elegido || !profesional || !hora || fecha < hoy || fecha > limite) {
+        if (!elegido || !profesional || !hora || fechaSelec < hoy || fecha > limite) {
             setError('Selecciona un servicio, profesional, fecha y hora válidos.');
             return;
         }
@@ -65,8 +65,9 @@ function ReservaPaciente() {
             servicio: elegido.nombre,
             profesional,
             precio: elegido.precio,
-            fechaHora: `${fechaClave(fecha)}T${hora}`,
-            tipoPaciente: TipoPaciente.SESION_INICIADA
+            fecha: `${fechaClave(fechaSelec)}T${hora}`,
+            tipoPaciente: TipoPaciente.SESION_INICIADA,
+            correo: usuario.correo
         });
         if (!reserva) {
             setError('Esa hora ya está reservada. Elige otra disponible.');
@@ -149,7 +150,7 @@ function ReservaPaciente() {
                         <>
                             <h2 className="subtitulo-form">Elige fecha y hora</h2>
                             <Calendario
-                                fechaInicial={fecha}
+                                fechaInicial={fechaSelec}
                                 onFechaSeleccionada={(dia) => {
                                     setFecha(dia);
                                     setHora('');
@@ -169,7 +170,7 @@ function ReservaPaciente() {
                                                 onChange={() => setHora(opcion)}
                                             />
                                             {opcion}
-                                            {horaOcupada(profesional, fecha, opcion)
+                                            {horaOcupada(profesional, fechaSelec, opcion)
                                                 ? ' · ocupada'
                                                 : ''}
                                         </label>

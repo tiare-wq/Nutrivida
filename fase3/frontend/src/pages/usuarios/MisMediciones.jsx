@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { solicitar } from '../../api/usuarios';
+import { solicitar } from '../../service/usuarioService';
 import HistorialMediciones from '../../components/HistorialMediciones';
 
 export default function MisMediciones() {

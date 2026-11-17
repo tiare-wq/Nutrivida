@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { actual, renovar } from '../api/usuarios';
+import { actual, renovar } from '../service/usuarioService';
 import { Contexto, useSesion } from '../context/sesion';
 export function Sesion({ children }) {
     const [estado, setEstado] = useState({ usuario: actual(), cargando: true });

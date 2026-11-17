@@ -82,7 +82,7 @@ function ReservaInvitado() {
             fechaHora: `${fechaClave(fecha)}T${hora}`,
             nombre,
             run,
-            email,
+            correo: email,
             telefono,
             tipoPaciente: TipoPaciente.INVITADO
 
