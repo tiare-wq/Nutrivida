@@ -57,7 +57,7 @@ function ReservaPaciente() {
 
     async function enviar(event) {
         event.preventDefault();
-        if (!elegido || !profesional || !hora || fechaSelec < hoy || fecha > limite) {
+        if (!elegido || !profesional || !hora || fechaSelec < hoy || fechaSelec > limite) {
             setError('Selecciona un servicio, profesional, fecha y hora válidos.');
             return;
         }

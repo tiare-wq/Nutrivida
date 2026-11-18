@@ -29,7 +29,7 @@ function ReservaInvitado() {
     const [atencion, setAtencion] = useState(location.state?.atencion ?? '');
     const [servicio, setServicio] = useState(String(location.state?.servicio ?? ''));
     const [profesional, setProfesional] = useState('');
-    const [fecha, setFecha] = useState(() => new Date());
+    const [fechaSelec, setFecha] = useState(() => new Date());
     const [hora, setHora] = useState('');
     const [nombre, setNombre] = useState('');
     const [run, setRun] = useState('');
@@ -54,7 +54,7 @@ function ReservaInvitado() {
 
     async function enviar(event) {
         event.preventDefault();
-        if (!elegido || !profesional || !hora || fecha < hoy || fecha > limite) {
+        if (!elegido || !profesional || !hora || fechaSelec < hoy || fechaSelec > limite) {
             setError('Selecciona un servicio, profesional, fecha y hora válidos.');
             return;
         }
@@ -79,7 +79,7 @@ function ReservaInvitado() {
             servicio: elegido.nombre,
             profesional,
             precio: elegido.precio,
-            fechaHora: `${fechaClave(fecha)}T${hora}`,
+            fecha: `${fechaClave(fechaSelec)}T${hora}`,
             nombre,
             run,
             correo: email,
@@ -87,6 +87,8 @@ function ReservaInvitado() {
             tipoPaciente: TipoPaciente.INVITADO
 
         }, email);
+        console.log("Reserva:", reserva);
+console.log("Fecha:", reserva?.fecha);
         if (!reserva) {
             setError(reserva.message());
             return;
@@ -167,7 +169,7 @@ function ReservaInvitado() {
                         <>
                             <h2 className="subtitulo-form">Elige fecha y hora</h2>
                             <Calendario
-                                fechaInicial={fecha}
+                                fechaInicial={fechaSelec}
                                 onFechaSeleccionada={(dia) => {
                                     setFecha(dia);
                                     setHora('');
