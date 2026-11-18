@@ -54,6 +54,19 @@ services:
       DB_HOST: ${DB_HOST}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+
+  planes:
+    build:
+      context: ./backend/ms-planes
+      dockerfile: Dockerfile
+    ports: ["8085:8085"]
+    volumes:
+        - ./backend/ms-planes:/nutrivida/backend/ms-planes
+    command: mvn spring-boot:run
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
   
   frontend:
     build:

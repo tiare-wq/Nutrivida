@@ -1,5 +1,7 @@
 package com.nutrivida.msplanes.dto;
 
+import java.math.BigDecimal;
+
 public record PlanDTO(
         String id,
         String nombre,
@@ -7,7 +9,6 @@ public record PlanDTO(
         String tipoProfesional,
         String duracion,
         String modalidad,
-        float precio,
-        boolean activo
+        BigDecimal precio
 ) {
 }

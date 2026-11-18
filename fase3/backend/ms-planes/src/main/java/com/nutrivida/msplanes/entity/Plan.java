@@ -40,7 +40,4 @@ public class Plan {
 
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal precio;
-
-    @Column(nullable = false)
-    private boolean activo;
 }
