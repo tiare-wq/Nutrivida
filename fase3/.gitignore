@@ -3,7 +3,7 @@
 .cuentas-prueba.txt
 **/node_modules/
 **/dist/
-**/target/
+**/target/*
 **/data/
 !frontend/src/data/
 !frontend/src/data/*.js

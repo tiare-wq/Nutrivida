@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -75,11 +76,14 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
-    public Object refresh(
+    public ResponseEntity<Object> refresh(
         @CookieValue(name = "nv_refresh", defaultValue = "") String token,
         HttpServletResponse respuesta
     ) {
-        return respuesta(sesiones.renovar(token), respuesta);
+        if (token.isBlank()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(respuesta(sesiones.renovar(token), respuesta));
     }
 
     @PostMapping("/logout")

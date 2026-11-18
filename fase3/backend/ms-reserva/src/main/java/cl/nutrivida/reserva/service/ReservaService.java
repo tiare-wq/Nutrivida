@@ -1,6 +1,5 @@
 package cl.nutrivida.reserva.service;
 
-import cl.nutrivida.reserva.exception.PermisosInsuficientesException;
 import cl.nutrivida.reserva.request.ReagendarRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
