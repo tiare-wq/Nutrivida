@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -60,6 +61,13 @@ class UsuariosIntegrationTest {
             .getResponse()
             .getContentAsString();
         return json.readTree(body).get("accessToken").asString();
+    }
+
+    @Test
+    void refreshSinCookieDevuelveNoContent() throws Exception {
+        mvc.perform(post("/api/auth/refresh"))
+            .andExpect(status().isNoContent())
+            .andExpect(header().doesNotExist("Set-Cookie"));
     }
 
     @SuppressWarnings("null")
