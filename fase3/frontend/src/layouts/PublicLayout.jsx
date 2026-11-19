@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { actual } from '../service/usuarioService';
+import { actual, salir } from '../service/usuarioService';
 import { cerrarSesion, leerCarrito, planActivo } from '../data/almacen';
 
 function PublicLayout() {
@@ -17,7 +17,7 @@ function PublicLayout() {
         const actualizar = () => {
             setAdmin(() => localStorage.getItem('isAdmin'));
             setUsuario(actual());
-            setCantidad(leerCarrito(actual?.id).reduce((total, plan) => total + plan.cantidad, 0));
+            setCantidad(leerCarrito(usuario?.id).reduce((total, plan) => total + plan.cantidad, 0));
         };
         window.addEventListener('nutrivida:actualizar', actualizar);
         window.addEventListener('storage', actualizar);
@@ -27,9 +27,15 @@ function PublicLayout() {
         };
     }, []);
 
-    function salir() {
+    function salirLocal() {
+        salir();
         cerrarSesion();
-        navigate('/inicio');
+
+        setUsuario(null);
+        setAdmin(false);
+        setCantidad(0);
+
+        navigate('/inicio', { replace: true });
     }
 
     return (
@@ -68,7 +74,7 @@ function PublicLayout() {
                                     <span>Administración</span>
                                 </Link>
 
-                                <button className="link-header" type="button" onClick={salir}>
+                                <button className="link-header" type="button" onClick={salirLocal}>
                                     <span>Salir</span>
                                 </button>
                             </>

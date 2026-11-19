@@ -1,6 +1,7 @@
 import { useSesion } from '../context/sesion';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { salir } from '../service/usuarioService';
 import { cerrarSesion, pacienteActual, planActivo } from '../data/almacen';
 
 function NavbarLateral() {
@@ -13,9 +14,10 @@ function NavbarLateral() {
         window.addEventListener('nutrivida:actualizar', actualizar);
         return () => window.removeEventListener('nutrivida:actualizar', actualizar);
     }, []);
-    async function salir() {
+    async function salirLocal() {
         try {
-            await cerrarSesion();
+            cerrarSesion();
+            salir();
             navigate('/inicio');
         } catch (e) {
             setError(e.message);
@@ -106,7 +108,7 @@ function NavbarLateral() {
                         Ver todos
                     </Link>
 
-                    <button className="nav-link" type="button" onClick={salir}>
+                    <button className="nav-link" type="button" onClick={salirLocal}>
                         <img src="../../img/cerrarSesion.png" alt="" />
                         Salir
                     </button>

@@ -82,7 +82,6 @@ function ReservaPaciente() {
             console.error('Error al crear reserva:', error);
             setError(error.message);
         }
-        // navigate('/confirmacion-reserva', { state: reserva });
     }
 
     return (

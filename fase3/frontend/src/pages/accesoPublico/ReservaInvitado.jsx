@@ -9,10 +9,10 @@ import { fechaClave, horaOcupada, TipoPaciente } from '../../data/almacen';
 import { crearReserva } from '../../service/reservaService';
 
 const categorias = [
-    ['consultas', 'Consulta'],
-    ['evaluaciones', 'Evaluación'],
-    ['planes', 'Plan especializado'],
-    ['talleres', 'Taller grupal'],
+    ['CONSULTA', 'Consulta'],
+    ['EVALUACION', 'Evaluación'],
+    ['PLAN', 'Plan especializado'],
+    ['TALLER', 'Taller grupal'],
 ];
 const servicios = [...consultas, ...evaluaciones, ...planes, ...talleres];
 const profesionales = [
@@ -75,22 +75,27 @@ function ReservaInvitado() {
             return;
         }
         setError('');
-        const reserva = await crearReserva({
-            tipoAtencion: atencion,
-            nombreServicio: elegido.nombre,
-            nombreProfesional: profesional[0],
-            precio: elegido.precio,
-            fecha: `${fechaClave(fechaSelec)}T${hora}`,
-            runProfesional: profesional[2],
-            correo: email,
-            tipoPaciente: TipoPaciente.INVITADO
-
-        });
-        if (!reserva) {
-            setError(reserva.message());
-            return;
-        }
-        // navigate('/confirmacion-reserva', { state: reserva });
+        const profesionalElegido = profesionales.find(
+                item => item[0] === profesional
+            );
+            const datosReserva = {
+                tipoAtencion: atencion,
+                nombreServicio: elegido.nombre,
+                nombreProfesional: profesional,
+                precio: elegido.precio.replace('.', ''),
+                fecha: `${fechaClave(fechaSelec)}T${hora}`,
+                runProfesional: profesionalElegido[2],
+                tipoPaciente: TipoPaciente.INVITADO,
+                correo: email
+            };
+    
+            try {
+                const reserva = await crearReserva(datosReserva);
+                navigate('/confirmacion-reserva', { state: reserva });
+            } catch (error) {
+                console.error('Error al crear reserva:', error);
+                setError(error.message);
+            }
     }
 
     return (

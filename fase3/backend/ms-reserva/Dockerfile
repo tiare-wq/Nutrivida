@@ -4,10 +4,15 @@ WORKDIR /nutrivida/backend/ms-reserva
 
 # Copias obligatorias para descargar dependencias y compilar
 COPY pom.xml .
+
+# Descargamos las dependencias y plugins
+RUN mvn dependency:go-offline -B
+
+# Después copiamos el código fuente
 COPY src ./src
 
 # Se ejecuta la compilación que genera el .jar
-RUN mvn clean package -DskipTests
+RUN mvn package -DskipTests -B
 
 # ETAPA 2: Imagen final optimizada (Solo el JRE para ejecución)
 FROM eclipse-temurin:21-jre-alpine
