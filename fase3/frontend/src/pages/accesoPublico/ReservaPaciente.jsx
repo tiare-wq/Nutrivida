@@ -10,10 +10,10 @@ import { fechaClave, TipoPaciente } from '../../data/almacen';
 import { crearReserva } from '../../service/reservaService';
 
 const categorias = [
-    ['consultas', 'Consulta'],
-    ['evaluaciones', 'Evaluación'],
-    ['planes', 'Plan especializado'],
-    ['talleres', 'Taller grupal'],
+    ['CONSULTA', 'Consulta'],
+    ['EVALUACION', 'Evaluación'],
+    ['PLAN', 'Plan especializado'],
+    ['TALLER', 'Taller grupal'],
 ];
 const servicios = [...consultas, ...evaluaciones, ...planes, ...talleres];
 const profesionales = [
@@ -32,7 +32,7 @@ function ReservaPaciente() {
 
     const [atencion, setAtencion] = useState(location.state?.atencion ?? '');
     const [servicio, setServicio] = useState(String(location.state?.servicio ?? ''));
-    const [profesional, setProfesional] = useState([]);
+    const [profesional, setProfesional] = useState('');
     const [fechaSelec, setFecha] = useState(() => new Date());
     const [hora, setHora] = useState('');
     const [error, setError] = useState('');
@@ -61,20 +61,26 @@ function ReservaPaciente() {
             setError('Selecciona un servicio, profesional, fecha y hora válidos.');
             return;
         }
-        const reserva = await crearReserva({
+        const profesionalElegido = profesionales.find(
+            item => item[0] === profesional
+        );
+        const datosReserva = {
             tipoAtencion: atencion,
             nombreServicio: elegido.nombre,
-            nombreProfesional: profesional[0],
-            precio: elegido.precio,
+            nombreProfesional: profesional,
+            precio: elegido.precio.replace('.', ''),
             fecha: `${fechaClave(fechaSelec)}T${hora}`,
-            runProfesional: profesional[2],
+            runProfesional: profesionalElegido[2],
             tipoPaciente: TipoPaciente.SESION_INICIADA,
             correo: usuario.correo
-        });
-        console.log(reserva)
-        if (!reserva) {
-            setError('Esa hora ya está reservada. Elige otra disponible.');
-            return;
+        };
+
+        try {
+            const reserva = await crearReserva(datosReserva);
+            navigate('/confirmacion-reserva', { state: reserva });
+        } catch (error) {
+            console.error('Error al crear reserva:', error);
+            setError(error.message);
         }
         // navigate('/confirmacion-reserva', { state: reserva });
     }
@@ -143,7 +149,7 @@ function ReservaPaciente() {
                         >
                             <option value="">Selecciona una opción</option>
                             {compatibles.map((item) => (
-                                <option key={item[0]} value={item}>
+                                <option key={item[0]} value={item[0]}>
                                     {item[0]}
                                 </option>
                             ))}
@@ -169,13 +175,9 @@ function ReservaPaciente() {
                                                 name="hora"
                                                 value={opcion}
                                                 checked={hora === opcion}
-                                                disabled={horaOcupada(profesional, fechaSelec, opcion)}
                                                 onChange={() => setHora(opcion)}
                                             />
                                             {opcion}
-                                            {horaOcupada(profesional, fechaSelec, opcion)
-                                                ? ' · ocupada'
-                                                : ''}
                                         </label>
                                     ))}
                                 </div>

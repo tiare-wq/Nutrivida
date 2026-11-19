@@ -50,57 +50,58 @@ export async function renovar() {
     return renovando;
 }
 
-export async function solicitar(path, { method = 'GET', body, reintentar = true } = {}) {
-    try {
-        const response = await fetch(path, {
-            method,
-            credentials: 'include',
-            headers: {
-                ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}),
-                ...(token ? { Authorization: `Bearer ${token}` } : {}),
-            },
-            ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
-        });
+export async function solicitar(
+    path,
+    { method = 'GET', body, reintentar = true } = {}
+) {
+    const response = await fetch(path, {
+        method,
+        credentials: 'include',
+        headers: {
+            ...(body !== undefined
+                ? { 'Content-Type': 'application/json' }
+                : {}),
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        ...(body !== undefined
+            ? { body: JSON.stringify(body) }
+            : {}),
+    });
 
-        // 1. Manejo del 401 (Token expirado o no existe)
-        if (response.status === 401 && reintentar && !path.startsWith('/api/v1/auth/')) {
-            const seRenovo = await renovar();
-            if (seRenovo) {
-                return await solicitar(path, { method, body, reintentar: false });
-            }
-            
-            // SI FALLÓ LA RENOVACIÓN: El usuario es un invitado.
-            // Si la ruta NO es privada, devolvemos un objeto vacío seguro para que el Home no rompa.
-            if (!path.includes('/me') && !path.includes('/privado')) {
-                return {}; 
-            }
+    if (
+        response.status === 401 &&
+        reintentar &&
+        !path.startsWith('/api/v1/auth/')
+    ) {
+        const seRenovo = await renovar();
+
+        if (seRenovo) {
+            return solicitar(path, {
+                method,
+                body,
+                reintentar: false
+            });
         }
+    }
 
-        if (response.status === 204) {
-            return null;
-        }
+    if (response.status === 204) return null;
 
-        // Intentamos leer el JSON si la respuesta fue exitosa
-        if (response.ok) {
-            return await response.json().catch(() => ({}));
-        }
+    const data = await response.json().catch(() => ({}));
 
-        // 2. Si la respuesta no es OK y no es un 401 recuperable, procesamos el error del backend
-        const data = await response.json().catch(() => ({}));
-        throw new Error(data.mensaje ?? data.message ?? `Solicitud rechazada (${response.status})`);
+    if (!response.ok) {
+        const error = new Error(
+            data.mensaje ?? `Error HTTP ${response.status}`
+        );
 
-    } catch (error) {
-        // 3. AQUÍ ATRAPAMOS CUALQUIER FALLO DE RED O INFRAESTRUCTURA (Ej: si el servidor se cae)
-        // Si el fallo ocurre en una ruta pública del Home, devolvemos un objeto seguro para proteger la app
-        if (!path.includes('/me') && !path.includes('/privado')) {
-            console.warn(`Aviso: No se pudo conectar a ${path} (Modo invitado activo)`);
-            return {}; 
-        }
-        // Si es una ruta protegida, relanzamos el error para que la interfaz sepa que debe bloquear el acceso
+        error.nombre = data.nombre;
+        error.codigo = data.codigo ?? response.status;
+        error.data = data;
+
         throw error;
     }
-}
 
+    return data;
+}
 
 export async function ingresar(correo, password, rol) {
     const data = await solicitar('/api/v1/auth/login', {

@@ -61,7 +61,7 @@ public class GlobalHandlerException {
         ErrorDto error = new ErrorDto(
             "Internal Server Error",
             500,
-            "Ha ocurrido un error interno. Inténtelo de nuevo más tarde");
+            "Ha ocurrido un error interno. Inténtelo de nuevo más tarde" + e.getMessage());
         return ResponseEntity.internalServerError().body(error);
     }
 }

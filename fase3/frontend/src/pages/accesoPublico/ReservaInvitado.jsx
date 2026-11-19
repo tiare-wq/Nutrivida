@@ -82,12 +82,10 @@ function ReservaInvitado() {
             precio: elegido.precio,
             fecha: `${fechaClave(fechaSelec)}T${hora}`,
             runProfesional: profesional[2],
-            tipoPaciente: TipoPaciente.SESION_INICIADA,
             correo: email,
             tipoPaciente: TipoPaciente.INVITADO
 
         });
-        console.log("Reserva:", reserva);
         if (!reserva) {
             setError(reserva.message());
             return;
@@ -184,13 +182,9 @@ function ReservaInvitado() {
                                                 name="hora"
                                                 value={opcion}
                                                 checked={hora === opcion}
-                                                disabled={horaOcupada(profesional, fechaSelec, opcion)}
                                                 onChange={() => setHora(opcion)}
                                             />
                                             {opcion}
-                                            {horaOcupada(profesional, fechaSelec, opcion)
-                                                ? ' · ocupada'
-                                                : ''}
                                         </label>
                                     ))}
                                 </div>

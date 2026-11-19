@@ -1,47 +1,50 @@
 package cl.nutrivida.reserva.config;
 
+import java.nio.charset.StandardCharsets;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
-
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
-    private String secretBase64;
-
     @Bean
-    public JwtDecoder jwtDecoder() {
+    public JwtDecoder jwtDecoder(
+        @Value("${app.jwt-secret}") String secret
+    ) {
+        if (secret.length() < 32) {
+            throw new IllegalStateException(
+                "JWT_SECRET debe contener al menos 32 caracteres"
+            );
+        }
 
-        byte[] keyBytes = Base64.getDecoder()
-            .decode(secretBase64);
         SecretKey secretKey = new SecretKeySpec(
-            keyBytes,
+            secret.getBytes(StandardCharsets.UTF_8),
             "HmacSHA256"
         );
-        NimbusJwtDecoder decoder =
-            NimbusJwtDecoder.withSecretKey(secretKey)
-                .macAlgorithm(MacAlgorithm.HS256)
-                .build();
+
+        NimbusJwtDecoder decoder = NimbusJwtDecoder
+            .withSecretKey(secretKey)
+            .macAlgorithm(MacAlgorithm.HS256)
+            .build();
+
         decoder.setJwtValidator(
-            JwtValidators.createDefaultWithIssuer(
-                "nutrivida-usuarios"
-            )
+            JwtValidators.createDefaultWithIssuer("nutrivida-usuarios")
         );
 
         return decoder;
@@ -49,36 +52,48 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(
-        HttpSecurity http) throws Exception {
+        HttpSecurity http
+    ) throws Exception {
+
+        var roles = new JwtGrantedAuthoritiesConverter();
+        roles.setAuthoritiesClaimName("roles");
+        roles.setAuthorityPrefix("ROLE_");
+
+        var converter = new JwtAuthenticationConverter();
+        converter.setJwtGrantedAuthoritiesConverter(roles);
 
         return http
             .csrf(csrf -> csrf.disable())
-            // API sin sesiones HTTP tradicionales
             .sessionManagement(session ->
                 session.sessionCreationPolicy(
                     SessionCreationPolicy.STATELESS
                 )
             )
-            // Configuración de autorización
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
+                    "/v3/api-docs/**",
+                    "/api/v1/health"
+                ).permitAll()
 
-                // Reservas públicas para invitados
+                // Crear reservas como invitado o usuario autenticado
                 .requestMatchers(
                     HttpMethod.POST,
                     "/api/v1/reservas"
                 ).permitAll()
 
-                // Consultar reservas propias
+                // Las demás operaciones requieren JWT válido
                 .requestMatchers(
                     "/api/v1/reservas/**"
                 ).authenticated()
 
-                // Cualquier otra ruta requiere autenticación
                 .anyRequest().authenticated()
             )
-            // Validación de JWT
             .oauth2ResourceServer(oauth ->
-                oauth.jwt(Customizer.withDefaults())
+                oauth.jwt(jwt ->
+                    jwt.jwtAuthenticationConverter(converter)
+                )
             )
             .build();
     }

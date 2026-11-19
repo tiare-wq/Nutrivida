@@ -62,7 +62,9 @@ public class ReservaController {
         @AuthenticationPrincipal Jwt token,
         @Valid @RequestBody ReservaSave reserva
     ) {
-        Long pacienteID = Long.parseLong(token.getSubject());
+        Long pacienteID = token != null
+        ? Long.parseLong(token.getSubject())
+        : null;
         ReservaDto resultado = reservaService.agregarReserva(reserva, pacienteID);
         return ResponseEntity.status(HttpStatus.CREATED).body(resultado);
     }
