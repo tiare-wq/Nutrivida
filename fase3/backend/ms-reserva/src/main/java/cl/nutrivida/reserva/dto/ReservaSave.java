@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReservaSave {
 
-    private Long id;
-
     private Long codigo;
 
     @NotNull(message = "Seleccione un tipo de atención")
@@ -23,14 +21,6 @@ public class ReservaSave {
 
     @NotBlank(message = "El nombre del servicio no puede venir en blanco")
     private String nombreServicio;
-
-    private String nombrePaciente;
-
-    @Pattern(
-            regexp = "^\\d{7,8}-[0-9Kk]$",
-            message = "Ingrese un run sin puntos y con guión"
-    )
-    String runPaciente;
 
     @NotBlank(message = "El nombre del profesional no puede venir en blanco")
     private String nombreProfesional;

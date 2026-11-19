@@ -76,24 +76,23 @@ function ReservaInvitado() {
         }
         setError('');
         const reserva = await crearReserva({
-            servicio: elegido.nombre,
-            profesional,
+            tipoAtencion: atencion,
+            nombreServicio: elegido.nombre,
+            nombreProfesional: profesional[0],
             precio: elegido.precio,
             fecha: `${fechaClave(fechaSelec)}T${hora}`,
-            nombre,
-            run,
+            runProfesional: profesional[2],
+            tipoPaciente: TipoPaciente.SESION_INICIADA,
             correo: email,
-            telefono,
             tipoPaciente: TipoPaciente.INVITADO
 
-        }, email);
+        });
         console.log("Reserva:", reserva);
-console.log("Fecha:", reserva?.fecha);
         if (!reserva) {
             setError(reserva.message());
             return;
         }
-        navigate('/confirmacion-reserva', { state: reserva });
+        // navigate('/confirmacion-reserva', { state: reserva });
     }
 
     return (
@@ -185,11 +184,11 @@ console.log("Fecha:", reserva?.fecha);
                                                 name="hora"
                                                 value={opcion}
                                                 checked={hora === opcion}
-                                                disabled={horaOcupada(profesional, fecha, opcion)}
+                                                disabled={horaOcupada(profesional, fechaSelec, opcion)}
                                                 onChange={() => setHora(opcion)}
                                             />
                                             {opcion}
-                                            {horaOcupada(profesional, fecha, opcion)
+                                            {horaOcupada(profesional, fechaSelec, opcion)
                                                 ? ' · ocupada'
                                                 : ''}
                                         </label>

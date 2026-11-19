@@ -25,6 +25,7 @@ public class Reserva {
     @Column(nullable = false)
     private Long codigo;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipo_atencion", nullable = false)
     private TipoAtencion tipoAtencion;
 

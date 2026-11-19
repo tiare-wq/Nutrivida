@@ -65,12 +65,12 @@ public class SecurityConfig {
                 // Reservas públicas para invitados
                 .requestMatchers(
                     HttpMethod.POST,
-                    "/api/v1/reservas/publicas"
+                    "/api/v1/reservas"
                 ).permitAll()
 
                 // Consultar reservas propias
                 .requestMatchers(
-                    "/api/v1/reservas/me/**"
+                    "/api/v1/reservas/**"
                 ).authenticated()
 
                 // Cualquier otra ruta requiere autenticación

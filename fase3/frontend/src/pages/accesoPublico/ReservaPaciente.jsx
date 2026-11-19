@@ -17,10 +17,10 @@ const categorias = [
 ];
 const servicios = [...consultas, ...evaluaciones, ...planes, ...talleres];
 const profesionales = [
-    ['Carolina Pérez', 'clinico'],
-    ['Valentina Soto', 'clinico'],
-    ['Camilo Rojas', 'deportivo'],
-    ['Daniela Muñoz', 'veg'],
+    ['Carolina Pérez', 'clinico', '12354876-4'],
+    ['Valentina Soto', 'clinico', '18987365-2'],
+    ['Camilo Rojas', 'deportivo', '21234865-K'],
+    ['Daniela Muñoz', 'veg', '19876354-5'],
 ];
 const horas = ['10:00', '11:00', '12:00'];
 
@@ -32,7 +32,7 @@ function ReservaPaciente() {
 
     const [atencion, setAtencion] = useState(location.state?.atencion ?? '');
     const [servicio, setServicio] = useState(String(location.state?.servicio ?? ''));
-    const [profesional, setProfesional] = useState('');
+    const [profesional, setProfesional] = useState([]);
     const [fechaSelec, setFecha] = useState(() => new Date());
     const [hora, setHora] = useState('');
     const [error, setError] = useState('');
@@ -62,18 +62,21 @@ function ReservaPaciente() {
             return;
         }
         const reserva = await crearReserva({
-            servicio: elegido.nombre,
-            profesional,
+            tipoAtencion: atencion,
+            nombreServicio: elegido.nombre,
+            nombreProfesional: profesional[0],
             precio: elegido.precio,
             fecha: `${fechaClave(fechaSelec)}T${hora}`,
+            runProfesional: profesional[2],
             tipoPaciente: TipoPaciente.SESION_INICIADA,
             correo: usuario.correo
         });
+        console.log(reserva)
         if (!reserva) {
             setError('Esa hora ya está reservada. Elige otra disponible.');
             return;
         }
-        navigate('/confirmacion-reserva', { state: reserva });
+        // navigate('/confirmacion-reserva', { state: reserva });
     }
 
     return (
@@ -140,7 +143,7 @@ function ReservaPaciente() {
                         >
                             <option value="">Selecciona una opción</option>
                             {compatibles.map((item) => (
-                                <option key={item[0]} value={item[0]}>
+                                <option key={item[0]} value={item}>
                                     {item[0]}
                                 </option>
                             ))}
@@ -166,7 +169,7 @@ function ReservaPaciente() {
                                                 name="hora"
                                                 value={opcion}
                                                 checked={hora === opcion}
-                                                disabled={horaOcupada(profesional, fecha, opcion)}
+                                                disabled={horaOcupada(profesional, fechaSelec, opcion)}
                                                 onChange={() => setHora(opcion)}
                                             />
                                             {opcion}
