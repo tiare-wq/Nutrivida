@@ -16,10 +16,10 @@ const categorias = [
 ];
 const servicios = [...consultas, ...evaluaciones, ...planes, ...talleres];
 const profesionales = [
-    ['Carolina Pérez', 'clinico'],
-    ['Valentina Soto', 'clinico'],
-    ['Camilo Rojas', 'deportivo'],
-    ['Daniela Muñoz', 'veg'],
+    ['Carolina Pérez', 'clinico', '12354876-4'],
+    ['Valentina Soto', 'clinico', '18987365-2'],
+    ['Camilo Rojas', 'deportivo', '21234865-K'],
+    ['Daniela Muñoz', 'veg', '19876354-5'],
 ];
 const horas = ['10:00', '11:00', '12:00'];
 
@@ -86,6 +86,7 @@ function ReservaInvitado() {
                 fecha: `${fechaClave(fechaSelec)}T${hora}`,
                 runProfesional: profesionalElegido[2],
                 tipoPaciente: TipoPaciente.INVITADO,
+                run,
                 correo: email
             };
     

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface Usuarios extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByCorreo(String correo);
+    Optional<Usuario> findByRut(String rut);
     boolean existsByCorreoAndIdNot(String correo, Long id);
     boolean existsByRutAndIdNot(String rut, Long id);
 }

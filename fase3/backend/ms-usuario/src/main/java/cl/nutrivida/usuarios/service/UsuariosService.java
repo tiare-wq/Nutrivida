@@ -11,6 +11,8 @@ import cl.nutrivida.usuarios.repository.Mediciones;
 import cl.nutrivida.usuarios.repository.RefreshTokens;
 import cl.nutrivida.usuarios.repository.Usuarios;
 import java.time.LocalDate;
+
+import cl.nutrivida.usuarios.response.UsuarioCliente;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -138,6 +140,21 @@ public class UsuariosService {
         return usuariosRepository
             .findById(id)
             .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Usuario no encontrado"));
+    }
+
+    public UsuarioCliente buscarPorRun(String run) {
+        Usuario usuario =  usuariosRepository
+            .findByRut(run)
+            .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Usuario no encontrado"));
+        return new UsuarioCliente(usuario.id, usuario.nombre, usuario.rut);
+    }
+
+    public UsuarioCliente buscarPorId(Long id) {
+        Usuario usuario =  usuariosRepository
+            .findById(id)
+            .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Usuario no encontrado"));
+
+        return new UsuarioCliente(usuario.id, usuario.nombre, usuario.rut);
     }
 
     public Usuario registrar(Datos.Registro datos) {

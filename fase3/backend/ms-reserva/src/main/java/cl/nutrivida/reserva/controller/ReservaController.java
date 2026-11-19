@@ -1,5 +1,6 @@
 package cl.nutrivida.reserva.controller;
 
+import cl.nutrivida.reserva.dto.BoletaDto;
 import cl.nutrivida.reserva.dto.ReservaDto;
 import cl.nutrivida.reserva.dto.ReservaSave;
 import cl.nutrivida.reserva.request.ReagendarRequest;
@@ -54,6 +55,12 @@ public class ReservaController {
     @GetMapping("/{id}")
     public ResponseEntity<ReservaDto> obtenerReservaPorId(@PathVariable Long id) {
         ReservaDto resultado = reservaService.obtenerReservaPorId(id);
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/boleta/{id}")
+    public ResponseEntity<BoletaDto> emitirBoleta(@PathVariable Long id) {
+        BoletaDto resultado = reservaService.emitirBoleta(id);
         return ResponseEntity.ok(resultado);
     }
 

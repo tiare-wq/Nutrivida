@@ -1,11 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
+import { emitirBoleta } from '../../service/reservaService';
 
 function Confirmacion() {
-    const reserva = useLocation().state;
-    if (!reserva) {
+    const { id } = useLocation().state;
+    try {
+        const boleta = emitirBoleta(id);
+    } catch {
         return (
             <main className="container py-5">
-                <h1>No hay una reserva para mostrar</h1>
+                <h1>Hemos tenido problemas para obtener tu boleta.</h1>
                 <Link to="/reservas">Volver a reservar</Link>
             </main>
         );
@@ -22,7 +25,7 @@ function Confirmacion() {
                     </div>
                     <p>Tu atención quedó guardada en este navegador.</p>
                     <p>
-                        {`${reserva.fecha.split('T')[0].split('-').reverse().join('-')} ${reserva.fecha.split('T')[1].slice(0, 5)}`}
+                        Hora reservada para el {reserva.fecha} a las {reserva.hora}hrs.
                     </p>
                     <p>Servicio: {reserva.servicio}</p>
                     <p>Profesional: {reserva.profesional}</p>

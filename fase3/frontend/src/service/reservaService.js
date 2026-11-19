@@ -34,3 +34,7 @@ export async function eliminarReserva(id) {
         method: 'DELETE',
     });
 }
+
+export async function emitirBoleta(id) {
+    return await solicitar(`/api/v1/reservas/boleta/${id}`)
+}

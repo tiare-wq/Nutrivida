@@ -5,10 +5,12 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 import cl.nutrivida.usuarios.dto.Datos;
 import cl.nutrivida.usuarios.entity.Usuario;
+import cl.nutrivida.usuarios.response.UsuarioCliente;
 import cl.nutrivida.usuarios.service.Sesiones;
 import cl.nutrivida.usuarios.service.UsuariosService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,6 +69,19 @@ public class CuentasController {
     public Object lista(@AuthenticationPrincipal Jwt token) {
         admin(token);
         return usuarios.todos();
+    }
+
+    @GetMapping("/run/{run}")
+    public ResponseEntity<UsuarioCliente> verUsuarioPorRun(@PathVariable String run) {
+        UsuarioCliente resultado = usuarios.buscarPorRun(run);
+        System.out.println(resultado.getId() + " "  + resultado);
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<UsuarioCliente> verUsuarioPorId(@PathVariable Long id) {
+        UsuarioCliente resultado = usuarios.buscarPorId(id);
+        return ResponseEntity.ok(resultado);
     }
 
     @PatchMapping("/{id}/permisos")

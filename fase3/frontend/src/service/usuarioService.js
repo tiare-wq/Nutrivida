@@ -26,6 +26,7 @@ export async function renovar() {
         .then(async (r) => {
             // 1. Si el backend dice 401, significa simplemente que es un INVITADO (sin sesión activa)
             if (r.status === 401) {
+                salir();
                 guardar(null); 
                 return false; // Retorna false pacíficamente sin lanzar errores catastróficos
             }
@@ -93,7 +94,7 @@ export async function solicitar(
             data.mensaje ?? `Error HTTP ${response.status}`
         );
 
-        error.nombre = data.nombre;
+        error.nombre = data.nombre ?? '';
         error.codigo = data.codigo ?? response.status;
         error.data = data;
 

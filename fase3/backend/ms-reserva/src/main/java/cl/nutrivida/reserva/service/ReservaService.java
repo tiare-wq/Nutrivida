@@ -1,12 +1,12 @@
 package cl.nutrivida.reserva.service;
 
+import cl.nutrivida.reserva.client.model.UsuarioClient;
+import cl.nutrivida.reserva.dto.BoletaDto;
 import cl.nutrivida.reserva.request.ReagendarRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import cl.nutrivida.reserva.client.UsuarioFeignClient;
-import cl.nutrivida.reserva.client.model.PacienteClient;
-import cl.nutrivida.reserva.client.model.ProfesionalClient;
 import cl.nutrivida.reserva.dto.ReservaDto;
 import cl.nutrivida.reserva.dto.ReservaSave;
 import cl.nutrivida.reserva.exception.ResourceNotFoundException;
@@ -74,7 +74,9 @@ public class ReservaService {
             throw new ResourceNotFoundException("No se encuentra el servicio con el nombre: " + dto.getNombreServicio());*/
 
         log.debug("Obtener id de profesional {}", dto.getRunProfesional());
-        Long idProfesional = usuarioFeignClient.obtenerProfesionalPorRun(dto.getRunProfesional());
+        UsuarioClient usuario = usuarioFeignClient.obtenerUsuarioPorRun(dto.getRunProfesional());
+        System.out.println(usuario.getId() + "usuario"+ usuario);
+        Long idProfesional = usuario.getId();
         if (idProfesional == null)
             throw new ResourceNotFoundException("No se encuentra el profesional con el RUN: " + dto.getRunProfesional());
 
@@ -163,10 +165,10 @@ public class ReservaService {
 
     private ReservaDto convertirReservaADto(Reserva reserva) {
 
-        PacienteClient paciente = usuarioFeignClient.obtenerPacientePorId(reserva.getIdPaciente());
+        UsuarioClient paciente = usuarioFeignClient.obtenerUsuarioPorId(reserva.getIdPaciente());
 
-        ProfesionalClient profesional =
-            usuarioFeignClient.obtenerProfesionalPorId(reserva.getIdProfesional());
+        UsuarioClient profesional =
+            usuarioFeignClient.obtenerUsuarioPorId(reserva.getIdProfesional());
 
         return reservaMapper.toDto(
             reserva,
@@ -201,5 +203,27 @@ public class ReservaService {
 
     public Long generarCodigo() {
         return Math.round(Math.random() * Math.pow(10, 12));
+    }
+
+    // ---------------------------------
+    // EMITIR BOLETA
+    // ---------------------------------
+
+    public BoletaDto emitirBoleta(Long id) {
+        log.info("Obteniendo boleta...");
+        Reserva reserva = reservaRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("No se encuentra la reserva con el id " + id));
+
+        BoletaDto boleta = new BoletaDto();
+        boleta.setId(reserva.getId());
+        boleta.setFecha(boleta.getFecha());
+        boleta.setHora(boleta.getHora());
+        boleta.setNombreServicio(boleta.getNombreServicio());
+        String nombreProfesional = usuarioFeignClient.obtenerUsuarioPorId(reserva.getIdProfesional())
+            .getNombre();
+        boleta.setNombreProfesional(nombreProfesional);
+        boleta.setPrecio(reserva.getPrecio());
+
+        return boleta;
     }
 }
